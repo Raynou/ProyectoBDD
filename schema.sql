@@ -6,14 +6,14 @@ create table EVENTO(
 
     cod_evento int primary key auto_increment,
     fecha date not null ,
-    lugar varchar(100) not null
+    lugar varchar(255) not null
 );
 
 create table EQUIPO(
 
     cod_equipo int primary key auto_increment,
     categoria enum('Primaria', 'Secundaria', 'Bachillerato', 'Profesional') not null ,
-    institucion varchar(1000) not null
+    institucion varchar(255) not null
 
 );
 

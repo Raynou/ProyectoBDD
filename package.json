@@ -1,0 +1,29 @@
+{
+  "name": "backend-proyectobdd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Raynou/Backend-ProyectoBDD.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Raynou/Backend-ProyectoBDD/issues"
+  },
+  "homepage": "https://github.com/Raynou/Backend-ProyectoBDD#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.25.6"
+  }
+}

@@ -63,27 +63,27 @@ create table COLABORAR(
     on delete cascade on update cascade
 );
 
--- Tablas para las categorías de evaluación
+-- Tables for evaluation categories
 
 create table CAT_DISENNO(
     id_eva_disenno int primary key auto_increment,
-    cal_bitacora int not null ,
-    cal_medio_dog int not null
+    cal_bitacora int not null check ( cal_bitacora <= 5 ),
+    cal_medio_dig int not null check ( cal_medio_dig <= 5 )
 );
 
 create table CAT_PROGRAMACION(
     id_eva_prog int primary key auto_increment,
-    cal_inspeccion int not null,
-    cal_sistema_aut int not null,
-    cal_demostracion int not null,
-    cal_sistema_man int not null
+    cal_inspeccion int not null check ( cal_inspeccion <= 4 ),
+    cal_sistema_aut int not null check ( cal_sistema_aut <= 2 ),
+    cal_demostracion int not null check ( cal_demostracion <= 2 ),
+    cal_sistema_man int not null check ( cal_sistema_man <= 2 )
 
 );
 
 create table CAT_CONSTRUCCION(
     id_eva_cons int primary key auto_increment,
-    cal_inspeccion int not null,
-    cal_libreta_ing int not null
+    cal_inspeccion int not null check ( cal_inspeccion <= 5 ),
+    cal_libreta_ing int not null check ( cal_libreta_ing <= 5 )
 );
 
 -- Tabla que te dice que proyectos partciparon en que evento.

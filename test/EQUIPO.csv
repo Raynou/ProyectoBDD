@@ -1,4 +1,3 @@
-cod_equipo,institucion,categoria
 1,Heisei International University,bachillerato
 2,University of Montana Western,profesional
 3,Bellin College of Nursing,secundaria
@@ -7,13 +6,13 @@ cod_equipo,institucion,categoria
 6,Université d'Avignon,bachillerato
 7,Hellenic Army Academy,profesional
 8,Malone College,secundaria
-9,"Fachhochschule Stuttgart, Hochschule für Technik",primaria
+9,Fachhochschule Stuttgart, Hochschule für Technik,primaria
 10,Khulna University,secundaria
 11,Polotsk State University,bachillerato
 12,Hungarian University of Physical Education,secundaria
 13,Institut Supérieur de Commerce et d'Administration des Entreprises,profesional
 14,Culver-Stockton College,profesional
-15,"Islamic Azad University, Falavarjan ",profesional
+15,Islamic Azad University, Falavarjan ,profesional
 16,Centro Escolar University,secundaria
 17,Evangelische Hochschule für Soziale Arbeit Dresden (FH),profesional
 18,AGH University of Science and Technology,profesional
@@ -34,7 +33,7 @@ cod_equipo,institucion,categoria
 33,Bethune-Cookman College,bachillerato
 34,University of Applied Sciences Solothurn Northwestern Switzerland,primaria
 35,Alfred Adler Graduate School,secundaria
-36,"University of Medicine 1, Yangon",secundaria
+36,University of Medicine 1, Yangon,secundaria
 37,Odessa National I.I. Mecnikov University,profesional
 38,Royal College of Surgeons,profesional
 39,Zonguldak Karaelmas University,bachillerato
@@ -93,7 +92,7 @@ cod_equipo,institucion,categoria
 92,Centro Universitario de Occidente,profesional
 93,Divine Word College of Legazpi,primaria
 94,Universidad Nacional Abierta y a Distancia,bachillerato
-95,"Skyline University College, Sharjah",primaria
+95,Skyline University College, Sharjah,primaria
 96,University of San Carlos,secundaria
 97,Universidad de Magallanes,primaria
 98,Universidad Abierta Interactiva,secundaria
@@ -1786,7 +1785,7 @@ cod_equipo,institucion,categoria
 785,Technical University of Sofia,profesional
 786,St. Petersburg State Medical Academy,primaria
 787,FPT University,secundaria
-788,"Mercer University, Cecil B. Day Campus",primaria
+788,Mercer University, Cecil B. Day Campus,primaria
 789,Universität Klagenfurt,primaria
 790,"Institut National de la Recherche Scientifique, Université du Québec",primaria
 791,Université de Liège,profesional

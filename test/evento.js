@@ -18,7 +18,7 @@ const insertEvents = async () => {
 	
 	await sequelize.authenticate();
 
-	const file = readline.createInterface(fs.createReadStream('EVENTO.csv'))
+	const file = readline.createInterface(fs.createReadStream('CSV/EVENTO.csv'))
 	const events = []
 
 	file.on("line", async(line) => {

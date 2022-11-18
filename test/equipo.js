@@ -18,7 +18,7 @@ const insertTeams = async () => {
 	
 	await sequelize.authenticate();
 
-	const file = readline.createInterface(fs.createReadStream('EQUIPO.csv'))
+	const file = readline.createInterface(fs.createReadStream('CSV/EQUIPO.csv'))
 	const teams = []
 
 	file.on("line", async(line) => {

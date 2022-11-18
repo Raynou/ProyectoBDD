@@ -20,9 +20,9 @@ create table EQUIPO(
 create table PARTICIPANTE(
     num_participante int primary key auto_increment,
     cod_equipo int not null,
-    nombre_pila varchar(10) not null ,
-    apellido_1 varchar(10) not null,
-    apellido_2 varchar(10),
+    nombre_pila varchar(20) not null ,
+    apellido_1 varchar(20) not null,
+    apellido_2 varchar(20),
     fecha_nac date not null,
 
     constraint FK_EQUIPO_DE_PARTICIPANTE

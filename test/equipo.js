@@ -14,7 +14,7 @@ const Team = sequelize.define('EQUIPO', {
 
 },{freezeTableName:true, timestamps:false})
 
-const insertTeams = async () => {
+export const insertTeams = async () => {
 	
 	await sequelize.authenticate();
 
@@ -44,4 +44,3 @@ const insertTeams = async () => {
 	})
 }
 
-insertTeams();

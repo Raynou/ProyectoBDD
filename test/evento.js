@@ -1,16 +1,11 @@
 import readline from "readline"
 import fs from "fs"
-import { Sequelize, DataTypes } from "Sequelize"
-
-const sequelize = new Sequelize('proyecto_bdd', 'root', 'Supernick_145', {
-	host: '127.0.0.1',
-	dialect: 'mysql'
-})
+import { sequelize, dataTypes } from "../database.js"
 
 const Event = sequelize.define('EVENTO', {
-	cod_evento: {type: DataTypes.INTEGER, primaryKey: true, unique:true},
-	fecha: {type: DataTypes.DATEONLY},
-	lugar: {type: DataTypes.STRING}
+	cod_evento: {type: dataTypes.INTEGER, primaryKey: true, unique:true},
+	fecha: {type: dataTypes.DATEONLY},
+	lugar: {type: dataTypes.STRING}
 
 },{freezeTableName:true, timestamps:false})
 

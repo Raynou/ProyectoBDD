@@ -12,7 +12,7 @@ create table EVENTO(
 create table EQUIPO(
 
     cod_equipo int primary key auto_increment,
-    categoria enum('Primaria', 'Secundaria', 'Bachillerato', 'Profesional') not null ,
+    categoria enum('primaria', 'secundaria', 'bachillerato', 'profesional') not null ,
     institucion varchar(255) not null
 
 );

@@ -9,12 +9,12 @@ const sequelize = new Sequelize('proyecto_bdd', 'root', 'Supernick_145', {
 
 const Event = sequelize.define('EVENTO', {
 	cod_evento: {type: DataTypes.INTEGER, primaryKey: true, unique:true},
-	fecha: {type: DataTypes.DATE},
+	fecha: {type: DataTypes.DATEONLY},
 	lugar: {type: DataTypes.STRING}
 
 },{freezeTableName:true, timestamps:false})
 
-const insertUsers = async () => {
+const insertEvents = async () => {
 	
 	await sequelize.authenticate();
 
@@ -31,4 +31,4 @@ const insertUsers = async () => {
 	})
 }
 
-insertUsers();
+insertEvents();

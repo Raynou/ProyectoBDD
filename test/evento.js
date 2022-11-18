@@ -9,7 +9,7 @@ const Event = sequelize.define('EVENTO', {
 
 },{freezeTableName:true, timestamps:false})
 
-const insertEvents = async () => {
+export const insertEvents = async () => {
 	
 	await sequelize.authenticate();
 
@@ -26,4 +26,3 @@ const insertEvents = async () => {
 	})
 }
 
-insertEvents();

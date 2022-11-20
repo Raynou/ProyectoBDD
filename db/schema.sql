@@ -61,29 +61,63 @@ create table COLABORAR(
     constraint FK_EVENTO_COLABORADOR
     foreign key (cod_evento) references EVENTO(cod_evento)
     on delete cascade on update cascade
+
 );
 
 -- Tables for evaluation categories
 
 create table CAT_DISENNO(
-    id_eva_disenno int primary key auto_increment,
+    cod_proyecto int not null ,
+    cod_evento int not null,
     cal_bitacora int not null check ( cal_bitacora <= 5 ),
-    cal_medio_dig int not null check ( cal_medio_dig <= 5 )
+    cal_medio_dig int not null check ( cal_medio_dig <= 5 ),
+
+    constraint FK_PROYECTO_CAT_DISENNO
+    foreign key (cod_proyecto) references PROYECTO(cod_proyecto)
+    on delete cascade on update cascade,
+
+    constraint FK_EVENTO_CAT_DISENNO
+    foreign key (cod_evento) references EVENTO(cod_evento)
+    on delete cascade on update cascade,
+
+    primary key (cod_proyecto, cod_evento)
 );
 
 create table CAT_PROGRAMACION(
-    id_eva_prog int primary key auto_increment,
+    cod_proyecto int not null ,
+    cod_evento int not null,
     cal_inspeccion int not null check ( cal_inspeccion <= 4 ),
     cal_sistema_aut int not null check ( cal_sistema_aut <= 2 ),
     cal_demostracion int not null check ( cal_demostracion <= 2 ),
-    cal_sistema_man int not null check ( cal_sistema_man <= 2 )
+    cal_sistema_man int not null check ( cal_sistema_man <= 2 ),
+
+    constraint FK_PROYECTO_CAT_PROGRAMACION
+    foreign key (cod_proyecto) references PROYECTO(cod_proyecto)
+    on delete cascade on update cascade,
+
+    constraint FK_EVENTO_CAT_PROGRAMACION
+    foreign key (cod_evento) references EVENTO(cod_evento)
+    on delete cascade on update cascade,
+
+    primary key (cod_proyecto, cod_evento)
 
 );
 
 create table CAT_CONSTRUCCION(
-    id_eva_cons int primary key auto_increment,
+    cod_proyecto int not null ,
+    cod_evento int not null,
     cal_inspeccion int not null check ( cal_inspeccion <= 5 ),
-    cal_libreta_ing int not null check ( cal_libreta_ing <= 5 )
+    cal_libreta_ing int not null check ( cal_libreta_ing <= 5 ),
+
+    constraint FK_PROYECTO_CAT_CONSTRUCCION
+    foreign key (cod_proyecto) references PROYECTO(cod_proyecto)
+    on delete cascade on update cascade,
+
+    constraint FK_EVENTO_CAT_CONSTRUCCION
+    foreign key (cod_evento) references EVENTO(cod_evento)
+    on delete cascade on update cascade,
+
+    primary key (cod_proyecto, cod_evento)
 );
 
 -- Tabla que te dice que proyectos partciparon en que evento.
@@ -92,9 +126,6 @@ create table EVALUAR_EN(
     cod_proyecto int,
     cod_evento int,
     id_jurado int,
-    id_eva_prog int not null unique,
-    id_eva_disenno int not null unique ,
-    id_eva_cons int not null unique ,
 
     constraint FK_PROYECTO_PARTICIPA
     foreign key (cod_proyecto) references PROYECTO(cod_proyecto)
@@ -107,18 +138,6 @@ create table EVALUAR_EN(
     constraint FK_JURADO_EVALUO
     foreign key (id_jurado) references JURADO(id_jurado)
     on update cascade on delete set null ,
-
-    constraint FK_CAT_PROG
-    foreign key (id_eva_prog) references CAT_PROGRAMACION(id_eva_prog)
-    on delete cascade on update cascade ,
-
-    constraint FK_CAT_DISE
-    foreign key (id_eva_disenno) references CAT_DISENNO(id_eva_disenno)
-    on delete cascade on update cascade,
-
-    constraint FK_CAT_CONS
-    foreign key (id_eva_cons) references CAT_CONSTRUCCION(id_eva_cons)
-    on delete cascade on update cascade,
 
     primary key (cod_proyecto, cod_evento)
 );

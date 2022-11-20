@@ -20,9 +20,9 @@ create table EQUIPO(
 create table PARTICIPANTE(
     num_participante int primary key auto_increment,
     cod_equipo int not null,
-    nombre_pila varchar(20) not null ,
-    apellido_1 varchar(20) not null,
-    apellido_2 varchar(20),
+    nombre_pila varchar(255) not null ,
+    apellido_1 varchar(255) not null,
+    apellido_2 varchar(255),
     fecha_nac date not null,
 
     constraint FK_EQUIPO_DE_PARTICIPANTE
@@ -32,7 +32,7 @@ create table PARTICIPANTE(
 
 create table PROYECTO(
     cod_proyecto int primary key auto_increment,
-    nombre_proyecto varchar(30) not null ,
+    nombre_proyecto varchar(255) not null ,
     cod_equipo int not null,
 
     constraint FK_EQUIPO_DE_PROYECTO
@@ -43,9 +43,9 @@ create table PROYECTO(
 create table JURADO(
 
     id_jurado int primary key auto_increment,
-    nombre_pila varchar(15) not null ,
-    apellido_1 varchar(15) not null ,
-    apellido_2 varchar(15)
+    nombre_pila varchar(255) not null ,
+    apellido_1 varchar(255) not null ,
+    apellido_2 varchar(255)
 
 );
 

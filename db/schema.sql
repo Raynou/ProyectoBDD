@@ -43,9 +43,9 @@ create table PROYECTO(
 create table JURADO(
 
     id_jurado int primary key auto_increment,
-    nombre_pila varchar(10) not null ,
-    apellido_1 varchar(10) not null ,
-    apellido_2 varchar(10)
+    nombre_pila varchar(15) not null ,
+    apellido_1 varchar(15) not null ,
+    apellido_2 varchar(15)
 
 );
 

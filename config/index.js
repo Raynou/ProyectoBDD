@@ -2,9 +2,17 @@ import express from "express"
 import expressNunjucks from 'express-nunjucks'
 import nunjucks from "nunjucks"
 
+let isDarwin = process.platform === 'darwin'
+
 const app = express()
 
-app.set('views', process.cwd() + '\\src\\templates');
+
+let dir = process.cwd() + '\\src\\templates'
+
+if (isDarwin) 
+	dir = process.cwd() + '/src/templates'
+
+app.set('views', dir);
 
 expressNunjucks(app, {
     watch: true,

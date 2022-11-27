@@ -11,9 +11,15 @@ expressNunjucks(app, {
     autoescape: true
 });
 
+app.use(express.static('public'))
+
 
 app.get('/', function(req, res) {
-    res.render('index.html', {naco: "Giancarlo"});
+    res.render('index.html');
+});
+
+app.get('/about', function(req, res) {
+    res.render('about.html', {current_page: "Conocenos"});
 });
 
 app.listen(3000)

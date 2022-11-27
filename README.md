@@ -5,5 +5,5 @@
 
 ### Ejecutar para desarrollo
 
-1. Ejecutar npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch
+1. Ejecutar npx tailwindcss -i ./src/input.css -o ./public/output.css --watch
 2. Ejecutar npm run start

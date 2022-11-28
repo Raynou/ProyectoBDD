@@ -7,4 +7,4 @@ delimiter $$
 create procedure get_events_prior_to_current_date() begin
    select * from EVENTO where fecha_fin < curdate();
 end $$
-delimiter;
+delimiter ;

@@ -1,5 +1,6 @@
 import express from "express"
 import expressNunjucks from 'express-nunjucks'
+import queryRoutes from "../src/routes/querys.routes.js"
 import nunjucks from "nunjucks"
 
 let isDarwin = process.platform === 'darwin'
@@ -11,6 +12,9 @@ let dir = process.cwd() + '\\src\\templates'
 
 if (isDarwin) 
 	dir = process.cwd() + '/src/templates'
+
+// Routes
+app.use(queryRoutes)
 
 app.set('views', dir);
 
@@ -49,6 +53,8 @@ app.get('/dashboard/jurado', function(req, res) {
 app.get('/dashboard/equipo', function(req, res) {
     res.render('dashboard/dashboard_view.html', {current_page: "Dashboard_Equipo"});
 });
+
+
 
 app.listen(3000)
 

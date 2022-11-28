@@ -1,5 +1,6 @@
 import express from "express"
 import expressNunjucks from 'express-nunjucks'
+import bodyParser from "body-parser"
 import queryRoutes from "../src/routes/querys.routes.js"
 import renderRoutes from "../src/routes/render.routes.js"
 import nunjucks from "nunjucks"
@@ -15,6 +16,9 @@ if (isDarwin)
 	dir = process.cwd() + '/src/templates'
 
 app.use(express.static('public'))
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.set('views', dir);
 

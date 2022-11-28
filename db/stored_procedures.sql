@@ -30,7 +30,7 @@ delimiter ;
 
 -- Insertar integrante
 /*
- @param curp - CURP
+ @param crp - CURP
  @param cod_e - cod_equipo
  @param nom_pila - nombre_pila
  @param p_apellido - primer_apellido
@@ -40,7 +40,7 @@ delimiter ;
 drop procedure if exists set_participant;
 delimiter $$
 create procedure set_participant(
-    in curp varchar(18),
+    in crp varchar(18),
     in cod_e int,
     in nom_pila varchar(255),
     in p_apellido varchar(255),
@@ -48,7 +48,7 @@ create procedure set_participant(
     in f_nac date
 )
 begin
-    insert into PARTICIPANTE values (curp, cod_e, nom_pila, p_apellido, s_apellido, f_nac);
+    insert into PARTICIPANTE values (crp, cod_e, nom_pila, p_apellido, s_apellido, f_nac);
 end $$
 delimiter ;
 

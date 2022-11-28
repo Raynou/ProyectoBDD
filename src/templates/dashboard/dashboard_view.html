@@ -3,13 +3,13 @@
 <div>
     <div class="grid grid-cols-1 lg:grid-cols-4 gap-2">
       <div class="p-4 rounded-md bg-gray-100 flex items-top justify-center">
-        <ul>
           {% if current_page == "Dashboard_Coordinador" %}
-           <li><a href="">Registro de eventos</a></li> 
-           <li><a href="">Registro de jurados</a></li> 
-           <li><a href="/dashboard/coordinador/:registro_equipo">Registro de equipos</a></li> 
+            {% include "dashboard/menu_coordinador.html" %}
+          {% elif current_page == "Dashboard_Jurado" %}
+          {% include "dashboard/menu_jurado.html" %}
+          {% elif current_page == "Dashboard_Equipo" %}
+          {% include "dashboard/menu_equipo.html" %}
           {% endif %}
-        </ul>
       </div>
   
       <div class="p-4 rounded-md bg-gray-100 col-span-3 gap-2" id="pantalla">

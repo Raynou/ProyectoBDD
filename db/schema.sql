@@ -13,13 +13,14 @@ create table EVENTO(
 create table EQUIPO(
 
     cod_equipo int primary key auto_increment,
+    nombre_equipo varchar(255),
     categoria enum('primaria', 'secundaria', 'bachillerato', 'profesional') not null ,
     institucion varchar(255) not null
 
 );
 
 create table PARTICIPANTE(
-    num_participante int primary key auto_increment,
+    CURP varchar(18) primary key ,
     cod_equipo int not null,
     nombre_pila varchar(255) not null ,
     apellido_1 varchar(255) not null,

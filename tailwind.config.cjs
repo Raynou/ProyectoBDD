@@ -4,7 +4,8 @@ module.exports = {
   relative: true,
   files: [
       './src/templates/*.html',
-      './src/templates/**/*.html'],
+      './src/templates/dashboard/*.html',
+      './src/templates/dashboard/**/*.html'],
   },
   theme: {
     extend: {},

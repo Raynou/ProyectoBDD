@@ -5,15 +5,16 @@ import queryRoutes from "../src/routes/querys.routes.js"
 import renderRoutes from "../src/routes/render.routes.js"
 import nunjucks from "nunjucks"
 
-let isDarwin = process.platform === 'darwin'
+let isWin = process.platform === 'win32'
 
 const app = express()
 
 
-let dir = process.cwd() + '\\src\\templates'
+let dir = process.cwd() + '/src/templates' 
 
-if (isDarwin) 
-	dir = process.cwd() + '/src/templates'
+if (isWin) 
+	dir = process.cwd() + '\\src\\templates'
+
 
 app.use(express.static('public'))
 

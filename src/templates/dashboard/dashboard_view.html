@@ -1,34 +1,52 @@
 {% include "base.html" %}
 
 <div>
-    <div class="grid grid-cols-1 lg:grid-cols-4 gap-2">
-      <div class="p-4 rounded-md bg-gray-100 flex items-top justify-center">
-        <ul>
+  <div class="grid grid-cols-1 lg:grid-cols-4 gap-2">
+    <aside class="w-64">
+      <div class="overflow-y-auto py-4 px-3 bg-gray-50 rounded">
+        <ul class="space-y-2">
           <li>
-            <a href="/dashboard/publico/ver_resultados">Resultados</a>
+            <a
+              href="/dashboard"
+              class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"
+            >
+              <span class="ml-3">Dashboard</span>
+            </a>
           </li>
-
-          {% if current_page == "Dashboard Coordinador" %}
+          <li><hr /></li>
+          {% if current_page == "Dashboard Coordinador" %} 
             {% include "dashboard/menu_coordinador.html" %}
-          {% elif current_page == "Dashboard Jurado" %}
-          {% include "dashboard/menu_jurado.html" %}
-          {% endif %}
+            <li><hr /></li>
+          {% elif current_page == "Dashboard Jurado" %} 
+            {% include "dashboard/menu_jurado.html" %}
+            <li><hr /></li>
+          {%endif %}
+          <li>
+            <a
+              href="/dashboard/publico/ver_resultados"
+              class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"
+            >
+              <span class="flex-1 ml-3 whitespace-nowrap">Ver Resultados</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
 
-      </div>
-  
-      <div class="p-4 rounded-md bg-gray-100 col-span-3 gap-2" id="pantalla">
-        {% block dashboard_content %}
-          {% if current_page == "Dashboard Coordinador" %}
-          <h1 class="text-5xl font-bold text-blue-600 text-center">Vista coordinador</h1>
-          {% elif current_page == "Dashboard Jurado" %}
-          <h1 class="text-5xl font-bold text-blue-600 text-center">Vista jurado</h1>
-          {% elif current_page == "Dashboard Publico" %}
-          <h1 class="text-5xl font-bold text-blue-600 text-center">Vista equipo</h1>
-          {% endif %}
-        {% endblock %}
-      </div>
+    <div class="p-4 rounded-md bg-gray-100 col-span-3 gap-2" id="pantalla">
+      {% block dashboard_content %} {% if current_page == "Dashboard Coordinador" %}
+      <h1 class="text-5xl font-bold text-blue-600 text-center">
+        Vista coordinador
+      </h1>
+      {% elif current_page == "Dashboard Jurado" %}
+      <h1 class="text-5xl font-bold text-blue-600 text-center">Vista jurado</h1>
+      {% elif current_page == "Dashboard Publico" %}
+      <h1 class="text-5xl font-bold text-blue-600 text-center">Vista equipo</h1>
+      {% endif %} {% endblock %}
     </div>
   </div>
+</div>
+
 </body>
 
 </html>

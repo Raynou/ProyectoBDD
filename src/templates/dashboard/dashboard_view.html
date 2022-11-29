@@ -3,12 +3,12 @@
 <div>
   <div class="grid grid-cols-1 lg:grid-cols-4 gap-2">
     <aside class="w-64">
-      <div class="overflow-y-auto py-4 px-3 bg-gray-50 rounded">
+      <div class="overflow-y-auto py-4 px-3 bg-gray-100 rounded">
         <ul class="space-y-2">
           <li>
             <a
               href="/dashboard"
-              class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"
+              class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-sky-100"
             >
               <span class="ml-3">Dashboard</span>
             </a>
@@ -24,7 +24,7 @@
           <li>
             <a
               href="/dashboard/publico/ver_resultados"
-              class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"
+              class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-sky-100"
             >
               <span class="flex-1 ml-3 whitespace-nowrap">Ver Resultados</span>
             </a>
@@ -33,7 +33,7 @@
       </div>
     </aside>
 
-    <div class="p-4 rounded-md bg-gray-100 col-span-3 gap-2" id="pantalla">
+    <div class="p-4 rounded-md bg-gray-100 col-span-3">
       {% block dashboard_content %} {% if current_page == "Dashboard Coordinador" %}
       <h1 class="text-5xl font-bold text-blue-600 text-center">
         Vista coordinador

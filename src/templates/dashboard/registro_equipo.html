@@ -56,20 +56,29 @@
 
             <div class="col-span-3 sm:col-span-2">
               <label
-                for="institucion-equipo"
+                for="evento-equipo"
                 class="block text-sm font-medium text-gray-700"
                 >Evento</label
               >
-              <div class="mt-1 flex rounded-md shadow-sm">
-                <input
-                  type="text"
-                  required
-                  name="institucion-equipo"
-                  id="institucion-equipo"
-                  class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
-                  placeholder=""
-                />
-              </div>
+              <select
+                required
+                name="evento-equipo"
+                id="evento-equipo"
+                class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
+              >
+                <option selected>Evento</option>
+                <!--Aquí debe ir un bucle for-->
+                <option value="idevento">nombre evento</option>
+                <!--
+                {% for evento in events["current"] %}
+                <option value = {{ evento["cod_evento"] }}>
+                  {{ evento["cod_evento"] }}
+                  </option>
+                {% else %}
+                  <option>No hay ningun evento en curso.</option>
+                {% endfor %}
+                -->
+              </select>
             </div>
 
             <div>

@@ -1129,6 +1129,16 @@ video {
   transition-duration: 75ms;
 }
 
+.invalid\:border-pink-500:invalid {
+  --tw-border-opacity: 1;
+  border-color: rgb(236 72 153 / var(--tw-border-opacity));
+}
+
+.invalid\:text-pink-600:invalid {
+  --tw-text-opacity: 1;
+  color: rgb(219 39 119 / var(--tw-text-opacity));
+}
+
 .hover\:gap-3:hover {
   gap: 0.75rem;
 }

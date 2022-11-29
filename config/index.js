@@ -1,20 +1,25 @@
 import express from "express"
 import expressNunjucks from 'express-nunjucks'
+import bodyParser from "body-parser"
 import queryRoutes from "../src/routes/querys.routes.js"
+import renderRoutes from "../src/routes/render.routes.js"
 import nunjucks from "nunjucks"
 
-let isDarwin = process.platform === 'darwin'
+let isWin = process.platform === 'win32'
 
 const app = express()
 
 
-let dir = process.cwd() + '\\src\\templates'
+let dir = process.cwd() + '/src/templates' 
 
-if (isDarwin) 
-	dir = process.cwd() + '/src/templates'
+if (isWin) 
+	dir = process.cwd() + '\\src\\templates'
 
-// Routes
-app.use(queryRoutes)
+
+app.use(express.static('public'))
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.set('views', dir);
 
@@ -26,29 +31,10 @@ expressNunjucks(app, {
 app.use(express.static('public'))
 
 
-app.get('/', function(req, res) {
-    res.render('index.html');
-});
+// Routes
+app.use(queryRoutes)
 
-app.get('/about', function(req, res) {
-    res.render('about.html', {current_page: "Conocenos"});
-});
-
-app.get('/dashboard', function(req, res) {
-    res.render('dashboard/dashboard.html', {current_page: "Dashboard"});
-});
-
-app.get('/dashboard/coordinador', function(req, res) {
-    res.render('dashboard/dashboard_view.html', {current_page: "Dashboard_Coordinador"});
-});
-
-app.get('/dashboard/coordinador/:registro_jurado', function(req, res) {
-    res.render('dashboard/registro_jurado.html', {current_page: "Dashboard_Coordinador"});
-});
-
-app.get('/dashboard/jurado', function(req, res) {
-    res.render('dashboard/dashboard_view.html', {current_page: "Dashboard_Jurado"});
-});
+app.use(renderRoutes)
 
 app.get('/dashboard/equipo', function(req, res) {
     res.render('dashboard/dashboard_view.html', {current_page: "Dashboard_Equipo"});

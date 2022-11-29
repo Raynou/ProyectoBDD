@@ -5,20 +5,22 @@ use proyecto_bdd;
 create table EVENTO(
 
     cod_evento int primary key auto_increment,
-    fecha date not null ,
+    fecha_inicio date not null ,
+    fecha_fin date not null,
     lugar varchar(255) not null
 );
 
 create table EQUIPO(
 
     cod_equipo int primary key auto_increment,
+    nombre_equipo varchar(255),
     categoria enum('primaria', 'secundaria', 'bachillerato', 'profesional') not null ,
     institucion varchar(255) not null
 
 );
 
 create table PARTICIPANTE(
-    num_participante int primary key auto_increment,
+    CURP varchar(18) primary key ,
     cod_equipo int not null,
     nombre_pila varchar(255) not null ,
     apellido_1 varchar(255) not null,
@@ -52,7 +54,7 @@ create table JURADO(
 create table COLABORAR(
     id_jurado int not null ,
     cod_evento int not null ,
-    categoria enum('Primaria', 'Secundaria', 'Bachillerato', 'Profesional'),
+    categoria enum('primaria', 'secundaria', 'bachillerato', 'profesional'),
 
     constraint FK_JURADO_COLABORA
     foreign key (id_jurado) references JURADO(id_jurado)
@@ -71,6 +73,7 @@ create table CAT_DISENNO(
     cod_evento int not null,
     cal_bitacora int not null check ( cal_bitacora <= 5 ),
     cal_medio_dig int not null check ( cal_medio_dig <= 5 ),
+    cal_total_disenno int,
 
     constraint FK_PROYECTO_CAT_DISENNO
     foreign key (cod_proyecto) references PROYECTO(cod_proyecto)
@@ -86,10 +89,11 @@ create table CAT_DISENNO(
 create table CAT_PROGRAMACION(
     cod_proyecto int not null ,
     cod_evento int not null,
-    cal_inspeccion int not null check ( cal_inspeccion <= 4 ),
+    cal_inspeccion_prog int not null check ( cal_inspeccion_prog <= 4 ),
     cal_sistema_aut int not null check ( cal_sistema_aut <= 2 ),
     cal_demostracion int not null check ( cal_demostracion <= 2 ),
     cal_sistema_man int not null check ( cal_sistema_man <= 2 ),
+    cal_total_prog int,
 
     constraint FK_PROYECTO_CAT_PROGRAMACION
     foreign key (cod_proyecto) references PROYECTO(cod_proyecto)
@@ -106,8 +110,9 @@ create table CAT_PROGRAMACION(
 create table CAT_CONSTRUCCION(
     cod_proyecto int not null ,
     cod_evento int not null,
-    cal_inspeccion int not null check ( cal_inspeccion <= 5 ),
+    cal_inspeccion_cons int not null check ( cal_inspeccion_cons <= 5 ),
     cal_libreta_ing int not null check ( cal_libreta_ing <= 5 ),
+    cal_total_cons int,
 
     constraint FK_PROYECTO_CAT_CONSTRUCCION
     foreign key (cod_proyecto) references PROYECTO(cod_proyecto)

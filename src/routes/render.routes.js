@@ -35,8 +35,14 @@ router.post('/dashboard/login', function(req, res) {
 router.get('/dashboard/coordinador', function(req, res) {
     res.render('dashboard/dashboard_view.html', {current_page: "Dashboard_Coordinador"});
 });
-router.get('/dashboard/coordinador/:registro_equipo', function(req, res) {
+router.get('/dashboard/coordinador/registro_equipo', function(req, res) {
     res.render('dashboard/registro_equipo.html', {current_page: "Dashboard_Coordinador"});
+});
+router.get('/dashboard/coordinador/registro_evento', function(req, res) {
+    res.render('dashboard/registro_evento.html', {current_page: "Dashboard_Coordinador"});
+});
+router.get('/dashboard/coordinador/registro_jurado', function(req, res) {
+    res.render('dashboard/registro_jurado.html', {current_page: "Dashboard_Coordinador"});
 });
 
 router.get('/dashboard/jurado', function(req, res) {

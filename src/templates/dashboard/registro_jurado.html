@@ -1,0 +1,150 @@
+{% extends "dashboard/dashboard_view.html" %} {% block dashboard_content %}
+<div>
+  <form action="#" method="POST">
+    <div class="md:grid md:grid-cols-3 md:gap-6">
+      <div class="md:col-span-1">
+        <div class="px-4 sm:px-0">
+          <h3 class="text-lg font-medium leading-6 text-sky-600">
+            Datos del Jurado
+          </h3>
+          <p class="mt-1 text-sm text-gray-600">Datos personales del jurado</p>
+        </div>
+      </div>
+
+      <div class="mt-5 md:col-span-2 md:mt-0">
+        <div class="shadow sm:overflow-hidden sm:rounded-md">
+          <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
+            <div class="grid grid-cols-3 gap-6">
+              <div class="col-span-3 sm:col-span-2">
+                <label
+                  for="curp-jurado"
+                  class="block text-sm font-medium text-gray-700"
+                  >CURP</label
+                >
+                <div class="mt-1 flex rounded-md shadow-sm">
+                  <input
+                    type="text"
+                    name="curp-jurado"
+                    id="curp-jurado"
+                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
+                    placeholder=""
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-6">
+              <div class="col-span-3 sm:col-span-2">
+                <label
+                  for="nombre-jurado"
+                  class="block text-sm font-medium text-gray-700"
+                  >Nombre(s)</label
+                >
+                <div class="mt-1 flex rounded-md shadow-sm">
+                  <input
+                    type="text"
+                    required
+                    name="nombre-jurado"
+                    id="nombre-jurado"
+                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
+                    placeholder="Nombre(s)"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-6">
+              <div class="col-span-3 sm:col-span-2">
+                <label
+                  for="apellido1-jurado"
+                  class="block text-sm font-medium text-gray-700"
+                  >Primer Apellido</label
+                >
+                <div class="mt-1 flex rounded-md shadow-sm">
+                  <input
+                    type="text"
+                    required
+                    name="apellido1-jurado"
+                    id="apellido1-jurado"
+                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
+                    placeholder="Primer Apellido"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-6">
+              <div class="col-span-3 sm:col-span-2">
+                <label
+                  for="apellido2-jurado"
+                  class="block text-sm font-medium text-gray-700"
+                  >Segundo Apellido</label
+                >
+                <div class="mt-1 flex rounded-md shadow-sm">
+                  <input
+                    type="text"
+                    required
+                    name="apellido2-jurado"
+                    id="apellido2-jurado"
+                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
+                    placeholder="Segundo Apellido"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-6">
+              <div class="col-span-3 sm:col-span-2">
+                <label
+                  for="password-jurado"
+                  class="block text-sm font-medium text-gray-700"
+                  >Contraseña</label
+                >
+                <div class="mt-1 flex rounded-md shadow-sm">
+                  <input
+                    type="password"
+                    required
+                    name="password-jurado"
+                    id="password-jurado"
+                    pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-zÀ-ÿ\u00f1\u00d1\d]{8,}$"
+                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
+                    placeholder="Contraseña"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-6">
+              <div class="col-span-3 sm:col-span-2">
+                <label
+                  for="edad-jurado"
+                  class="block text-sm font-medium text-gray-700"
+                  >Fecha de Nacimiento</label
+                >
+                <div class="mt-1 flex rounded-md shadow-sm">
+                  <input
+                    type="date"
+                    name="edad-jurado"
+                    id="edad-jurado"
+                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
+      <button
+        type="submit"
+        class="inline-flex justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
+      >
+        Enviar
+      </button>
+    </div>
+  </form>
+</div>
+
+{% endblock %}

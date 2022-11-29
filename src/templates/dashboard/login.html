@@ -1,0 +1,62 @@
+{% include "base.html" %}
+
+<h1 class="text-5xl font-bold text-blue-600 text-center">Dashboard</h1>
+
+<br />
+<br />
+
+<div class="p-8">
+<form action="#" method="POST">
+        <div class="shadow sm:overflow-hidden sm:rounded-md">
+          <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
+            <div class="grid grid-cols-3 gap-6">
+              <div class="col-span-3 sm:col-span-2">
+                <label
+                  for="codigo"
+                  class="block text-sm font-medium text-gray-700"
+                  >Codigo de inicio de sesión</label
+                >
+                <div class="mt-1 flex rounded-md shadow-sm">
+                  <input
+                    type="text"
+                    name="codigo"
+                    id="codigo"
+                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="col-span-3 sm:col-span-2">
+              <label
+                for="contraseña"
+                class="block text-sm font-medium text-gray-700"
+                >Constraseña</label
+              >
+              <div class="mt-1 flex rounded-md shadow-sm">
+                <input
+                  type="password"
+                  name="contraseña"
+                  id="contraseña"
+                  class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                />
+              </div>
+            </div>
+
+              <div class="mt-1 flex rounded-md shadow-sm">
+                <input
+                  type="submit"
+                  name="enviar"
+                  id="enviar"
+                  class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 bg-blue-800 text-white sm:text-sm"
+                />
+              </div>
+
+
+          </div>
+        </div>
+      </form></div>
+
+</body>
+
+</html>

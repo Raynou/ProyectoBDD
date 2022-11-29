@@ -1,19 +1,19 @@
 {% extends "dashboard/dashboard_view.html" %} {% block dashboard_content %}
 <div>
-  <div class="md:grid md:grid-cols-3 md:gap-6">
-    <div class="md:col-span-1">
-      <div class="px-4 sm:px-0">
-        <h3 class="text-lg font-medium leading-6 text-sky-600">
-          Datos Generales
-        </h3>
-        <p class="mt-1 text-sm text-gray-600">
-          Datos generales sobre el equipo participante
-        </p>
+  <form action="#" method="POST">
+    <div class="md:grid md:grid-cols-3 md:gap-6">
+      <div class="md:col-span-1">
+        <div class="px-4 sm:px-0">
+          <h3 class="text-lg font-medium leading-6 text-sky-600">
+            Datos Generales
+          </h3>
+          <p class="mt-1 text-sm text-gray-600">
+            Datos generales sobre el equipo participante
+          </p>
+        </div>
       </div>
-    </div>
 
-    <div class="mt-5 md:col-span-2 md:mt-0">
-      <form action="#" method="">
+      <div class="mt-5 md:col-span-2 md:mt-0">
         <div class="shadow sm:overflow-hidden sm:rounded-md">
           <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
             <div class="grid grid-cols-3 gap-6">
@@ -26,9 +26,10 @@
                 <div class="mt-1 flex rounded-md shadow-sm">
                   <input
                     type="text"
+                    required
                     name="nombre-equipo"
                     id="nombre-equipo"
-                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Equipo"
                   />
                 </div>
@@ -44,9 +45,10 @@
               <div class="mt-1 flex rounded-md shadow-sm">
                 <input
                   type="text"
+                  required
                   name="institucion-equipo"
                   id="institucion-equipo"
-                  class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                  class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                   placeholder="Institución"
                 />
               </div>
@@ -60,10 +62,11 @@
               >
               <div class="mt-1 flex rounded-md shadow-sm">
                 <input
-                  type="search"
+                  type="text"
+                  required
                   name="institucion-equipo"
                   id="institucion-equipo"
-                  class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                  class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                   placeholder=""
                 />
               </div>
@@ -86,7 +89,7 @@
                       id="cat1"
                       name="categoria-equipo"
                       type="radio"
-                      class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                      class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-sky-500"
                     />
                     <label
                       for="cat1"
@@ -99,7 +102,7 @@
                       id="cat2"
                       name="categoria-equipo"
                       type="radio"
-                      class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                      class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-sky-500"
                     />
                     <label
                       for="cat2"
@@ -112,7 +115,7 @@
                       id="cat3"
                       name="categoria-equipo"
                       type="radio"
-                      class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                      class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-sky-500"
                     />
                     <label
                       for="cat3"
@@ -125,7 +128,7 @@
                       id="cat4"
                       name="categoria-equipo"
                       type="radio"
-                      class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                      class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-sky-500"
                     />
                     <label
                       for="cat4"
@@ -138,28 +141,26 @@
             </div>
           </div>
         </div>
-      </form>
-    </div>
-  </div>
-
-  <br>
-  <hr>
-  <br>
-
-  <div class="md:grid md:grid-cols-3 md:gap-6">
-    <div class="md:col-span-1">
-      <div class="px-4 sm:px-0">
-        <h3 class="text-lg font-medium leading-6 text-sky-600">
-          Datos Integrante 1
-        </h3>
-        <p class="mt-1 text-sm text-gray-600">
-          Datos personales del integrante 1 del equipo
-        </p>
       </div>
     </div>
 
-    <div class="mt-5 md:col-span-2 md:mt-0">
-      <form action="#" method="">
+    <br />
+    <hr />
+    <br />
+
+    <div class="md:grid md:grid-cols-3 md:gap-6">
+      <div class="md:col-span-1">
+        <div class="px-4 sm:px-0">
+          <h3 class="text-lg font-medium leading-6 text-sky-600">
+            Datos Integrante 1
+          </h3>
+          <p class="mt-1 text-sm text-gray-600">
+            Datos personales del integrante 1 del equipo
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-5 md:col-span-2 md:mt-0">
         <div class="shadow sm:overflow-hidden sm:rounded-md">
           <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
             <div class="grid grid-cols-3 gap-6">
@@ -172,9 +173,10 @@
                 <div class="mt-1 flex rounded-md shadow-sm">
                   <input
                     type="text"
+                    required
                     name="curp-integrante1"
                     id="curp-integrante1"
-                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder=""
                   />
                 </div>
@@ -191,9 +193,10 @@
                 <div class="mt-1 flex rounded-md shadow-sm">
                   <input
                     type="text"
+                    required
                     name="nombre-integrante1"
                     id="nombre-integrante1"
-                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Nombre(s)"
                   />
                 </div>
@@ -210,9 +213,10 @@
                 <div class="mt-1 flex rounded-md shadow-sm">
                   <input
                     type="text"
+                    required
                     name="apellido1-integrante1"
                     id="apellido1-integrante1"
-                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Primer Apellido"
                   />
                 </div>
@@ -229,9 +233,10 @@
                 <div class="mt-1 flex rounded-md shadow-sm">
                   <input
                     type="text"
+                    required
                     name="apellido2-integrante1"
                     id="apellido2-integrante1"
-                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Segundo Apellido"
                   />
                 </div>
@@ -248,39 +253,36 @@
                 <div class="mt-1 flex rounded-md shadow-sm">
                   <input
                     type="date"
+                    required
                     name="edad-integrante1"
                     id="edad-integrante1"
-                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                   />
                 </div>
               </div>
             </div>
-
           </div>
         </div>
-      </form>
-    </div>
-  </div>
-  
-  
-  <br>
-  <hr>
-  <br>
-
-  <div class="md:grid md:grid-cols-3 md:gap-6">
-    <div class="md:col-span-1">
-      <div class="px-4 sm:px-0">
-        <h3 class="text-lg font-medium leading-6 text-sky-600">
-          Datos Integrante 2
-        </h3>
-        <p class="mt-1 text-sm text-gray-600">
-          Datos personales del integrante 2 del equipo
-        </p>
       </div>
     </div>
 
-    <div class="mt-5 md:col-span-2 md:mt-0">
-      <form action="#" method="">
+    <br />
+    <hr />
+    <br />
+
+    <div class="md:grid md:grid-cols-3 md:gap-6">
+      <div class="md:col-span-1">
+        <div class="px-4 sm:px-0">
+          <h3 class="text-lg font-medium leading-6 text-sky-600">
+            Datos Integrante 2
+          </h3>
+          <p class="mt-1 text-sm text-gray-600">
+            Datos personales del integrante 2 del equipo
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-5 md:col-span-2 md:mt-0">
         <div class="shadow sm:overflow-hidden sm:rounded-md">
           <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
             <div class="grid grid-cols-3 gap-6">
@@ -293,9 +295,10 @@
                 <div class="mt-1 flex rounded-md shadow-sm">
                   <input
                     type="text"
+                    required
                     name="curp-integrante2"
                     id="curp-integrante2"
-                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder=""
                   />
                 </div>
@@ -312,9 +315,10 @@
                 <div class="mt-1 flex rounded-md shadow-sm">
                   <input
                     type="text"
+                    required
                     name="nombre-integrante2"
                     id="nombre-integrante2"
-                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Nombre(s)"
                   />
                 </div>
@@ -331,9 +335,10 @@
                 <div class="mt-1 flex rounded-md shadow-sm">
                   <input
                     type="text"
+                    required
                     name="apellido1-integrante2"
                     id="apellido1-integrante2"
-                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Primer Apellido"
                   />
                 </div>
@@ -350,9 +355,10 @@
                 <div class="mt-1 flex rounded-md shadow-sm">
                   <input
                     type="text"
+                    required
                     name="apellido2-integrante2"
                     id="apellido2-integrante2"
-                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Segundo Apellido"
                   />
                 </div>
@@ -369,39 +375,36 @@
                 <div class="mt-1 flex rounded-md shadow-sm">
                   <input
                     type="date"
+                    required
                     name="edad-integrante2"
                     id="edad-integrante2"
-                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                   />
                 </div>
               </div>
             </div>
-
           </div>
         </div>
-      </form>
-    </div>
-  </div>
-
-  
-  <br>
-  <hr>
-  <br>
-
-  <div class="md:grid md:grid-cols-3 md:gap-6">
-    <div class="md:col-span-1">
-      <div class="px-4 sm:px-0">
-        <h3 class="text-lg font-medium leading-6 text-sky-600">
-          Datos Integrante 3
-        </h3>
-        <p class="mt-1 text-sm text-gray-600">
-          Datos personales del integrante 3 del equipo
-        </p>
       </div>
     </div>
 
-    <div class="mt-5 md:col-span-2 md:mt-0">
-      <form action="#" method="">
+    <br />
+    <hr />
+    <br />
+
+    <div class="md:grid md:grid-cols-3 md:gap-6">
+      <div class="md:col-span-1">
+        <div class="px-4 sm:px-0">
+          <h3 class="text-lg font-medium leading-6 text-sky-600">
+            Datos Integrante 3
+          </h3>
+          <p class="mt-1 text-sm text-gray-600">
+            Datos personales del integrante 3 del equipo
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-5 md:col-span-2 md:mt-0">
         <div class="shadow sm:overflow-hidden sm:rounded-md">
           <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
             <div class="grid grid-cols-3 gap-6">
@@ -414,9 +417,10 @@
                 <div class="mt-1 flex rounded-md shadow-sm">
                   <input
                     type="text"
+                    required
                     name="curp-integrante3"
                     id="curp-integrante3"
-                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder=""
                   />
                 </div>
@@ -433,9 +437,10 @@
                 <div class="mt-1 flex rounded-md shadow-sm">
                   <input
                     type="text"
+                    required
                     name="nombre-integrante3"
                     id="nombre-integrante3"
-                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Nombre(s)"
                   />
                 </div>
@@ -452,9 +457,10 @@
                 <div class="mt-1 flex rounded-md shadow-sm">
                   <input
                     type="text"
+                    required
                     name="apellido1-integrante3"
                     id="apellido1-integrante3"
-                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Primer Apellido"
                   />
                 </div>
@@ -471,9 +477,10 @@
                 <div class="mt-1 flex rounded-md shadow-sm">
                   <input
                     type="text"
+                    required
                     name="apellido2-integrante3"
                     id="apellido2-integrante1"
-                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Segundo Apellido"
                   />
                 </div>
@@ -490,29 +497,28 @@
                 <div class="mt-1 flex rounded-md shadow-sm">
                   <input
                     type="date"
+                    required
                     name="edad-integrante3"
                     id="edad-integrante3"
-                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                   />
                 </div>
               </div>
             </div>
-
           </div>
         </div>
-      </form>
+      </div>
     </div>
-  </div>
 
-
-  <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
-    <button
-      type="submit"
-      class="inline-flex justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-    >
-      Enviar
-    </button>
-  </div>
+    <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
+      <button
+        type="submit"
+        class="inline-flex justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
+      >
+        Enviar
+      </button>
+    </div>
+  </form>
 </div>
 
 {% endblock %}

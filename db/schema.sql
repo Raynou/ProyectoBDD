@@ -89,7 +89,7 @@ create table CAT_DISENNO(
 create table CAT_PROGRAMACION(
     cod_proyecto int not null ,
     cod_evento int not null,
-    cal_inspeccion int not null check ( cal_inspeccion <= 4 ),
+    cal_inspeccion_prog int not null check ( cal_inspeccion_prog <= 4 ),
     cal_sistema_aut int not null check ( cal_sistema_aut <= 2 ),
     cal_demostracion int not null check ( cal_demostracion <= 2 ),
     cal_sistema_man int not null check ( cal_sistema_man <= 2 ),
@@ -110,7 +110,7 @@ create table CAT_PROGRAMACION(
 create table CAT_CONSTRUCCION(
     cod_proyecto int not null ,
     cod_evento int not null,
-    cal_inspeccion int not null check ( cal_inspeccion <= 5 ),
+    cal_inspeccion_cons int not null check ( cal_inspeccion_cons <= 5 ),
     cal_libreta_ing int not null check ( cal_libreta_ing <= 5 ),
     cal_total_cons int,
 

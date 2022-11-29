@@ -2,7 +2,12 @@ import { sequelize } from "../../config/database.js"
 import { QueryTypes } from "sequelize";
 
 
-export const eventsPriorToCurrentData = await sequelize.query("call get_events_prior_to_current_date()", QueryTypes.SELECT)
+export async function events() {
+ const prior_events =  await sequelize.query("call get_events_prior_to_current_date()", QueryTypes.SELECT)
+    console.log("esas")
+ const current_events = await sequelize.query("call get_events_after_current_date()", QueryTypes.SELECT)
+    return {"current":current_events, "prior":prior_events}
+}
 
 
 // TODO: putTeam function
@@ -92,6 +97,6 @@ async function putParticipant(participant, teamCode){
 
 }
 
-sequelize.close()
+//sequelize.close()
 
 

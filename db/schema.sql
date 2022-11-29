@@ -54,7 +54,7 @@ create table JURADO(
 create table COLABORAR(
     id_jurado int not null ,
     cod_evento int not null ,
-    categoria enum('Primaria', 'Secundaria', 'Bachillerato', 'Profesional'),
+    categoria enum('primaria', 'secundaria', 'bachillerato', 'profesional'),
 
     constraint FK_JURADO_COLABORA
     foreign key (id_jurado) references JURADO(id_jurado)
@@ -73,6 +73,7 @@ create table CAT_DISENNO(
     cod_evento int not null,
     cal_bitacora int not null check ( cal_bitacora <= 5 ),
     cal_medio_dig int not null check ( cal_medio_dig <= 5 ),
+    cal_total_disenno int,
 
     constraint FK_PROYECTO_CAT_DISENNO
     foreign key (cod_proyecto) references PROYECTO(cod_proyecto)
@@ -92,6 +93,7 @@ create table CAT_PROGRAMACION(
     cal_sistema_aut int not null check ( cal_sistema_aut <= 2 ),
     cal_demostracion int not null check ( cal_demostracion <= 2 ),
     cal_sistema_man int not null check ( cal_sistema_man <= 2 ),
+    cal_total_prog int,
 
     constraint FK_PROYECTO_CAT_PROGRAMACION
     foreign key (cod_proyecto) references PROYECTO(cod_proyecto)
@@ -110,6 +112,7 @@ create table CAT_CONSTRUCCION(
     cod_evento int not null,
     cal_inspeccion int not null check ( cal_inspeccion <= 5 ),
     cal_libreta_ing int not null check ( cal_libreta_ing <= 5 ),
+    cal_total_cons int,
 
     constraint FK_PROYECTO_CAT_CONSTRUCCION
     foreign key (cod_proyecto) references PROYECTO(cod_proyecto)

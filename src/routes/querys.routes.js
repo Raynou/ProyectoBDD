@@ -6,7 +6,9 @@ const router = Router()
 
 router.get('/query/greets', (req, res) => res.send('hola'))
 
-router.get('/query/prior_events', (req, res) => res.send(query.eventsPriorToCurrentData))
+router.get('/query/events', async function(req, res) {
+    res.send(await query.events());
+});
 
 router.post('/query/set_team', (req, res) => {
 

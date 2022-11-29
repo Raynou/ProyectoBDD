@@ -1,0 +1,35 @@
+{% include "base.html" %}
+
+<h1 class="text-5xl font-bold text-blue-600 text-center">Eventos VEX</h1>
+
+<div class="px-10">
+
+<h2 class="text-3xl font-bold text-blue-600 text-left">Eventos en curso</h1>
+<ul class="list-disc list-inside">
+{% for evento in events["current"] %}
+<li>Evento {{ evento["cod_evento"] }}, organizado en {{ evento["lugar"] }}, con fecha de inicio en {{ evento["fecha_inicio"] }}, y con terminación {{ evento["fecha_fin"] }}.</li>
+{% else %}
+<p>
+  No hay ningun evento en curso.
+</p>
+{% endfor %}
+</ul>
+
+<h2 class="text-3xl font-bold text-blue-600 text-left">Eventos pasados</h1>
+
+<ul class="list-disc list-inside">
+{% for evento in events["prior"] %}
+<li>Evento {{ evento["cod_evento"] }}, organizado en {{ evento["lugar"] }}, con fecha de inicio en {{ evento["fecha_inicio"] }}, y con terminación {{ evento["fecha_fin"] }}.</li>
+{% else %}
+<p>
+  No ha finalizado ningun evento.
+</p>
+{% endfor %}
+</ul>
+
+<div>
+
+
+</body>
+
+</html>

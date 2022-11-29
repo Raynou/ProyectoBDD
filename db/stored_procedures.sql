@@ -163,7 +163,8 @@ drop procedure if exists get_top_teams;
 delimiter $$
 create procedure get_top_teams(
 in evento int,
-in top int
+in top int,
+in cat enum('primaria', 'secundaria', 'bachillerato', 'profesional')
 ) begin
     select
         cod_equipo,
@@ -180,7 +181,7 @@ in top int
         natural join cat_disenno
         join cat_construccion using (cod_proyecto, cod_evento)
     ) m
-    where cod_evento like evento
+    where cod_evento like evento and categoria like cat
     order by final_score desc limit top;
 
 
@@ -252,7 +253,7 @@ in cal_lib int
 end $$
 delimiter ;
 
-call get_top_teams(4, 2);
+call get_top_teams(4, 2, 'primaria');
 
 
 

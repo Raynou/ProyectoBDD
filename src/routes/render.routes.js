@@ -22,6 +22,16 @@ router.get('/dashboard', function(req, res) {
     res.render('dashboard/dashboard.html', {current_page: "Dashboard"});
 });
 
+router.get('/dashboard/login', function(req, res) {
+    res.render('dashboard/login.html', {current_page: "Login"});
+});
+
+router.post('/dashboard/login', function(req, res) {
+    // TODO: Llamar procedimiento almacenado para el login
+    //res.render('dashboard/login.html', {current_page: "Login"});
+    res.send('Por favor de checar la función render.routes.js linea 29');
+});
+
 router.get('/dashboard/coordinador', function(req, res) {
     res.render('dashboard/dashboard_view.html', {current_page: "Dashboard_Coordinador"});
 });

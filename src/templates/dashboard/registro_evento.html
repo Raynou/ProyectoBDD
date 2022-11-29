@@ -1,17 +1,17 @@
 {% extends "dashboard/dashboard_view.html" %} {% block dashboard_content %}
 <div>
-  <div class="md:grid md:grid-cols-3 md:gap-6">
-    <div class="md:col-span-1">
-      <div class="px-4 sm:px-0">
-        <h3 class="text-lg font-medium leading-6 text-sky-600">
-          Datos Generales
-        </h3>
-        <p class="mt-1 text-sm text-gray-600">Datos generales del evento</p>
+  <form action="#" method="">
+    <div class="md:grid md:grid-cols-3 md:gap-6">
+      <div class="md:col-span-1">
+        <div class="px-4 sm:px-0">
+          <h3 class="text-lg font-medium leading-6 text-sky-600">
+            Datos Generales
+          </h3>
+          <p class="mt-1 text-sm text-gray-600">Datos generales del evento</p>
+        </div>
       </div>
-    </div>
 
-    <div class="mt-5 md:col-span-2 md:mt-0">
-      <form action="#" method="">
+      <div class="mt-5 md:col-span-2 md:mt-0">
         <div class="shadow sm:overflow-hidden sm:rounded-md">
           <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
             <div class="grid grid-cols-3 gap-6">
@@ -24,9 +24,10 @@
                 <div class="mt-1 flex rounded-md shadow-sm">
                   <input
                     type="text"
+                    required
                     name="nombre-evento"
                     id="nombre-evento"
-                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Titulo"
                   />
                 </div>
@@ -43,9 +44,10 @@
                 <div class="mt-1 flex rounded-md shadow-sm">
                   <input
                     type="date"
+                    required
                     name="inicio-evento"
                     id="inicio-evento"
-                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                   />
                 </div>
               </div>
@@ -61,53 +63,53 @@
                 <div class="mt-1 flex rounded-md shadow-sm">
                   <input
                     type="date"
+                    required
                     name="fin-evento"
                     id="fin-evento"
-                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                   />
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </form>
-    </div>
-  </div>
-
-  <br />
-  <hr />
-  <br />
-
-  <div class="md:grid md:grid-cols-3 md:gap-6">
-    <div class="md:col-span-1">
-      <div class="px-4 sm:px-0">
-        <h3 class="text-lg font-medium leading-6 text-sky-600">
-          Datos de la sede
-        </h3>
-        <p class="mt-1 text-sm text-gray-600">
-          Información relevante de la sede del evento
-        </p>
       </div>
     </div>
 
-    <div class="mt-5 md:col-span-2 md:mt-0">
-      <form action="#" method="">
+    <br />
+    <hr />
+    <br />
+
+    <div class="md:grid md:grid-cols-3 md:gap-6">
+      <div class="md:col-span-1">
+        <div class="px-4 sm:px-0">
+          <h3 class="text-lg font-medium leading-6 text-sky-600">
+            Datos de la sede
+          </h3>
+          <p class="mt-1 text-sm text-gray-600">
+            Información relevante de la sede del evento
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-5 md:col-span-2 md:mt-0">
         <div class="shadow sm:overflow-hidden sm:rounded-md">
           <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
             <div class="grid grid-cols-3 gap-6">
               <div class="col-span-3 sm:col-span-2">
                 <label
-                  for="curp-integrante3"
+                  for="nombre-sede"
                   class="block text-sm font-medium text-gray-700"
-                  >CURP</label
+                  >Nombre</label
                 >
                 <div class="mt-1 flex rounded-md shadow-sm">
                   <input
                     type="text"
-                    name="curp-integrante3"
-                    id="curp-integrante3"
-                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                    placeholder=""
+                    required
+                    name="nombre-sede"
+                    id="nombre-sede"
+                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
+                    placeholder="Nombre"
                   />
                 </div>
               </div>
@@ -116,35 +118,17 @@
             <div class="grid grid-cols-3 gap-6">
               <div class="col-span-3 sm:col-span-2">
                 <label
-                  for="nombre-integrante3"
+                  for="ubicacion-sede"
                   class="block text-sm font-medium text-gray-700"
-                  >Nombre(s)</label
+                  >Ubicación</label
                 >
                 <div class="mt-1 flex rounded-md shadow-sm">
                   <input
                     type="text"
-                    name="nombre-integrante3"
-                    id="nombre-integrante3"
-                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                    placeholder="Nombre(s)"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-3 gap-6">
-              <div class="col-span-3 sm:col-span-2">
-                <label
-                  for="apellido1-integrante3"
-                  class="block text-sm font-medium text-gray-700"
-                  >Primer Apellido</label
-                >
-                <div class="mt-1 flex rounded-md shadow-sm">
-                  <input
-                    type="text"
-                    name="apellido1-integrante3"
-                    id="apellido1-integrante3"
-                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                    required
+                    name="ubicacion-sede"
+                    id="ubicacion-sede"
+                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Primer Apellido"
                   />
                 </div>
@@ -152,18 +136,18 @@
             </div>
           </div>
         </div>
-      </form>
+      </div>
     </div>
-  </div>
 
-  <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
-    <button
-      type="submit"
-      class="inline-flex justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-    >
-      Enviar
-    </button>
-  </div>
+    <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
+      <button
+        type="submit"
+        class="inline-flex justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
+      >
+        Enviar
+      </button>
+    </div>
+  </form>
 </div>
 
 {% endblock %}

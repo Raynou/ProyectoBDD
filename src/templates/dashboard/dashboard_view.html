@@ -3,13 +3,17 @@
 <div>
     <div class="grid grid-cols-1 lg:grid-cols-4 gap-2">
       <div class="p-4 rounded-md bg-gray-100 flex items-top justify-center">
+        <ul>
+          <li>
+            <a href="/dashboard/publico/ver_resultados">Resultados</a>
+          </li>
+
           {% if current_page == "Dashboard_Coordinador" %}
             {% include "dashboard/menu_coordinador.html" %}
           {% elif current_page == "Dashboard_Jurado" %}
           {% include "dashboard/menu_jurado.html" %}
-          {% elif current_page == "Dashboard_Equipo" %}
-          {% include "dashboard/menu_equipo.html" %}
           {% endif %}
+                
       </div>
   
       <div class="p-4 rounded-md bg-gray-100 col-span-3 gap-2" id="pantalla">

@@ -1,0 +1,1149 @@
+{% extends "dashboard/dashboard_view.html" %} {% block dashboard_content %}
+<div>
+  <form action="#" method="">
+    <div class="md:grid md:grid-cols-3 md:gap-6">
+      <div class="md:col-span-1">
+        <div class="px-4 sm:px-0">
+          <h3 class="text-xl font-bold leading-6 text-sky-600">
+            Datos de la evaluación
+          </h3>
+          <p class="mt-1 text-sm text-gray-600">
+            Información del evento y los equipos a evaluar
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-5 md:col-span-2 md:mt-0">
+        <div class="shadow sm:overflow-hidden sm:rounded-md">
+          <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
+            <div class="grid grid-cols-3 gap-6">
+              <div class="col-span-3 sm:col-span-2">
+                <label
+                  for="evento-eva"
+                  class="block text-lg font-bold text-gray-700"
+                  >Evento</label
+                >
+                <div class="mt-1 flex rounded-md shadow-sm">
+                  <select
+                    required
+                    name="evento-eva"
+                    id="evento-eva"
+                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
+                  >
+                    <option selected>Evento a evaluar</option>
+                    <!--Aquí debe ir un bucle for-->
+                    <option value="idevento">nombre evento</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-6">
+              <div class="col-span-3 sm:col-span-2">
+                <label
+                  for="equipo-eva"
+                  class="block text-lg font-bold text-gray-700"
+                  >Equipo</label
+                >
+                <div class="mt-1 flex rounded-md shadow-sm">
+                  <select
+                    required
+                    name="equipo-eva"
+                    id="equipo-eva"
+                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
+                  >
+                    <option selected>Equipo a evaluar</option>
+                    <!--Aquí debe ir un bucle for-->
+                    <option value="idequipo">equipo</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br />
+    <hr />
+    <br />
+
+    <div class="md:grid md:grid-cols-3 md:gap-6">
+      <div class="md:col-span-1">
+        <div class="px-4 sm:px-0">
+          <h3 class="text-xl font-bold leading-6 text-sky-600">
+            Categoria de Diseño
+          </h3>
+          <p class="mt-1 text-sm text-gray-600">
+            Calificación para el diseño del prototipo tomando en cuenta la
+            Bitacora del proyecto y los Medios Digitales proporcionados
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-5 md:col-span-2 md:mt-0">
+        <div class="shadow sm:overflow-hidden sm:rounded-md">
+          <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
+            <div class="grid grid-cols-3 gap-6">
+              <div class="col-span-3 sm:col-span-2">
+                <label
+                  for="bitacora-catdis"
+                  class="block text-lg font-bold text-gray-700"
+                >
+                  Bitácora</label
+                >
+                <div class="mt-1 flex rounded-md shadow-sm">
+                  <input
+                    type="number"
+                    required
+                    name="bitacora-catdis"
+                    min="01"
+                    max="10"
+                    id="bitacora-catdis"
+                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
+                    placeholder="Calificación de la subcategoria"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <fieldset>
+                <legend
+                  class="contents block text-sm font-medium text-gray-700"
+                >
+                  Criterios de Evaluación
+                </legend>
+                <p class="text-sm text-gray-500">
+                  Seleccione aquellos criterios con los que cumple el proyecto
+                  presentado
+                </p>
+                <div class="mt-4 space-y-4">
+                  <div class="flex items-center">
+                    <input
+                      id="sub1-1-dis"
+                      name="categoria-equipo"
+                      type="checkbox"
+                      class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                    />
+                    <label
+                      for="sub1-1-dis"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Registro de Fechas.
+                    </label>
+                  </div>
+                  <div class="mt-4 space-y-4">
+                    <div class="flex items-center">
+                      <input
+                        id="sub1-2-dis"
+                        name="categoria-equipo"
+                        type="checkbox"
+                        class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                      />
+                      <label
+                        for="sub1-2-dis"
+                        class="ml-3 block text-sm font-medium text-gray-700"
+                      >
+                        Justificación de cambios en prototipos.
+                      </label>
+                    </div>
+                  </div>
+                  <div class="mt-4 space-y-4">
+                    <div class="flex items-center">
+                      <input
+                        id="sub1-3-dis"
+                        name="categoria-equipo"
+                        type="checkbox"
+                        class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                      />
+                      <label
+                        for="sub1-3-dis"
+                        class="ml-3 block text-sm font-medium text-gray-700"
+                      >
+                        Diagramas e imágenes.
+                      </label>
+                    </div>
+                  </div>
+                  <div class="mt-4 space-y-4">
+                    <div class="flex items-center">
+                      <input
+                        id="sub1-4-dis"
+                        name="categoria-equipo"
+                        type="checkbox"
+                        class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                      />
+                      <label
+                        for="sub1-4-dis"
+                        class="ml-3 block text-sm font-medium text-gray-700"
+                      >
+                        Ortografía y redacción.
+                      </label>
+                    </div>
+                  </div>
+                  <div class="mt-4 space-y-4">
+                    <div class="flex items-center">
+                      <input
+                        id="sub1-5-dis"
+                        name="categoria-equipo"
+                        type="checkbox"
+                        class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                      />
+                      <label
+                        for="sub1-5-dis"
+                        class="ml-3 block text-sm font-medium text-gray-700"
+                      >
+                        Presentación.
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+
+            <hr />
+
+            <div class="grid grid-cols-3 gap-6">
+              <div class="col-span-3 sm:col-span-2">
+                <label
+                  for="medio-catdis"
+                  class="block text-lg font-bold text-gray-700"
+                >
+                  Medio Digital</label
+                >
+                <div class="mt-1 flex rounded-md shadow-sm">
+                  <input
+                    type="number"
+                    required
+                    name="medio-catdis"
+                    min="01"
+                    max="10"
+                    id="medio-catdis"
+                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
+                    placeholder="Calificación de la subcategoria"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <fieldset>
+                <legend
+                  class="contents block text-sm font-medium text-gray-700"
+                >
+                  Criterios de Evaluación
+                </legend>
+                <p class="text-sm text-gray-500">
+                  Seleccione aquellos criterios con los que cumple el proyecto
+                  presentado
+                </p>
+                <div class="mt-4 space-y-4">
+                  <div class="flex items-center">
+                    <input
+                      id="sub2-1-dis"
+                      name="categoria-equipo"
+                      type="checkbox"
+                      class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                    />
+                    <label
+                      for="sub2-1-dis"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Video y animación.
+                    </label>
+                  </div>
+                  <div class="flex items-center">
+                    <input
+                      id="sub2-2-dis"
+                      name="categoria-equipo"
+                      type="checkbox"
+                      class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                    />
+                    <label
+                      for="sub2-2-dis"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Diseño y modelado en Autodesk Inventor.
+                    </label>
+                  </div>
+                  <div class="flex items-center">
+                    <input
+                      id="sub2-3-dis"
+                      name="categoria-equipo"
+                      type="checkbox"
+                      class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                    />
+                    <label
+                      for="sub2-3-dis"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Ánalisis de elementos.
+                    </label>
+                  </div>
+                  <div class="flex items-center">
+                    <input
+                      id="sub2-4-dis"
+                      name="categoria-equipo"
+                      type="checkbox"
+                      class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                    />
+                    <label
+                      for="sub2-4-dis"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Ensamble del prototipo.
+                    </label>
+                  </div>
+                  <div class="flex items-center">
+                    <input
+                      id="sub2-5-dis"
+                      name="categoria-equipo"
+                      type="checkbox"
+                      class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                    />
+                    <label
+                      for="sub2-5-dis"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Modelo acorde al robot.
+                    </label>
+                  </div>
+                  <div class="flex items-center">
+                    <input
+                      id="sub2-6-dis"
+                      name="categoria-equipo"
+                      type="checkbox"
+                      class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                    />
+                    <label
+                      for="sub2-6-dis"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Simulación acorde a los calculos obtenidos.
+                    </label>
+                  </div>
+                  <div class="flex items-center">
+                    <input
+                      id="sub2-7-dis"
+                      name="categoria-equipo"
+                      type="checkbox"
+                      class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                    />
+                    <label
+                      for="sub2-7-dis"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Restricción de movimientos (Rotación y traslación de
+                      partes).
+                    </label>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br />
+    <hr />
+    <br />
+
+    <div class="md:grid md:grid-cols-3 md:gap-6">
+      <div class="md:col-span-1">
+        <div class="px-4 sm:px-0">
+          <h3 class="text-xl font-bold leading-6 text-sky-600">
+            Categoria de Programación
+          </h3>
+          <p class="mt-1 text-sm text-gray-600">
+            Calificación para la programación del prototipo tomando en cuenta la
+            Inspección general, el Sistema Aútonomo, el Sistema Manipulado y la
+            Demostración
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-5 md:col-span-2 md:mt-0">
+        <div class="shadow sm:overflow-hidden sm:rounded-md">
+          <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
+            <div class="grid grid-cols-3 gap-6">
+              <div class="col-span-3 sm:col-span-2">
+                <label
+                  for="inspeccion-catpro"
+                  class="block text-lg font-bold text-gray-700"
+                >
+                  Inspección General</label
+                >
+                <div class="mt-1 flex rounded-md shadow-sm">
+                  <input
+                    type="number"
+                    required
+                    name="inspeccion-catpro"
+                    min="01"
+                    max="10"
+                    id="inspeccion-catpro"
+                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
+                    placeholder="Calificación de la subcategoria"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <fieldset>
+                <legend
+                  class="contents block text-sm font-medium text-gray-700"
+                >
+                  Criterios de Evaluación
+                </legend>
+                <p class="text-sm text-gray-500">
+                  Seleccione aquellos criterios con los que cumple el proyecto
+                  presentado
+                </p>
+                <div class="mt-4 space-y-4">
+                  <div class="flex items-center">
+                    <input
+                      id="sub1-1-pro"
+                      name="categoria-equipo"
+                      type="checkbox"
+                      class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                    />
+                    <label
+                      for="sub1-1-pro"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Software de programación RobotC.
+                    </label>
+                  </div>
+                  <div class="flex items-center">
+                    <input
+                      id="sub1-2-pro"
+                      name="categoria-equipo"
+                      type="checkbox"
+                      class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                    />
+                    <label
+                      for="sub1-2-pro"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Uso de funciones.
+                    </label>
+                  </div>
+                  <div class="flex items-center">
+                    <input
+                      id="sub1-3-pro"
+                      name="categoria-equipo"
+                      type="checkbox"
+                      class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                    />
+                    <label
+                      for="sub1-3-pro"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Conplejidad del programa.
+                    </label>
+                  </div>
+                  <div class="flex items-center">
+                    <input
+                      id="sub1-4-pro"
+                      name="categoria-equipo"
+                      type="checkbox"
+                      class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                    />
+                    <label
+                      for="sub1-4-pro"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Justificación de las secuencias de programación.
+                    </label>
+                  </div>
+                  <div class="flex items-center">
+                    <input
+                      id="sub1-5-pro"
+                      name="categoria-equipo"
+                      type="checkbox"
+                      class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                    />
+                    <label
+                      for="sub1-5-pro"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Conocimiento de las estructuras y funciones aplicadas.
+                    </label>
+                  </div>
+                  <div class="flex items-center">
+                    <input
+                      id="sub1-1-pro"
+                      name="categoria-equipo"
+                      type="checkbox"
+                      class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                    />
+                    <label
+                      for="sub1-1-pro"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Rutinas de depuración de código.
+                    </label>
+                  </div>
+                  <div class="flex items-center">
+                    <input
+                      id="sub1-1-pro"
+                      name="categoria-equipo"
+                      type="checkbox"
+                      class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                    />
+                    <label
+                      for="sub1-1-pro"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Creación de código modular y eficiente.
+                    </label>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+
+            <hr />
+
+            <div class="grid grid-cols-3 gap-6">
+              <div class="col-span-3 sm:col-span-2">
+                <label
+                  for="sisauto-catpro"
+                  class="block text-lg font-bold text-gray-700"
+                >
+                  Sistema Autónomo</label
+                >
+                <div class="mt-1 flex rounded-md shadow-sm">
+                  <input
+                    type="number"
+                    required
+                    name="sisauto-catpro"
+                    min="01"
+                    max="10"
+                    id="sisauto-catpro"
+                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
+                    placeholder="Calificación de la subcategoria"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <fieldset>
+                <legend
+                  class="contents block text-sm font-medium text-gray-700"
+                >
+                  Criterios de Evaluación
+                </legend>
+                <p class="text-sm text-gray-500">
+                  Seleccione aquellos criterios con los que cumple el proyecto
+                  presentado
+                </p>
+                <div class="mt-4 space-y-4">
+                  <div class="flex items-center">
+                    <input
+                      id="sub2-1-pro"
+                      name="categoria-equipo"
+                      type="checkbox"
+                      class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                    />
+                    <label
+                      for="sub2-1-pro"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Documentación de código en la plantilla del modo Autónomo.
+                    </label>
+                  </div>
+                  <div class="flex items-center">
+                    <input
+                      id="sub2-2-pro"
+                      name="categoria-equipo"
+                      type="checkbox"
+                      class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                    />
+                    <label
+                      for="sub2-2-pro"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Vinculación las acciones del robot con el código en el
+                      modo autónomo.
+                    </label>
+                  </div>
+                  <div class="flex items-center">
+                    <input
+                      id="sub2-3-pro"
+                      name="categoria-equipo"
+                      type="checkbox"
+                      class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                    />
+                    <label
+                      for="sub2-3-pro"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Declaración, uso y depuración de sensores.
+                    </label>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+
+            <hr />
+
+            <div class="grid grid-cols-3 gap-6">
+              <div class="col-span-3 sm:col-span-2">
+                <label
+                  for="sisman-catpro"
+                  class="block text-lg font-bold text-gray-700"
+                >
+                  Sistema Manipulado</label
+                >
+                <div class="mt-1 flex rounded-md shadow-sm">
+                  <input
+                    type="number"
+                    required
+                    name="sisman-catpro"
+                    min="01"
+                    max="10"
+                    id="sisman-catpro"
+                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
+                    placeholder="Calificación de la subcategoria"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <fieldset>
+                <legend
+                  class="contents block text-sm font-medium text-gray-700"
+                >
+                  Criterios de Evaluación
+                </legend>
+                <p class="text-sm text-gray-500">
+                  Seleccione aquellos criterios con los que cumple el proyecto
+                  presentado
+                </p>
+                <div class="mt-4 space-y-4">
+                  <div class="flex items-center">
+                    <input
+                      id="sub3-1-pro"
+                      name="categoria-equipo"
+                      type="checkbox"
+                      class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                    />
+                    <label
+                      for="sub3-1-pro"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Vinculo Joystick-Robot (Eficiencia de calibración).
+                    </label>
+                  </div>
+                </div>
+                <div class="mt-4 space-y-4">
+                  <div class="flex items-center">
+                    <input
+                      id="sub3-2-pro"
+                      name="categoria-equipo"
+                      type="checkbox"
+                      class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                    />
+                    <label
+                      for="sub3-2-pro"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Habilidad de manipulación del Joystick.
+                    </label>
+                  </div>
+                </div>
+                <div class="mt-4 space-y-4">
+                  <div class="flex items-center">
+                    <input
+                      id="sub3-3-pro"
+                      name="categoria-equipo"
+                      type="checkbox"
+                      class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                    />
+                    <label
+                      for="sub3-3-pro"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Respuesta del dispositivo en función al mando.
+                    </label>
+                  </div>
+                </div>
+                <div class="mt-4 space-y-4">
+                  <div class="flex items-center">
+                    <input
+                      id="sub3-4-pro"
+                      name="categoria-equipo"
+                      type="checkbox"
+                      class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                    />
+                    <label
+                      for="sub3-4-pro"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Documentación de código en la plantilla modo driver.
+                    </label>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+
+            <hr />
+
+            <div class="grid grid-cols-3 gap-6">
+              <div class="col-span-3 sm:col-span-2">
+                <label
+                  for="demo-catpro"
+                  class="block text-lg font-bold text-gray-700"
+                >
+                  Demostración</label
+                >
+                <div class="mt-1 flex rounded-md shadow-sm">
+                  <input
+                    type="number"
+                    required
+                    name="demo-catpro"
+                    min="01"
+                    max="10"
+                    id="demo-catpro"
+                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
+                    placeholder="Calificación de la subcategoria"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <fieldset>
+                <legend
+                  class="contents block text-sm font-medium text-gray-700"
+                >
+                  Criterios de Evaluación
+                </legend>
+                <p class="text-sm text-gray-500">
+                  Seleccione aquellos criterios con los que cumple el proyecto
+                  presentado
+                </p>
+                <div class="mt-4 space-y-4">
+                  <div class="flex items-center">
+                    <input
+                      id="sub4-1-pro"
+                      name="categoria-equipo"
+                      type="checkbox"
+                      class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                    />
+                    <label
+                      for="sub4-1-pro"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Demostración de menos de 15 minutos.
+                    </label>
+                  </div>
+                  <div class="flex items-center">
+                    <input
+                      id="sub4-2-pro"
+                      name="categoria-equipo"
+                      type="checkbox"
+                      class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                    />
+                    <label
+                      for="sub4-2-pro"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Demostración dsin inconvenientes.
+                    </label>
+                  </div>
+                  <div class="flex items-center">
+                    <input
+                      id="sub4-3-pro"
+                      name="categoria-equipo"
+                      type="checkbox"
+                      class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                    />
+                    <label
+                      for="sub4-3-pro"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Demostración en modo driver.
+                    </label>
+                  </div>
+                  <div class="flex items-center">
+                    <input
+                      id="sub4-4-pro"
+                      name="categoria-equipo"
+                      type="checkbox"
+                      class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                    />
+                    <label
+                      for="sub4-4-pro"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Explicación de la rutina.
+                    </label>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br />
+    <hr />
+    <br />
+
+    <div class="md:grid md:grid-cols-3 md:gap-6">
+      <div class="md:col-span-1">
+        <div class="px-4 sm:px-0">
+          <h3 class="text-xl font-bold leading-6 text-sky-600">
+            Categoria de Construcción
+          </h3>
+          <p class="mt-1 text-sm text-gray-600">
+            Calificación para la construcción de prototipo tomando en cuenta la
+            Inspección General y la Libreta de Ingeniería
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-5 md:col-span-2 md:mt-0">
+        <div class="shadow sm:overflow-hidden sm:rounded-md">
+          <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
+            <div class="grid grid-cols-3 gap-6">
+              <div class="col-span-3 sm:col-span-2">
+                <label
+                  for="inspec-catcons"
+                  class="block text-lg font-bold text-gray-700"
+                >
+                  Inspección General</label
+                >
+                <div class="mt-1 flex rounded-md shadow-sm">
+                  <input
+                    type="number"
+                    required
+                    name="inspec-catcons"
+                    min="01"
+                    max="10"
+                    id="inspec-catcons"
+                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
+                    placeholder="Calificación de la subcategoria"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <fieldset>
+                <legend
+                  class="contents block text-sm font-medium text-gray-700"
+                >
+                  Criterios de Evaluación
+                </legend>
+                <p class="text-sm text-gray-500">
+                  Seleccione aquellos criterios con los que cumple el proyecto
+                  presentado
+                </p>
+                <div class="mt-4 space-y-4">
+                  <div class="flex items-center">
+                    <input
+                      id="sub1-1-cons"
+                      name="categoria-equipo"
+                      type="checkbox"
+                      class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                    />
+                    <label
+                      for="sub1-1-cons"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Prototipo estético.
+                    </label>
+                  </div>
+                  <div class="flex items-center">
+                    <input
+                      id="sub1-2-cons"
+                      name="categoria-equipo"
+                      type="checkbox"
+                      class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                    />
+                    <label
+                      for="sub1-2-cons"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Estructura estable.
+                    </label>
+                  </div>
+                  <div class="flex items-center">
+                    <input
+                      id="sub1-3-cons"
+                      name="categoria-equipo"
+                      type="checkbox"
+                      class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                    />
+                    <label
+                      for="sub1-3-cons"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Uso de sistemas de transmisión.
+                    </label>
+                  </div>
+                  <div class="flex items-center">
+                    <input
+                      id="sub1-4-cons"
+                      name="categoria-equipo"
+                      type="checkbox"
+                      class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                    />
+                    <label
+                      for="sub1-4-cons"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Uso de sensores (Infrarojos, potenciómetros, giro,
+                      posición, contacto, ultrasónicos, etc.).
+                    </label>
+                  </div>
+                  <div class="flex items-center">
+                    <input
+                      id="sub1-5-cons"
+                      name="categoria-equipo"
+                      type="checkbox"
+                      class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                    />
+                    <label
+                      for="sub1-5-cons"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Clableado adecuado.
+                    </label>
+                  </div>
+                  <div class="flex items-center">
+                    <input
+                      id="sub1-6-cons"
+                      name="categoria-equipo"
+                      type="checkbox"
+                      class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                    />
+                    <label
+                      for="sub1-6-cons"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Calculo e implementación del sistema hidráulico.
+                    </label>
+                  </div>
+                  <div class="flex items-center">
+                    <input
+                      id="sub1-7-cons"
+                      name="categoria-equipo"
+                      type="checkbox"
+                      class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                    />
+                    <label
+                      for="sub1-7-cons"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Conocimiento del alcance del robot.
+                    </label>
+                  </div>
+                  <div class="flex items-center">
+                    <input
+                      id="sub1-8-cons"
+                      name="categoria-equipo"
+                      type="checkbox"
+                      class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                    />
+                    <label
+                      for="sub1-8-cons"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Implementación de estructura y dispositivos de VEX
+                      Robotics.
+                    </label>
+                  </div>
+                  <div class="flex items-center">
+                    <input
+                      id="sub1-9-cons"
+                      name="categoria-equipo"
+                      type="checkbox"
+                      class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                    />
+                    <label
+                      for="sub1-9-cons"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Uso de un solo procesador.
+                    </label>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+
+            <hr />
+
+            <div class="grid grid-cols-3 gap-6">
+              <div class="col-span-3 sm:col-span-2">
+                <label
+                  for="libreta-catcons"
+                  class="block text-lg font-bold text-gray-700"
+                >
+                  Libreta de Ingeniería</label
+                >
+                <div class="mt-1 flex rounded-md shadow-sm">
+                  <input
+                    type="number"
+                    required
+                    name="libreta-catcons"
+                    min="01"
+                    max="10"
+                    id="libreta-catcons"
+                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
+                    placeholder="Calificación de la subcategoria"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <fieldset>
+                <legend
+                  class="contents block text-sm font-medium text-gray-700"
+                >
+                  Criterios de Evaluación
+                </legend>
+                <p class="text-sm text-gray-500">
+                  Seleccione aquellos criterios con los que cumple el proyecto
+                  presentado
+                </p>
+                <div class="mt-4 space-y-4">
+                  <div class="flex items-center">
+                    <input
+                      id="sub2-1-cons"
+                      name="categoria-equipo"
+                      type="checkbox"
+                      class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                    />
+                    <label
+                      for="sub2-1-cons"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Calculo estructural.
+                    </label>
+                  </div>
+                  <div class="flex items-center">
+                    <input
+                      id="sub2-2-cons"
+                      name="categoria-equipo"
+                      type="checkbox"
+                      class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                    />
+                    <label
+                      for="sub2-2-cons"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Calculo de relación de velocidades angulares.
+                    </label>
+                  </div>
+                  <div class="flex items-center">
+                    <input
+                      id="sub2-3-cons"
+                      name="categoria-equipo"
+                      type="checkbox"
+                      class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                    />
+                    <label
+                      for="sub2-3-cons"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Calculo de tren de engranes.
+                    </label>
+                  </div>
+                  <div class="flex items-center">
+                    <input
+                      id="sub2-4-cons"
+                      name="categoria-equipo"
+                      type="checkbox"
+                      class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                    />
+                    <label
+                      for="sub2-4-cons"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Calculo de centro de gravedad.
+                    </label>
+                  </div>
+                  <div class="flex items-center">
+                    <input
+                      id="sub2-5-cons"
+                      name="categoria-equipo"
+                      type="checkbox"
+                      class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                    />
+                    <label
+                      for="sub2-5-cons"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Calculo de sistemas de transmisión.
+                    </label>
+                  </div>
+                  <div class="flex items-center">
+                    <input
+                      id="sub2-6-cons"
+                      name="categoria-equipo"
+                      type="checkbox"
+                      class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                    />
+                    <label
+                      for="sub2-6-cons"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Calculo de potencia.
+                    </label>
+                  </div>
+                  <div class="flex items-center">
+                    <input
+                      id="sub2-7-cons"
+                      name="categoria-equipo"
+                      type="checkbox"
+                      class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                    />
+                    <label
+                      for="sub2-7-cons"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Calculo de troque.
+                    </label>
+                  </div>
+                  <div class="flex items-center">
+                    <input
+                      id="sub2-8-cons"
+                      name="categoria-equipo"
+                      type="checkbox"
+                      class="h-4 w-4 border-gray-300 focus:ring-sky-500"
+                    />
+                    <label
+                      for="sub2-8-cons"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Calculo de velocidad.
+                    </label>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
+      <button
+        type="submit"
+        class="inline-flex justify-center rounded-md border border-transparent bg-sky-500 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
+      >
+        Enviar
+      </button>
+    </div>
+  </form>
+</div>
+
+{% endblock %}

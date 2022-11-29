@@ -165,23 +165,24 @@ create procedure get_top_teams(
 in evento int,
 in top int
 ) begin
-  -- Quiero mostrar los primeros N equipos en el evento tal, en concreto
-  -- código de equipo, nombre, nombre proyecto, cal prog, cal diseño, cal cons, total
-    select f.cod_equipo,
-           f.nombre_equipo,
-           nombre_proyecto,
-           f.cod_evento,
-           f.id_jurado,
-           f.cal_total_prog,
-           f.cal_total_disenno,
-           f.cal_total_cons,
-           (f.cal_total_prog + f.cal_total_disenno + f.cal_total_cons) as final_score
-    from PROYECTO natural join(select *
-    from EQUIPO natural join (
+    select
+        cod_equipo,
+        nombre_equipo,
+        nombre_proyecto,
+        cod_evento,
+        cal_total_cons,
+        cal_total_disenno,
+        cal_total_prog,
+        (cal_total_cons + cal_total_disenno + cal_total_prog) as final_score
+    from equipo natural join proyecto
+    natural join (
     select * from evaluar_en natural join cat_programacion
-    natural join (select * from evaluar_en natural join cat_disenno) m
-    natural join (select * from evaluar_en natural join cat_construccion) n where cod_evento like evento) l)f
-    order by (f.cal_total_prog + f.cal_total_disenno + f.cal_total_cons) desc limit top;
+        natural join cat_disenno
+        join cat_construccion using (cod_proyecto, cod_evento)
+    ) m
+    where cod_evento like evento
+    order by final_score desc limit top;
+
 
 end $$
 delimiter ;
@@ -191,7 +192,7 @@ delimiter ;
 /*
  @param proyecto - cod_proyecto
  @param evento - cod_evento
- @param cal_insp - cal_inspeccion
+ @param cal_insp - cal_inspeccion_prog
  @param cal_sis - cal_sistema_aut
  @param cal_demos - cal_demostracion
  @param cal_sist_man - cal_sistema_man
@@ -235,7 +236,7 @@ delimiter ;
 /*
  @param proyecto - cod_proyecto
  @param evento - cod_evento
- @param cal_insp - cal_inspeccion
+ @param cal_insp - cal_inspeccion_cons
  @param cal_lib - cal_libreta_ing
 */
 drop procedure if exists set_cat_construccion;
@@ -250,3 +251,8 @@ in cal_lib int
     insert into CAT_CONSTRUCCION values (proyecto, evento, cal_insp, cal_lib, @total);
 end $$
 delimiter ;
+
+call get_top_teams(4, 2);
+
+
+

@@ -10,11 +10,12 @@ use proyecto_bdd;
 drop procedure if exists set_evento;
 delimiter $$
 create procedure set_evento(
+in nombre varchar(255),
 in f_inicio date,
 in f_fin date,
 in lug varchar(255)
 ) begin
-    insert into EVENTO (fecha_inicio, fecha_fin, lugar) values (f_inicio, f_fin, lug);
+    insert into EVENTO (nombre_evento,fecha_inicio, fecha_fin, lugar) values (nombre, f_inicio, f_fin, lug);
 end $$
 delimiter ;
 
@@ -107,11 +108,13 @@ delimiter $$
 create procedure set_jurado(
 in nom_pila varchar(255),
 in ape_1 varchar(255),
-in ape_2 varchar(255)
+in ape_2 varchar(255),
+in user varchar(255),
+in pass varchar(255)
 ) begin
-    insert into JURADO (nombre_pila, apellido_1, apellido_2) values (nom_pila, ape_1, ape_2);
-end;
-$$
+    insert into JURADO (nombre_pila, apellido_1, apellido_2, usuario, contrasenna) values (nom_pila, ape_1, ape_2, user, MD5(pass));
+end $$
+delimiter ;
 
 -- PROYECTO
 
@@ -262,7 +265,34 @@ in cal_lib int
 end $$
 delimiter ;
 
-call get_top_teams(4, 2, 'primaria');
+-- Login
+/*
+ @param usser - usuario/User
+ @param pas - authentication_string/contrasenna
 
+ @return 0 - usuario no existe
+ @return 1 - es jurado
+ @return 2 - es coordinador
+*/
+drop procedure if exists check_user;
+delimiter $$
+create procedure check_user(
+in user varchar(255),
+in pass varchar(255),
+out res int
+) begin
+    set @coordUser = 'coordinador';
+    set @passCoord = MD5('12345');
+    if exists(select usuario, contrasenna from JURADO where usuario like @coordUser and contrasenna like @passCoord) then
+        set res = 2;
+        else
+            if exists(select usuario, contrasenna from JURADO where usuario like user and contrasenna like MD5(pass))  then
+                set res = 1;
+            else
+                set res = 0;
+            end if;
+    end if;
 
+end $$
+delimiter ;
 

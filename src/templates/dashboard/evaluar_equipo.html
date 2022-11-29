@@ -30,9 +30,14 @@
                     id="evento-eva"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                   >
-                    <option selected>Evento a evaluar</option>
-                    <!--Aquí debe ir un bucle for-->
-                    <option value="idevento">nombre evento</option>
+                    <option selected hidden>Evento a evaluar</option>
+                    {% for evento in events["current"] %}
+                    <option value="{{ evento['cod_evento'] }}">
+                      {{ evento["cod_evento"] }}
+                    </option>
+                    {% else %}
+                    <option disabled>No hay ningun evento en curso.</option>
+                    {% endfor %}
                   </select>
                 </div>
               </div>
@@ -52,9 +57,14 @@
                     id="equipo-eva"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                   >
-                    <option selected>Equipo a evaluar</option>
-                    <!--Aquí debe ir un bucle for-->
-                    <option value="idequipo">equipo</option>
+                    <option selected hidden>Equipo a evaluar</option>
+                    {% for equipo in equipos["current"] %}
+                    <option value="{{ equipo['cod_evento'] }}">
+                      {{ equipo["nombre_equipo"] }}
+                    </option>
+                    {% else %}
+                    <option disabled>No hay ningun equipo que evaluar.</option>
+                    {% endfor %}
                   </select>
                 </div>
               </div>

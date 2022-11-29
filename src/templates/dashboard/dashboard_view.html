@@ -8,21 +8,21 @@
             <a href="/dashboard/publico/ver_resultados">Resultados</a>
           </li>
 
-          {% if current_page == "Dashboard_Coordinador" %}
+          {% if current_page == "Dashboard Coordinador" %}
             {% include "dashboard/menu_coordinador.html" %}
-          {% elif current_page == "Dashboard_Jurado" %}
+          {% elif current_page == "Dashboard Jurado" %}
           {% include "dashboard/menu_jurado.html" %}
           {% endif %}
-                
+
       </div>
   
       <div class="p-4 rounded-md bg-gray-100 col-span-3 gap-2" id="pantalla">
         {% block dashboard_content %}
-          {% if current_page == "Dashboard_Coordinador" %}
+          {% if current_page == "Dashboard Coordinador" %}
           <h1 class="text-5xl font-bold text-blue-600 text-center">Vista coordinador</h1>
-          {% elif current_page == "Dashboard_Jurado" %}
+          {% elif current_page == "Dashboard Jurado" %}
           <h1 class="text-5xl font-bold text-blue-600 text-center">Vista jurado</h1>
-          {% elif current_page == "Dashboard_Equipo" %}
+          {% elif current_page == "Dashboard Publico" %}
           <h1 class="text-5xl font-bold text-blue-600 text-center">Vista equipo</h1>
           {% endif %}
         {% endblock %}

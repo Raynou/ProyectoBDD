@@ -33,24 +33,30 @@ router.post('/dashboard/login', function(req, res) {
 });
 
 router.get('/dashboard/coordinador', function(req, res) {
-    res.render('dashboard/dashboard_view.html', {current_page: "Dashboard_Coordinador"});
+    res.render('dashboard/dashboard_view.html', {current_page: "Dashboard Coordinador"});
 });
 router.get('/dashboard/coordinador/registro_equipo', function(req, res) {
-    res.render('dashboard/registro_equipo.html', {current_page: "Dashboard_Coordinador"});
+    res.render('dashboard/registro_equipo.html', {current_page: "Dashboard Coordinador"});
 });
 router.get('/dashboard/coordinador/registro_evento', function(req, res) {
-    res.render('dashboard/registro_evento.html', {current_page: "Dashboard_Coordinador"});
+    res.render('dashboard/registro_evento.html', {current_page: "Dashboard Coordinador"});
 });
 router.get('/dashboard/coordinador/registro_jurado', function(req, res) {
-    res.render('dashboard/registro_jurado.html', {current_page: "Dashboard_Coordinador"});
+    res.render('dashboard/registro_jurado.html', {current_page: "Dashboard Coordinador"});
 });
 
 router.get('/dashboard/jurado', function(req, res) {
-    res.render('dashboard/dashboard_view.html', {current_page: "Dashboard_Jurado"});
+    res.render('dashboard/dashboard_view.html', {current_page: "Dashboard Jurado"});
+});
+router.get('/dashboard/jurado/evaluar_equipo', function(req, res) {
+    res.render('dashboard/evaluar_equipo.html', {current_page: "Dashboard Jurado"});
 });
 
-router.get('/dashboard/equipo', function(req, res) {
-    res.render('dashboard/dashboard_view.html', {current_page: "Dashboard_Equipo"});
+router.get('/dashboard/publico', function(req, res) {
+    res.render('dashboard/dashboard_view.html', {current_page: "Dashboard Publico"});
+});
+router.get('/dashboard/publico/ver_resultados', function(req, res) {
+    res.render('dashboard/ver_resultados.html', {current_page: "Dashboard Publico"});
 });
 
 export default router

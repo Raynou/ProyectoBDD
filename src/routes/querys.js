@@ -74,3 +74,14 @@ export async function putEvent(event){
 		replacements: [event.nombre, event.f_inicio, event.f_fin, event.lug]
 	})
 }
+export async function getJudge(){
+	return sequelize.query('call get_jurado()');
+}
+
+export async function putJudge(curp, nomPila, primerApellido, segundoApellido, user, password){
+	await sequelize.query('call set_jurado(?, ?, ?, ?, ?)', {
+		replacements:[curp, nomPila, primerApellido, segundoApellido, user, password]
+	})
+}
+
+//sequelize.close()

@@ -4,7 +4,6 @@ import * as script from "./scripts.js"
 const router = Router()
 var session
 
-
 router.get('/query/greets', (req, res) => res.send('hola'))
 
 router.get('/query/events', async function(req, res) {
@@ -15,6 +14,9 @@ router.get('/query/judge', async function (req, res) {
 	res.send(await query.getJudge())
 })
 
+router.get('/query/judge_event', async (req, res) =>{
+	res.send(await query.judge_event()) 
+})
 
 router.post('/query/login', async function(req, res) {
     const user = req.body.codigo;
@@ -98,7 +100,7 @@ router.post('/query/set_event', (req, res) => {
 	const data = req.body
 
 	const event ={
-		nombre:data.nombre_evento,
+		nombre: data.nombre_evento,
 		f_inicio: data.inicio_evento,
 		f_fin: data.fin_evento, 
 		lug: data.ubicacion_sede
@@ -108,10 +110,17 @@ router.post('/query/set_event', (req, res) => {
 	res.send(query.putEvent(event))
 })
 
-router.post('/query/set_judge', (req, res) => {
+router.post('/query/assign_judge', (req, res) => {
 	const data = req.body
-	console.log(req.body)
-	res.send(req.body)
+
+	const assign ={
+		evento: data.evento_colaborar,
+		jurado: data.jurado_colaborar,
+		categoria: data.categoria_jurado
+	}
+
+	console.log(assign)
+	res.send(query.assignJudge(assign))
 })
 
 router.post('/query/set_calif', (req, res) => {
@@ -142,6 +151,7 @@ router.post('/query/set_calif', (req, res) => {
 
 	res.send(query.putCalif(catpro, catdis, catcons))
 })
+
 router.post('/query/set_jurado', (req, res) =>{
 	let curp = req.body.curp
 	let nomPila = req.body.nom_pila
@@ -152,6 +162,5 @@ router.post('/query/set_jurado', (req, res) =>{
 
 	res.send(query.putJudge(curp, nomPila, primerApellido, segundoApellido, user, password))
 })
-
 
 export default router

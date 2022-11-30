@@ -15,12 +15,18 @@ export async function evaluations(event, category) {
 	return {"evaluations":top_evaluations}
 }
 
+export async function judge_event(){
+	const judges = await sequelize.query("call get_jurado()", QueryTypes.SELECT)
+	const events = await sequelize.query("call get_events_after_current_date()", QueryTypes.SELECT)
+	return {"events":events, "judges" : judges}
+}
+
 export async function login(username, pass) {
     const result = await sequelize.query("call check_user_wrapper(" + username + ", " + pass + ")", QueryTypes.SELECT)
     return result
 }
 
-export async function get_jury_code(username) {
+export async function get_jury_code(username) { 
     const result = await sequelize.query("call get_jury_code(" + username + ")", QueryTypes.SELECT)
     return result
 }
@@ -74,6 +80,18 @@ export async function putEvent(event){
 	})
 }
 
+/*COLABORAR
+ @param jurado - id_jurado
+ @param evento - cod_evento
+ @param cat - categoria
+*/
+export async function assignJudge(assign){
+	// Insertar evento
+	await sequelize.query('call set_colaborar(?, ?, ?);', {
+		replacements: [assign.evento, assign.jurado, assign.categoria]
+	})
+}
+
 /*CAT_PROGRAMACION
  @param proyecto - cod_proyecto
  @param evento - cod_evento
@@ -112,6 +130,7 @@ export async function putCalif(catpro, catdis, catcons){
 export async function getTeam(){
 	
 }
+
 export async function getJudge(){
 	return sequelize.query('call get_jurado()');
 }

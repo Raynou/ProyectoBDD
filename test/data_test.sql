@@ -1,10 +1,10 @@
 -- EVENTO
-insert into EVENTO (cod_evento, fecha_inicio, fecha_fin, lugar) values (1, '2022-01-20', '2022-01-28', 'Vizal San Pablo');
-insert into EVENTO (cod_evento, fecha_inicio, fecha_fin, lugar) values (2, '2021-09-01', '2022-09-13', 'San Isidro');
-insert into EVENTO (cod_evento, fecha_inicio, fecha_fin, lugar) values (3, '2021-04-15', '2021-12-25', 'Umm as Summāq');
-insert into EVENTO (cod_evento, fecha_inicio, fecha_fin, lugar) values (4, '2021-10-26', '2022-11-07', 'Alejo Ledesma');
-insert into EVENTO (cod_evento, fecha_inicio, fecha_fin, lugar) values (5, '2022-03-13', '2021-05-03', 'Bayzhansay');
-insert into EVENTO (cod_evento, fecha_inicio, fecha_fin, lugar) values (6, '2022-03-13', '2023-05-03', 'Bayzhansay');
+insert into EVENTO (cod_evento, nombre_evento, fecha_inicio, fecha_fin, lugar) values (1, 'Evento Vizal', '2022-01-20', '2022-01-28', 'Vizal San Pablo');
+insert into EVENTO (cod_evento, nombre_evento, fecha_inicio, fecha_fin, lugar) values (2, 'Evento San Isidro', '2021-09-01', '2022-09-13', 'San Isidro');
+insert into EVENTO (cod_evento, nombre_evento, fecha_inicio, fecha_fin, lugar) values (3, 'Evento Umn', '2021-04-15', '2021-12-25', 'Umm as Summāq');
+insert into EVENTO (cod_evento, nombre_evento, fecha_inicio, fecha_fin, lugar) values (4, 'Evento Alejo',  '2021-10-26', '2022-11-07', 'Alejo Ledesma');
+insert into EVENTO (cod_evento, nombre_evento, fecha_inicio, fecha_fin, lugar) values (5, 'Evento Bayzhansay', '2022-03-13', '2021-05-03', 'Bayzhansay');
+insert into EVENTO (cod_evento, nombre_evento, fecha_inicio, fecha_fin, lugar) values (6, 'Evento Bayzhansay', '2022-03-13', '2023-05-03', 'Bayzhansay');
 
 -- JURADO
 

@@ -25,10 +25,6 @@ export async function get_jury_code(username) {
     return result
 }
 
-
-// TODO: putTeam function
-
-
 /*
  *@param teamName - String
  *@param category - String
@@ -56,10 +52,7 @@ export async function putTeam(teamName, category, institution, participants){
 	// Traer el codigo del equipo y la categoria
 	const teamRes = await sequelize.query('call get_last_team();')
 
-	
-
 	// Validar la edad del participante en base a la categoria
-	
 	for(let i = 0; i < 3; i++){
 		putParticipant(participants[i], teamRes[0].cod_equipo)	
 	}
@@ -75,4 +68,9 @@ async function putParticipant(participant, teamCode){
 
 }
 
-//sequelize.close()
+export async function putEvent(event){
+	// Insertar evento
+	await sequelize.query('call set_evento(?, ?, ?, ?);', {
+		replacements: [event.nombre, event.f_inicio, event.f_fin, event.lug]
+	})
+}

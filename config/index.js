@@ -5,6 +5,9 @@ import queryRoutes from "../src/routes/querys.routes.js"
 import renderRoutes from "../src/routes/render.routes.js"
 import nunjucks from "nunjucks"
 
+import sessions from "express-session"
+
+
 let isWin = process.platform === 'win32'
 
 const app = express()
@@ -20,6 +23,14 @@ app.use(express.static('public'))
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+//session middleware
+app.use(sessions({
+    secret: "rafaelgarciamendoza",
+    saveUninitialized:false,
+    cookie: { maxAge: 600000 },
+    resave: false
+}));
 
 app.set('views', dir);
 

@@ -23,9 +23,11 @@
   },
   "homepage": "https://github.com/Raynou/Backend-ProyectoBDD#readme",
   "dependencies": {
+    "cookie-parser": "^1.4.6",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-nunjucks": "^2.2.5",
+    "express-session": "^1.17.3",
     "mysql2": "^2.3.3",
     "node-fetch": "^3.3.0",
     "nunjucks": "^3.2.3",

@@ -9,6 +9,16 @@ export async function events() {
     return {"current":current_events, "prior":prior_events}
 }
 
+export async function login(username, pass) {
+    const result = await sequelize.query("call check_user_wrapper(" + username + ", " + pass + ")", QueryTypes.SELECT)
+    return result
+}
+
+export async function get_jury_code(username) {
+    const result = await sequelize.query("call get_jury_code(" + username + ")", QueryTypes.SELECT)
+    return result
+}
+
 
 // TODO: putTeam function
 

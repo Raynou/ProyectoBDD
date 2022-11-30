@@ -49,11 +49,12 @@ delimiter ;
 drop procedure if exists set_team;
 delimiter $$
 create procedure set_team(
+    in nombre varchar(255),
     in cat enum('primaria', 'secundaria', 'bachillerato', 'profesional'),
     in inst varchar(255)
 ) begin
 
-    insert into EQUIPO (categoria, institucion) values (cat, inst);
+    insert into EQUIPO (nombre_equipo, categoria, institucion) values (nombre, cat, inst);
 
 end $$
 delimiter ;

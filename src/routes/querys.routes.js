@@ -20,6 +20,8 @@ router.post('/query/login', async function(req, res) {
     const user = req.body.codigo;
     const pass = req.body.contraseña;
 
+    console.log(req.body)
+
     const result = await query.login("'" + user + "'", "'" + pass + "'");
     const result_code = result[0]["@userType"];
 
@@ -29,7 +31,7 @@ router.post('/query/login', async function(req, res) {
 	session.userid="cordi"
     } else if (result_code == 1) {
 	const res = await query.get_jury_code("'" + user + "'");
-	session.userid=res[0]["id_jurado"]
+	session.userid=res[0]["curp"]
     } else {
 	console.log("No existe ningun usuario");
     }

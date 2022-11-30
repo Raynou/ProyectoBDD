@@ -59,6 +59,7 @@ router.get('/dashboard/coordinador/registro_evento', function(req, res) {
 router.get('/dashboard/jurado', function(req, res) {
     res.render('dashboard/dashboard_view.html', {current_page: "Dashboard Jurado"});
 });
+
 router.get('/dashboard/jurado/evaluar_equipo', function(req, res) {
     fetch("http://localhost:3000/query/events", {method: "GET"}).then(res => res.json()).
 	then((json) => {

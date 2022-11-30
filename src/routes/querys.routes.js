@@ -41,34 +41,6 @@ router.get('/query/evaluations', async function(req, res) {
 
 router.post('/query/set_team', (req, res) => {
 	const data = req.body
-	/*const request = {
-		nombre_equipo: data.nombre_equipo,
-		categoria: data.categoria_equipo,
-		institucion: data.institucion_equipo,
-		participantes:[
-		{
-			CURP: data.curp_integrante1,
-			nombre_pila: data.nombre_integrante1,
-			apellido_1: data.apellido1_integrante1,
-			apellido_2: data.apellido1integrante1,
-		  	fecha_nac: data.edad_integrante1
-		},
-		{
-			CURP: data.curp_integrante2,
-			nombre_pila: data.nombre_integrante2,
-			apellido_1: data.apellido1_integrante2,
-			apellido_2: data.apellido2_integrante2,
-		  	fecha_nac: data.edad_integrante2
-		},
-		{
-			CURP: data.curp_integrante3,
-			nombre_pila: data.nombre_integrante3,
-			apellido_1: data.apellido1_integrante3,
-			apellido_2: data.apellido2_integrante3,
-		  	fecha_nac: data.edad_integrante3
-		}
-	 ]
-	}*/
 
 	const name = data.nombre_equipo;
 	const cat = data.categoria_equipo;
@@ -101,11 +73,21 @@ router.post('/query/set_team', (req, res) => {
 })
 
 router.post('/query/set_event', (req, res) => {
-	console.log(req.body)
-	res.send(req.body)
+	const data = req.body
+
+	const event ={
+		nombre:data.nombre_evento,
+		f_inicio: data.inicio_evento,
+		f_fin: data.fin_evento, 
+		lug: data.ubicacion_sede
+	}
+
+	console.log(event)
+	res.send(query.putEvent(event))
 })
 
 router.post('/query/set_judge', (req, res) => {
+	const data = req.body
 	console.log(req.body)
 	res.send(req.body)
 })

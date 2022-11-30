@@ -1,36 +1,94 @@
 {% include "base.html" %}
 
-<h1 class="text-5xl font-bold text-blue-600 text-center">Eventos VEX</h1>
+<h1 class="text-5xl font-bold text-sky-600 text-center">Eventos VEX</h1>
 
 <div class="px-10">
-  <h2 class="text-3xl font-bold text-blue-600 text-left">Eventos en curso</h2>
-  <ul class="list-disc list-inside">
-    {% for evento in events["current"] %}
-    <li>
-      Evento {{ evento["cod_evento"] }}, organizado en {{ evento["lugar"] }},
-      con fecha de inicio en {{ evento["fecha_inicio"] }}, y con terminación {{
-      evento["fecha_fin"] }}.
-    </li>
-    {% else %}
-    <p>No hay ningun evento en curso.</p>
-    {% endfor %}
-  </ul>
+  <h2 class="p-4 text-3xl font-bold text-sky-600 text-center">
+    Eventos Actuales
+  </h2>
+  <hr />
+  <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left text-gray-500">
+      <thead class="text-xs text-sky-700 uppercase bg-gray-50">
+        <tr>
+          <th scope="col" class="py-3 px-6">Evento</th>
+          <th scope="col" class="py-3 px-6">Sede</th>
+          <th scope="col" class="py-3 px-6">Inicio</th>
+          <th scope="col" class="py-3 px-6">Fin</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for evento in events["current"] %}
+        <tr>
+          <th scope="row" class="py-4 px-6 font-medium text-gray-900">
+            {{ evento["nombre_evento"] }}
+          </th>
+          <td class="py-4 px-6 whitespace-nowrap">{{ evento["lugar"] }}</td>
+          <td class="py-4 px-6 whitespace-nowrap">
+            {{ evento["fecha_inicio"] }}
+          </td>
+          <td class="py-4 px-6 whitespace-nowrap">{{ evento["fecha_fin"] }}</td>
+        </tr>
+        {% else %}
+        <tr>
+          <th scope="row" class="py-4 px-6 font-medium text-gray-900">
+            Sin eventos
+          </th>
+          <td class="py-4 px-6 whitespace-nowrap"></td>
+          <td class="py-4 px-6 whitespace-nowrap"></td>
+          <td class="py-4 px-6 whitespace-nowrap"></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 
-  <h2 class="text-3xl font-bold text-blue-600 text-left">Eventos pasados</h2>
+  <br />
+  <br />
 
-  <ul class="list-disc list-inside">
-    {% for evento in events["prior"] %}
-    <li>
-      Evento {{ evento["cod_evento"] }}, organizado en {{ evento["lugar"] }},
-      con fecha de inicio en {{ evento["fecha_inicio"] }}, y con terminación {{
-      evento["fecha_fin"] }}.
-    </li>
-    {% else %}
-    <p>No ha finalizado ningun evento.</p>
-    {% endfor %}
-  </ul>
+  <h2 class="p-4 text-3xl font-bold text-sky-600 text-center">
+    Eventos Pasados
+  </h2>
+  <hr />
+  <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left text-gray-500">
+      <thead class="text-xs text-sky-700 uppercase bg-gray-50">
+        <tr>
+          <th scope="col" class="py-3 px-6">Evento</th>
+          <th scope="col" class="py-3 px-6">Sede</th>
+          <th scope="col" class="py-3 px-6">Inicio</th>
+          <th scope="col" class="py-3 px-6">Fin</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for evento in events["prior"] %}
+        <tr>
+          <th scope="row" class="py-4 px-6 font-medium text-gray-900">
+            {{ evento["nombre_evento"] }}
+          </th>
+          <td class="py-4 px-6 whitespace-nowrap">{{ evento["lugar"] }}</td>
+          <td class="py-4 px-6 whitespace-nowrap">
+            {{ evento["fecha_inicio"] }}
+          </td>
+          <td class="py-4 px-6 whitespace-nowrap">{{ evento["fecha_fin"] }}</td>
+        </tr>
+        {% else %}
+        <tr>
+          <th scope="row" class="py-4 px-6 font-medium text-gray-900">
+            Sin eventos
+          </th>
+          <td class="py-4 px-6 whitespace-nowrap"></td>
+          <td class="py-4 px-6 whitespace-nowrap"></td>
+          <td class="py-4 px-6 whitespace-nowrap"></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  
+  <br />
+  <br />
 
-  <div></div>
 </div>
 
 </body>

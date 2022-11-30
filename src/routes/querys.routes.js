@@ -11,6 +11,10 @@ router.get('/query/events', async function(req, res) {
     res.send(await query.events());
 });
 
+router.get('/query/judge', async function (req, res) {
+	res.send(await query.getJudge())
+})
+
 
 router.post('/query/login', async function(req, res) {
     const user = req.body.codigo;
@@ -24,9 +28,8 @@ router.post('/query/login', async function(req, res) {
     if (result_code == 2) {
 	session.userid="cordi"
     } else if (result_code == 1) {
-	const id = await query.get_jury_code("'" + user + "'");
-	console.log(id)
-	session.userid=id
+	const res = await query.get_jury_code("'" + user + "'");
+	session.userid=res[0]["id_jurado"]
     } else {
 	console.log("No existe ningun usuario");
     }
@@ -35,8 +38,13 @@ router.post('/query/login', async function(req, res) {
 
     res.redirect("/dashboard")
 });
+
 router.get('/query/evaluations', async function(req, res) {
-    res.send(await query.evaluations());
+    console.log(req.query)
+    const evento = req.query.evento
+    const cat = req.query.categoria_evento
+
+    res.send(await query.evaluations(evento, cat ));
 });
 
 router.post('/query/set_team', (req, res) => {
@@ -102,7 +110,8 @@ router.post('/query/set_event', (req, res) => {
 
 router.post('/query/set_judge', (req, res) => {
 	const data = req.body
-	res.send(data)
+	console.log(req.body)
+	res.send(req.body)
 })
 
 router.post('/query/set_calif', (req, res) => {
@@ -133,5 +142,16 @@ router.post('/query/set_calif', (req, res) => {
 
 	res.send(query.putCalif(catpro, catdis, catcons))
 })
+router.post('/query/set_jurado', (req, res) =>{
+	let curp = req.body.curp
+	let nomPila = req.body.nom_pila
+	let primerApellido = req.body.apellido_1
+	let segundoApellido = req.body.apellido_2
+	let user = req.body.user
+	let password = req.body.password
+
+	res.send(query.putJudge(curp, nomPila, primerApellido, segundoApellido, user, password))
+})
+
 
 export default router

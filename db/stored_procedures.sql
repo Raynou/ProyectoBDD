@@ -326,39 +326,35 @@ in user varchar(255)
 end $$
 delimiter ;
 
-drop procedure if exists get_events_of_jury;
-delimiter $$
-create procedure get_events_of_jury(
-in jurado varchar(18)
-) begin
-
-	select * from colaborar where curp_jurado=jurado;
-    
-end $$
-delimiter ;
-
-call get_events_of_jury("er");
-
-drop procedure if exists get_current_jury_events;
-delimiter $$
-create procedure get_events_of_jury(
-in jurado varchar(18)
-) begin
-
-	-- select * from (call get_events_of_jury) ;
-    
-end $$
-delimiter ;
-
 drop procedure if exists get_jury_cat_teams;
 delimiter $$
 create procedure get_jury_cat_teams(
 in ccjurado varchar(18)
 ) begin
 	
-    select * from equipo inner join proyecto using(cod_equipo) inner join evaluar_en using (cod_proyecto) inner join evento using(cod_evento) inner join colaborar using(cod_evento) WHERE colaborar.curp_jurado=ccjurado;
+    SELECT 
+    *
+FROM
+    colaborar
+        INNER JOIN
+    (SELECT 
+        cod_proyecto, cod_evento, categoria
+    FROM
+        evaluar_en
+    INNER JOIN proyecto USING (cod_proyecto)
+    INNER JOIN equipo USING (cod_equipo)
+    WHERE
+        cod_evento IN (SELECT 
+                cod_evento
+            FROM
+                EVENTO
+            WHERE
+                fecha_fin >= CURDATE())) m USING (categoria)
+        INNER JOIN
+    evaluar_en USING (cod_proyecto)
+WHERE
+    (evaluar_en.curp_jurado IS NULL
+        AND colaborar.curp_jurado = ccjurado);
 
 end $$
 delimiter ;
-
-call get_jury_cat_teams("er")

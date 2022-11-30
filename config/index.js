@@ -47,12 +47,6 @@ app.use(queryRoutes)
 
 app.use(renderRoutes)
 
-app.get('/dashboard/equipo', function(req, res) {
-    res.render('dashboard/dashboard_view.html', {current_page: "Dashboard_Equipo"});
-});
-
-
-
 app.listen(3000)
 
 

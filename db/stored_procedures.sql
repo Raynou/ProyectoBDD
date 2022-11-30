@@ -297,3 +297,14 @@ out res int
 end $$
 delimiter ;
 
+drop procedure if exists check_user_wrapper;
+delimiter $$
+create procedure check_user_wrapper(
+in user varchar(255),
+in pass varchar(255)
+) begin
+    set @userType = -1;
+    call check_user(user, pass, @userType);
+    select @userType;
+end $$
+delimiter ;

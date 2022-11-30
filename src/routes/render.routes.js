@@ -2,6 +2,7 @@ import {Router} from "express"
 import fetch from "node-fetch"
 
 const router = Router()
+var session;
 
 router.get('/', function(req, res) {
     res.render('index.html', {current_page: "Proyecto VEX"});
@@ -19,17 +20,21 @@ router.get('/events', function(req, res) {
 });
 
 router.get('/dashboard', function(req, res) {
-    res.render('dashboard/dashboard.html', {current_page: "Dashboard"});
+    session = req.session
+
+    console.log(session)
+
+    if (session.userid == "cordi") {
+	res.redirect("/dashboard/coordinador")
+    } else if (session.userid) {
+	res.redirect("/dashboard/jurado")
+    } else {
+	res.redirect("/dashboard/login")
+    }
 });
 
 router.get('/dashboard/login', function(req, res) {
     res.render('dashboard/login.html', {current_page: "Login"});
-});
-
-router.post('/dashboard/login', function(req, res) {
-    // TODO: Llamar procedimiento almacenado para el login
-    //res.render('dashboard/login.html', {current_page: "Login"});
-    res.send('Por favor de checar la función render.routes.js linea 29');
 });
 
 router.get('/dashboard/coordinador', function(req, res) {

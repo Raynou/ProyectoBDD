@@ -1,6 +1,6 @@
 {% extends "dashboard/dashboard_view.html" %} {% block dashboard_content %}
 <div>
-  <form action="#" method="">
+  <form action="/query/set_calif" method="POST">
     <div class="md:grid md:grid-cols-3 md:gap-6">
       <div class="md:col-span-1">
         <div class="px-4 sm:px-0">
@@ -19,15 +19,15 @@
             <div class="grid grid-cols-3 gap-6">
               <div class="col-span-3 sm:col-span-2">
                 <label
-                  for="evento-eva"
+                  for="evento_eva"
                   class="block text-lg font-bold text-gray-700"
                   >Evento</label
                 >
                 <div class="mt-1 flex rounded-md shadow-sm">
                   <select
                     required
-                    name="evento-eva"
-                    id="evento-eva"
+                    name="evento_eva"
+                    id="evento_eva"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                   >
                     <option selected hidden>Evento a evaluar</option>
@@ -46,15 +46,15 @@
             <div class="grid grid-cols-3 gap-6">
               <div class="col-span-3 sm:col-span-2">
                 <label
-                  for="equipo-eva"
+                  for="equipo_eva"
                   class="block text-lg font-bold text-gray-700"
                   >Equipo</label
                 >
                 <div class="mt-1 flex rounded-md shadow-sm">
                   <select
                     required
-                    name="equipo-eva"
-                    id="equipo-eva"
+                    name="equipo_eva"
+                    id="equipo_eva"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                   >
                     <option selected hidden>Equipo a evaluar</option>
@@ -97,7 +97,7 @@
             <div class="grid grid-cols-3 gap-6">
               <div class="col-span-3 sm:col-span-2">
                 <label
-                  for="bitacora-catdis"
+                  for="bitacora_catdis"
                   class="block text-lg font-bold text-gray-700"
                 >
                   Bitácora</label
@@ -106,10 +106,10 @@
                   <input
                     type="number"
                     required
-                    name="bitacora-catdis"
+                    name="bitacora_catdis"
                     min="0"
                     max="5"
-                    id="bitacora-catdis"
+                    id="bitacora_catdis"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Calificación de la subcategoria"
                   />
@@ -216,7 +216,7 @@
             <div class="grid grid-cols-3 gap-6">
               <div class="col-span-3 sm:col-span-2">
                 <label
-                  for="medio-catdis"
+                  for="medio_catdis"
                   class="block text-lg font-bold text-gray-700"
                 >
                   Medio Digital</label
@@ -225,10 +225,10 @@
                   <input
                     type="number"
                     required
-                    name="medio-catdis"
+                    name="medio_catdis"
                     min="0"
                     max="5"
-                    id="medio-catdis"
+                    id="medio_catdis"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Calificación de la subcategoria"
                   />
@@ -379,7 +379,7 @@
             <div class="grid grid-cols-3 gap-6">
               <div class="col-span-3 sm:col-span-2">
                 <label
-                  for="inspeccion-catpro"
+                  for="inspeccion_catpro"
                   class="block text-lg font-bold text-gray-700"
                 >
                   Inspección General</label
@@ -388,10 +388,10 @@
                   <input
                     type="number"
                     required
-                    name="inspeccion-catpro"
+                    name="inspeccion_catpro"
                     min="0"
                     max="4"
-                    id="inspeccion-catpro"
+                    id="inspeccion_catpro"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Calificación de la subcategoria"
                   />
@@ -518,7 +518,7 @@
             <div class="grid grid-cols-3 gap-6">
               <div class="col-span-3 sm:col-span-2">
                 <label
-                  for="sisauto-catpro"
+                  for="sisauto_catpro"
                   class="block text-lg font-bold text-gray-700"
                 >
                   Sistema Autónomo</label
@@ -527,10 +527,10 @@
                   <input
                     type="number"
                     required
-                    name="sisauto-catpro"
+                    name="sisauto_catpro"
                     min="0"
                     max="2"
-                    id="sisauto-catpro"
+                    id="sisauto_catpro"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Calificación de la subcategoria"
                   />
@@ -602,7 +602,7 @@
             <div class="grid grid-cols-3 gap-6">
               <div class="col-span-3 sm:col-span-2">
                 <label
-                  for="sisman-catpro"
+                  for="sisman_catpro"
                   class="block text-lg font-bold text-gray-700"
                 >
                   Sistema Manipulado</label
@@ -611,10 +611,10 @@
                   <input
                     type="number"
                     required
-                    name="sisman-catpro"
+                    name="sisman_catpro"
                     min="0"
                     max="2"
-                    id="sisman-catpro"
+                    id="sisman_catpro"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Calificación de la subcategoria"
                   />
@@ -705,7 +705,7 @@
             <div class="grid grid-cols-3 gap-6">
               <div class="col-span-3 sm:col-span-2">
                 <label
-                  for="demo-catpro"
+                  for="demo_catpro"
                   class="block text-lg font-bold text-gray-700"
                 >
                   Demostración</label
@@ -714,10 +714,10 @@
                   <input
                     type="number"
                     required
-                    name="demo-catpro"
+                    name="demo_catpro"
                     min="0"
                     max="2"
-                    id="demo-catpro"
+                    id="demo_catpro"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Calificación de la subcategoria"
                   />
@@ -824,7 +824,7 @@
             <div class="grid grid-cols-3 gap-6">
               <div class="col-span-3 sm:col-span-2">
                 <label
-                  for="inspec-catcons"
+                  for="inspec_catcons"
                   class="block text-lg font-bold text-gray-700"
                 >
                   Inspección General</label
@@ -833,10 +833,10 @@
                   <input
                     type="number"
                     required
-                    name="inspec-catcons"
+                    name="inspec_catcons"
                     min="0"
                     max="5"
-                    id="inspec-catcons"
+                    id="inspec_catcons"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Calificación de la subcategoria"
                   />
@@ -993,7 +993,7 @@
             <div class="grid grid-cols-3 gap-6">
               <div class="col-span-3 sm:col-span-2">
                 <label
-                  for="libreta-catcons"
+                  for="libreta_catcons"
                   class="block text-lg font-bold text-gray-700"
                 >
                   Libreta de Ingeniería</label
@@ -1002,10 +1002,10 @@
                   <input
                     type="number"
                     required
-                    name="libreta-catcons"
+                    name="libreta_catcons"
                     min="0"
                     max="5"
-                    id="libreta-catcons"
+                    id="libreta_catcons"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Calificación de la subcategoria"
                   />

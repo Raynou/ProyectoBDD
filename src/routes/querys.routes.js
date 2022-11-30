@@ -41,34 +41,6 @@ router.get('/query/evaluations', async function(req, res) {
 
 router.post('/query/set_team', (req, res) => {
 	const data = req.body
-	/*const request = {
-		nombre_equipo: data.nombre_equipo,
-		categoria: data.categoria_equipo,
-		institucion: data.institucion_equipo,
-		participantes:[
-		{
-			CURP: data.curp_integrante1,
-			nombre_pila: data.nombre_integrante1,
-			apellido_1: data.apellido1_integrante1,
-			apellido_2: data.apellido1integrante1,
-		  	fecha_nac: data.edad_integrante1
-		},
-		{
-			CURP: data.curp_integrante2,
-			nombre_pila: data.nombre_integrante2,
-			apellido_1: data.apellido1_integrante2,
-			apellido_2: data.apellido2_integrante2,
-		  	fecha_nac: data.edad_integrante2
-		},
-		{
-			CURP: data.curp_integrante3,
-			nombre_pila: data.nombre_integrante3,
-			apellido_1: data.apellido1_integrante3,
-			apellido_2: data.apellido2_integrante3,
-		  	fecha_nac: data.edad_integrante3
-		}
-	 ]
-	}*/
 
 	const name = data.nombre_equipo;
 	const cat = data.categoria_equipo;
@@ -130,9 +102,36 @@ router.post('/query/set_event', (req, res) => {
 
 router.post('/query/set_judge', (req, res) => {
 	const data = req.body
-	console.log(req.body)
-	res.send(req.body)
+	res.send(data)
 })
 
+router.post('/query/set_calif', (req, res) => {
+	const data = req.body
+
+	const catpro ={
+		equipo:data.equipo_eva,
+		evento:data.evento_eva,
+		sub1:data.inspeccion_catpro, 
+		sub2:data.sisauto_catpro, 
+		sub3:data.demo_catpro, 
+		sub4:data.sisman_catpro
+	}
+
+	const catdis ={
+		equipo:data.equipo_eva,
+		evento:data.evento_eva,
+		sub1:data.bitacora_catdis, 
+		sub2:data.medio_catdis
+	}
+
+	const catcons ={
+		equipo:data.equipo_eva,
+		evento:data.evento_eva,
+		sub1:data.inspec_catcons, 
+		sub2:data.libreta_catcons
+	}
+
+	res.send(query.putCalif(catpro, catdis, catcons))
+})
 
 export default router

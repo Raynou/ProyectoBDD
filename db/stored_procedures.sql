@@ -278,16 +278,16 @@ delimiter ;
 drop procedure if exists check_user;
 delimiter $$
 create procedure check_user(
-in user varchar(255),
+in userr varchar(255),
 in pass varchar(255),
 out res int
 ) begin
     set @coordUser = 'coordinador';
-    set @passCoord = MD5('12345');
-    if exists(select usuario, contrasenna from JURADO where usuario like @coordUser and contrasenna like @passCoord) then
+    set @passCoord = MD5(12345);
+    if @coordUser=userr AND @passCoord=MD5(pass) then
         set res = 2;
         else
-            if exists(select usuario, contrasenna from JURADO where usuario like user and contrasenna like MD5(pass))  then
+            if exists(select usuario, contrasenna from JURADO where usuario like userr and contrasenna like MD5(pass))  then
                 set res = 1;
             else
                 set res = 0;
@@ -308,3 +308,13 @@ in pass varchar(255)
     select @userType;
 end $$
 delimiter ;
+
+drop procedure if exists get_jury_code;
+delimiter $$
+create procedure get_jury_code(
+in user varchar(255)
+) begin
+    select id_jurado from jurado where usuario=user LIMIT 1;
+end $$
+delimiter ;
+

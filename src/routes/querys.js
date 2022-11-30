@@ -3,10 +3,17 @@ import { QueryTypes } from "sequelize";
 
 
 export async function events() {
- const prior_events =  await sequelize.query("call get_events_prior_to_current_date()", QueryTypes.SELECT)
-    console.log("esas")
- const current_events = await sequelize.query("call get_events_after_current_date()", QueryTypes.SELECT)
-    return {"current":current_events, "prior":prior_events}
+	const prior_events =  await sequelize.query("call get_events_prior_to_current_date()", QueryTypes.SELECT)
+	const current_events = await sequelize.query("call get_events_after_current_date()", QueryTypes.SELECT)
+	return {"current":current_events, "prior":prior_events}
+}
+
+export async function evaluations(event, category) {
+	const top_evaluations =  await sequelize.query('call get_top_teams(?,?,100);', {
+		replacements: [event, category]
+	})
+	console.log(top_evaluations)
+	return {"evaluations":top_evaluations}
 }
 
 
@@ -28,11 +35,11 @@ export async function events() {
  *  fecha_nac: 'YYYY-MM-DD'
  * }
  * */
-export async function putTeam(category, institution, participants){
+export async function putTeam(name, category, institution, participants){
 
 	// Insertar equipo
-	await sequelize.query('call set_team(?, ?);', {
-		replacements: [category, institution]
+	await sequelize.query('call set_team(?, ?, ?);', {
+		replacements: [category, institution, name]
 	})
 
 	// Traer el codigo del equipo y la categoria
@@ -90,7 +97,7 @@ function validateAge(age, teamCategory){
 
 async function putParticipant(participant, teamCode){
 
-	console.log(participant.fecha_nac)
+	console.log(participant)
 	await sequelize.query('call set_participant(?, ?, ?, ?, ?, ?);', {
 		replacements: [participant.CURP, teamCode, participant.nombre_pila, participant.apellido_1, participant.apellido_2, participant.fecha_nac]
 	})
@@ -98,5 +105,3 @@ async function putParticipant(participant, teamCode){
 }
 
 //sequelize.close()
-
-

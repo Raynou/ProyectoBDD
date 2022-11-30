@@ -1,7 +1,43 @@
 {% include "base.html" %}
 
-<h1 class="text-5xl font-bold text-blue-600 text-center">Proyecto VEX</h1>
-
+<div class="isolate bg-white">
+  <main>
+    <div class="relative px-6 lg:px-8">
+      <div class="mx-auto max-w-3xl pt-20 pb-32 sm:pt-48 sm:pb-40">
+        <div>
+          <div class="hidden sm:mb-8 sm:flex sm:justify-center"></div>
+          <div>
+            <h1
+              class="text-4xl font-bold text-sky-500 tracking-tight sm:text-center sm:text-6xl"
+            >
+              Proyecto VEX
+            </h1>
+            <p class="mt-6 text-lg leading-8 text-gray-600 sm:text-center">
+              Un proyecto de la materia de Taller de Base de Datos para la
+              realización de un sistema ABCC basado en los concursos VEX IQ
+            </p>
+            <div class="mt-8 flex gap-x-4 sm:justify-center">
+              <a
+                href="/dashboard"
+                class="inline-block rounded-lg bg-sky-500 text-white px-4 py-1.5 text-base font-semibold leading-7 shadow-sm ring-1 ring-sky-600 hover:bg-sky-700 hover:ring-sky-700"
+              >
+                Registrarte
+                <span class="text-indigo-200" aria-hidden="true">&rarr;</span>
+              </a>
+              <a
+                href="/about"
+                class="inline-block rounded-lg px-4 py-1.5 text-base font-semibold leading-7 text-gray-900 ring-1 ring-gray-900/10 hover:ring-gray-900/20"
+              >
+                Acerca de
+                <span class="text-gray-400" aria-hidden="true">&rarr;</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
 </body>
 
 </html>

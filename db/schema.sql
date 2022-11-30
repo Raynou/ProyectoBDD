@@ -45,7 +45,7 @@ create table PROYECTO(
 
 create table JURADO(
 
-    id_jurado int primary key auto_increment,
+    CURP varchar(18) primary key ,
     nombre_pila varchar(255) not null ,
     apellido_1 varchar(255) not null ,
     apellido_2 varchar(255),
@@ -55,12 +55,12 @@ create table JURADO(
 );
 
 create table COLABORAR(
-    id_jurado int not null ,
+    curp_jurado varchar(18) not null ,
     cod_evento int not null ,
     categoria enum('primaria', 'secundaria', 'bachillerato', 'profesional'),
 
     constraint FK_JURADO_COLABORA
-    foreign key (id_jurado) references JURADO(id_jurado)
+    foreign key (curp_jurado) references JURADO(CURP)
     on delete cascade on update cascade ,
 
     constraint FK_EVENTO_COLABORADOR
@@ -133,7 +133,7 @@ create table CAT_CONSTRUCCION(
 create table EVALUAR_EN(
     cod_proyecto int,
     cod_evento int,
-    id_jurado int,
+    curp_jurado varchar(18),
 
     constraint FK_PROYECTO_PARTICIPA
     foreign key (cod_proyecto) references PROYECTO(cod_proyecto)
@@ -144,7 +144,7 @@ create table EVALUAR_EN(
     on delete cascade on update cascade ,
 
     constraint FK_JURADO_EVALUO
-    foreign key (id_jurado) references JURADO(id_jurado)
+    foreign key (curp_jurado) references JURADO(CURP)
     on update cascade on delete set null ,
 
     primary key (cod_proyecto, cod_evento)

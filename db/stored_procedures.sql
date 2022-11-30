@@ -107,13 +107,21 @@ delimiter ;
 drop procedure if exists set_jurado;
 delimiter $$
 create procedure set_jurado(
+in curp_jurado varchar(18),
 in nom_pila varchar(255),
 in ape_1 varchar(255),
 in ape_2 varchar(255),
 in user varchar(255),
 in pass varchar(255)
 ) begin
-    insert into JURADO (nombre_pila, apellido_1, apellido_2, usuario, contrasenna) values (nom_pila, ape_1, ape_2, user, MD5(pass));
+    insert into JURADO (CURP, nombre_pila, apellido_1, apellido_2, usuario, contrasenna) values (curp_jurado, nom_pila, ape_1, ape_2, user, MD5(pass));
+end $$
+delimiter ;
+
+drop procedure if exists get_jurado;
+delimiter $$
+create procedure get_jurado() begin
+    select * from JURADO;
 end $$
 delimiter ;
 

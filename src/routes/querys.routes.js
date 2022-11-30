@@ -11,6 +11,10 @@ router.get('/query/events', async function(req, res) {
     res.send(await query.events());
 });
 
+router.get('/query/judge', async function (req, res) {
+	res.send(await query.getJudge())
+})
+
 
 router.post('/query/login', async function(req, res) {
     const user = req.body.codigo;
@@ -45,34 +49,6 @@ router.get('/query/evaluations', async function(req, res) {
 
 router.post('/query/set_team', (req, res) => {
 	const data = req.body
-	/*const request = {
-		nombre_equipo: data.nombre_equipo,
-		categoria: data.categoria_equipo,
-		institucion: data.institucion_equipo,
-		participantes:[
-		{
-			CURP: data.curp_integrante1,
-			nombre_pila: data.nombre_integrante1,
-			apellido_1: data.apellido1_integrante1,
-			apellido_2: data.apellido1integrante1,
-		  	fecha_nac: data.edad_integrante1
-		},
-		{
-			CURP: data.curp_integrante2,
-			nombre_pila: data.nombre_integrante2,
-			apellido_1: data.apellido1_integrante2,
-			apellido_2: data.apellido2_integrante2,
-		  	fecha_nac: data.edad_integrante2
-		},
-		{
-			CURP: data.curp_integrante3,
-			nombre_pila: data.nombre_integrante3,
-			apellido_1: data.apellido1_integrante3,
-			apellido_2: data.apellido2_integrante3,
-		  	fecha_nac: data.edad_integrante3
-		}
-	 ]
-	}*/
 
 	const name = data.nombre_equipo;
 	const cat = data.categoria_equipo;
@@ -136,6 +112,17 @@ router.post('/query/set_judge', (req, res) => {
 	const data = req.body
 	console.log(req.body)
 	res.send(req.body)
+})
+
+router.post('/query/set_jurado', (req, res) =>{
+	let curp = req.body.curp
+	let nomPila = req.body.nom_pila
+	let primerApellido = req.body.apellido_1
+	let segundoApellido = req.body.apellido_2
+	let user = req.body.user
+	let password = req.body.password
+
+	res.send(query.putJudge(curp, nomPila, primerApellido, segundoApellido, user, password))
 })
 
 

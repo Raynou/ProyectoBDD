@@ -322,7 +322,43 @@ delimiter $$
 create procedure get_jury_code(
 in user varchar(255)
 ) begin
-    select id_jurado from jurado where usuario=user LIMIT 1;
+    select curp from jurado where usuario=user LIMIT 1;
 end $$
 delimiter ;
 
+drop procedure if exists get_events_of_jury;
+delimiter $$
+create procedure get_events_of_jury(
+in jurado varchar(18)
+) begin
+
+	select * from colaborar where curp_jurado=jurado;
+    
+end $$
+delimiter ;
+
+call get_events_of_jury("er");
+
+drop procedure if exists get_current_jury_events;
+delimiter $$
+create procedure get_events_of_jury(
+in jurado varchar(18)
+) begin
+
+	-- select * from (call get_events_of_jury) ;
+    
+end $$
+delimiter ;
+
+drop procedure if exists get_jury_cat_teams;
+delimiter $$
+create procedure get_jury_cat_teams(
+in ccjurado varchar(18)
+) begin
+	
+    select * from equipo inner join proyecto using(cod_equipo) inner join evaluar_en using (cod_proyecto) inner join evento using(cod_evento) inner join colaborar using(cod_evento) WHERE colaborar.curp_jurado=ccjurado;
+
+end $$
+delimiter ;
+
+call get_jury_cat_teams("er")

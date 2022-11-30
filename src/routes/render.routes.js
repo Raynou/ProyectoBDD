@@ -64,5 +64,10 @@ router.get('/dashboard/publico/ver_resultados', function(req, res) {
     res.render('dashboard/ver_resultados.html', {current_page: "Dashboard Publico"});
 });
 
+router.get("/dashboard/logout", function(req, res) {
+    req.session.destroy();
+    res.redirect("/");
+});
+
 export default router
 

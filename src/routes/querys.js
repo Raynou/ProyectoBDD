@@ -27,6 +27,7 @@ export async function get_jury_code(username) {
 }
 
 /*
+ *@param teamName - String
  *@param category - String
  *@param institution - String
  *@param participants - JSON Array
@@ -41,12 +42,13 @@ export async function get_jury_code(username) {
  *  fecha_nac: 'YYYY-MM-DD'
  * }
  * */
-export async function putTeam(name, category, institution, participants){
+export async function putTeam(teamName, category, institution, participants){
 
 	// Insertar equipo
 	await sequelize.query('call set_team(?, ?, ?);', {
-		replacements: [category, institution, name]
+		replacements: [teamName, category, institution]
 	})
+
 
 	// Traer el codigo del equipo y la categoria
 	const teamRes = await sequelize.query('call get_last_team();')
@@ -55,11 +57,13 @@ export async function putTeam(name, category, institution, participants){
 	for(let i = 0; i < 3; i++){
 
 		let participant = participants[i]
-		let age = calculateAge(participant.fecha_nac)
 
+		let bornDate = new Date(participant.fecha_nac)
 		
+		let age = calculateAge(bornDate)
+
 		if(!validateAge(age, teamRes[0].categoria)){
-			console.log('Participante inválido')
+			console.log(`Participante inválido, edad: ${age}`)
 		}else{
 		// Insertar participante
 		putParticipant(participant, teamRes[0].cod_equipo)
@@ -69,11 +73,11 @@ export async function putTeam(name, category, institution, participants){
 	
 }
 
-function calculateAge(birthdayString) { 
-		const birthday = new Date(birthdayString);
+function calculateAge(birthdayString) {
+	let birthday = new Date(birthdayString)
     let ageDifMs = Date.now() - birthday.getTime()
     let ageDate = new Date(ageDifMs)
-		return Math.abs(ageDate.getUTCFullYear() - 1970)
+	return Math.abs(ageDate.getUTCFullYear() - 1970)
 }
 
 function validateAge(age, teamCategory){

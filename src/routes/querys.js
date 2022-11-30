@@ -136,7 +136,7 @@ export async function getJudge(){
 }
 
 export async function putJudge(curp, nomPila, primerApellido, segundoApellido, user, password){
-	await sequelize.query('call set_jurado(?, ?, ?, ?, ?)', {
+	await sequelize.query('call set_jurado(?, ?, ?, ?, ?, ?)', {
 		replacements:[curp, nomPila, primerApellido, segundoApellido, user, password]
 	})
 }

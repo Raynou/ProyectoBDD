@@ -1,0 +1,152 @@
+{% extends "dashboard/dashboard_view.html" %} {% block dashboard_content %}
+<div>
+  <form action="/query/assign_judge" method="POST">
+    <div class="md:grid md:grid-cols-3 md:gap-6">
+      <div class="md:col-span-1">
+        <div class="px-4 sm:px-0">
+          <h3 class="text-xl font-bold leading-6 text-sky-600">
+            Datos de Participación
+          </h3>
+          <p class="mt-1 text-sm text-gray-600">
+            Asignar a un jurado existente
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-5 md:col-span-2 md:mt-0">
+        <div class="shadow sm:overflow-hidden sm:rounded-md">
+          <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
+            <div class="col-span-3 sm:col-span-2">
+              <label
+                for="evento_colaborar"
+                class="block text-sm font-medium text-gray-700"
+                >Evento</label
+              >
+              <select
+                required
+                name="evento_colaborar"
+                id="evento_colaborar"
+                class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
+              >
+                <option selected hidden value="">Evento</option>
+                {% for evento in data["events"] %}
+                <option value="{{ evento['cod_evento'] }}">
+                  {{ evento["nombre_evento"] }}
+                </option>
+                {% else %}
+                <option disabled>No hay ningun evento en curso.</option>
+                {% endfor %}
+              </select>
+            </div>
+
+            <div class="col-span-3 sm:col-span-2">
+              <label
+                for="jurado_colaborar"
+                class="block text-sm font-medium text-gray-700"
+                >Jurado</label
+              >
+              <select
+                required
+                name="jurado_colaborar"
+                id="jurado_colaborar"
+                class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
+              >
+                <option selected hidden value="">Jurado</option>
+                {% for jurado in data["judges"] %}
+                <option value="{{ jurado['id_jurado'] }}">
+                  {{ jurado["nombre_pila"] }} {{ jurado["apellido_1"] }} {{
+                  jurado["apellido_2"] }}
+                </option>
+                {% else %}
+                <option disabled>No hay ningun jurado disponible.</option>
+                {% endfor %}
+              </select>
+            </div>
+
+            <div>
+              <fieldset>
+                <legend
+                  class="contents block text-sm font-medium text-gray-700"
+                >
+                  Categoria
+                </legend>
+                <p class="text-sm text-gray-500">
+                  Categoria de evaluación del jurado
+                </p>
+                <div class="mt-4 space-y-4">
+                  <div class="flex items-center">
+                    <input
+                      id="cat1"
+                      name="categoria_jurado"
+                      value="primaria"
+                      type="radio"
+                      class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-sky-500"
+                    />
+                    <label
+                      for="cat1"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                      >Categoria 1 - Primaria</label
+                    >
+                  </div>
+                  <div class="flex items-center">
+                    <input
+                      id="cat2"
+                      value="secundaria"
+                      name="categoria_jurado"
+                      type="radio"
+                      class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-sky-500"
+                    />
+                    <label
+                      for="cat2"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                      >Categoria 2 - Secundaria</label
+                    >
+                  </div>
+                  <div class="flex items-center">
+                    <input
+                      id="cat3"
+                      value="bachillerato"
+                      name="categoria_jurado"
+                      type="radio"
+                      class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-sky-500"
+                    />
+                    <label
+                      for="cat3"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                      >Categoria 3 - Media Superior</label
+                    >
+                  </div>
+                  <div class="flex items-center">
+                    <input
+                      id="cat4"
+                      value="profesional"
+                      name="categoria_jurado"
+                      type="radio"
+                      class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-sky-500"
+                    />
+                    <label
+                      for="cat4"
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                      >Categoria 4 - Superior</label
+                    >
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
+      <button
+        type="submit"
+        class="inline-flex justify-center rounded-md border border-transparent bg-sky-500 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
+      >
+        Enviar
+      </button>
+    </div>
+  </form>
+</div>
+
+{% endblock %}

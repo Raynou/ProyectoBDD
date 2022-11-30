@@ -154,13 +154,14 @@ router.post('/query/set_calif', (req, res) => {
 	res.send(query.putCalif(catpro, catdis, catcons))
 })
 
-router.post('/query/set_jurado', (req, res) =>{
-	let curp = req.body.curp
-	let nomPila = req.body.nom_pila
-	let primerApellido = req.body.apellido_1
-	let segundoApellido = req.body.apellido_2
-	let user = req.body.user
-	let password = req.body.password
+router.post('/query/set_judge', (req, res) =>{
+	const data = req.body;
+	let curp = data.curp
+	let nomPila = data.nom_pila
+	let primerApellido = data.apellido_1
+	let segundoApellido = data.apellido_2
+	let user = data.user
+	let password = data.password
 
 	res.send(query.putJudge(curp, nomPila, primerApellido, segundoApellido, user, password))
 })

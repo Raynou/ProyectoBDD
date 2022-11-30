@@ -56,7 +56,7 @@ router.get('/dashboard/coordinador/asignar_jurado', async function(req, res) {
     const response = await fetch("http://localhost:3000/query/judge_event", {method: "GET"})
     const data = await response.json()
 
-    res.render('dashboard/asignar_jurado.html', {current_page: "Dashboard Publico", data: data});
+    res.render('dashboard/asignar_jurado.html', {current_page: "Dashboard Coordinador", data: data});
 });
 
 router.get('/dashboard/coordinador/registro_evento', function(req, res) {

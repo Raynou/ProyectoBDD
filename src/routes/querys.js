@@ -60,7 +60,6 @@ export async function putTeam(teamName, category, institution, participants){
 }
 
 async function putParticipant(participant, teamCode){
-
 	console.log(participant)
 	await sequelize.query('call set_participant(?, ?, ?, ?, ?, ?);', {
 		replacements: [participant.CURP, teamCode, participant.nombre_pila, participant.apellido_1, participant.apellido_2, participant.fecha_nac]
@@ -73,6 +72,45 @@ export async function putEvent(event){
 	await sequelize.query('call set_evento(?, ?, ?, ?);', {
 		replacements: [event.nombre, event.f_inicio, event.f_fin, event.lug]
 	})
+}
+
+/*CAT_PROGRAMACION
+ @param proyecto - cod_proyecto
+ @param evento - cod_evento
+ @param cal_insp - cal_inspeccion_prog
+ @param cal_sis - cal_sistema_aut
+ @param cal_demos - cal_demostracion
+ @param cal_sist_man - cal_sistema_man
+*/
+/*CAT_DISENNO
+ @param proyecto - cod_proyecto
+ @param evento - cod_evento
+ @param cal_bit - cal_bitacora
+ @param cal_med_dig - cal_medio_dig
+*/
+/*CAT_CONSTRUCCION
+ @param proyecto - cod_proyecto
+ @param evento - cod_evento
+ @param cal_insp - cal_inspeccion_cons
+ @param cal_lib - cal_libreta_ing
+*/
+
+export async function putCalif(catpro, catdis, catcons){
+	// Insertar calif
+	await sequelize.query('call set_cat_prog(?, ?, ?, ?, ?, ?);', {
+		replacements: [catpro.equipo, catpro.evento, catpro.sub1, catpro.sub2, catpro.sub3, catpro.sub4]
+	})
+	await sequelize.query('call set_cat_disenno(?, ?, ?, ?);', {
+		replacements: [catdis.equipo, catdis.evento, catdis.sub1, catdis.sub2]
+	})
+	await sequelize.query('call set_cat_construccion(?, ?, ?, ?);', {
+		replacements: [catcons.equipo, catcons.evento, catcons.sub1, catcons.sub2]
+	})
+}
+
+
+export async function getTeam(){
+	
 }
 export async function getJudge(){
 	return sequelize.query('call get_jurado()');

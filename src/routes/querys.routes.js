@@ -114,6 +114,34 @@ router.post('/query/set_judge', (req, res) => {
 	res.send(req.body)
 })
 
+router.post('/query/set_calif', (req, res) => {
+	const data = req.body
+
+	const catpro ={
+		equipo:data.equipo_eva,
+		evento:data.evento_eva,
+		sub1:data.inspeccion_catpro, 
+		sub2:data.sisauto_catpro, 
+		sub3:data.demo_catpro, 
+		sub4:data.sisman_catpro
+	}
+
+	const catdis ={
+		equipo:data.equipo_eva,
+		evento:data.evento_eva,
+		sub1:data.bitacora_catdis, 
+		sub2:data.medio_catdis
+	}
+
+	const catcons ={
+		equipo:data.equipo_eva,
+		evento:data.evento_eva,
+		sub1:data.inspec_catcons, 
+		sub2:data.libreta_catcons
+	}
+
+	res.send(query.putCalif(catpro, catdis, catcons))
+})
 router.post('/query/set_jurado', (req, res) =>{
 	let curp = req.body.curp
 	let nomPila = req.body.nom_pila

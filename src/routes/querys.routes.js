@@ -23,9 +23,8 @@ router.post('/query/login', async function(req, res) {
     if (result_code == 2) {
 	session.userid="cordi"
     } else if (result_code == 1) {
-	const id = await query.get_jury_code("'" + user + "'");
-	console.log(id)
-	session.userid=id
+	const res = await query.get_jury_code("'" + user + "'");
+	session.userid=res[0]["id_jurado"]
     } else {
 	console.log("No existe ningun usuario");
     }

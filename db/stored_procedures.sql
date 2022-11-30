@@ -333,14 +333,16 @@ in ccjurado varchar(18)
 ) begin
 	
     SELECT 
-    *
+    nombre_evento, cod_proyecto
 FROM
     colaborar
         INNER JOIN
     (SELECT 
-        cod_proyecto, cod_evento, categoria
+        cod_proyecto, nombre_evento, cod_evento, categoria
     FROM
         evaluar_en
+	-- cambio tentativo?
+	INNER JOIN evento USING (cod_evento)
     INNER JOIN proyecto USING (cod_proyecto)
     INNER JOIN equipo USING (cod_equipo)
     WHERE
@@ -358,3 +360,5 @@ WHERE
 
 end $$
 delimiter ;
+
+call get_jury_cat_teams('853-74-2727');

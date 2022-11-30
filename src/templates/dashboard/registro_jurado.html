@@ -17,15 +17,15 @@
             <div class="grid grid-cols-3 gap-6">
               <div class="col-span-3 sm:col-span-2">
                 <label
-                  for="curp-jurado"
+                  for="curp"
                   class="block text-sm font-medium text-gray-700"
                   >CURP</label
                 >
                 <div class="mt-1 flex rounded-md shadow-sm">
                   <input
                     type="text"
-                    name="curp-jurado"
-                    id="curp-jurado"
+                    name="curp"
+                    id="curp"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder=""
                   />
@@ -36,7 +36,7 @@
             <div class="grid grid-cols-3 gap-6">
               <div class="col-span-3 sm:col-span-2">
                 <label
-                  for="nombre-jurado"
+                  for="nom_pila"
                   class="block text-sm font-medium text-gray-700"
                   >Nombre(s)</label
                 >
@@ -44,8 +44,8 @@
                   <input
                     type="text"
                     required
-                    name="nombre-jurado"
-                    id="nombre-jurado"
+                    name="nom_pila"
+                    id="nom_pila"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Nombre(s)"
                   />
@@ -56,7 +56,7 @@
             <div class="grid grid-cols-3 gap-6">
               <div class="col-span-3 sm:col-span-2">
                 <label
-                  for="apellido1-jurado"
+                  for="apellido_1"
                   class="block text-sm font-medium text-gray-700"
                   >Primer Apellido</label
                 >
@@ -64,8 +64,8 @@
                   <input
                     type="text"
                     required
-                    name="apellido1-jurado"
-                    id="apellido1-jurado"
+                    name="apellido_1"
+                    id="apellido_1"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Primer Apellido"
                   />
@@ -76,7 +76,7 @@
             <div class="grid grid-cols-3 gap-6">
               <div class="col-span-3 sm:col-span-2">
                 <label
-                  for="apellido2-jurado"
+                  for="apellido_2"
                   class="block text-sm font-medium text-gray-700"
                   >Segundo Apellido</label
                 >
@@ -84,8 +84,8 @@
                   <input
                     type="text"
                     required
-                    name="apellido2-jurado"
-                    id="apellido2-jurado"
+                    name="apellido_2"
+                    id="apellido_2"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Segundo Apellido"
                   />
@@ -96,19 +96,18 @@
             <div class="grid grid-cols-3 gap-6">
               <div class="col-span-3 sm:col-span-2">
                 <label
-                  for="password-jurado"
+                  for="user"
                   class="block text-sm font-medium text-gray-700"
-                  >Contraseña</label
+                  >Usuario de inicio de sesión</label
                 >
                 <div class="mt-1 flex rounded-md shadow-sm">
                   <input
-                    type="password"
+                    type="text"
                     required
-                    name="password-jurado"
-                    id="password-jurado"
-                    pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-zÀ-ÿ\u00f1\u00d1\d]{8,}$"
+                    name="user"
+                    id="user"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
-                    placeholder="Contraseña"
+                    placeholder="Usuario"
                   />
                 </div>
               </div>
@@ -117,16 +116,19 @@
             <div class="grid grid-cols-3 gap-6">
               <div class="col-span-3 sm:col-span-2">
                 <label
-                  for="edad-jurado"
+                  for="password"
                   class="block text-sm font-medium text-gray-700"
-                  >Fecha de Nacimiento</label
+                  >Contraseña</label
                 >
                 <div class="mt-1 flex rounded-md shadow-sm">
                   <input
-                    type="date"
-                    name="edad-jurado"
-                    id="edad-jurado"
+                    type="password"
+                    required
+                    name="password"
+                    id="password"
+                    pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-zÀ-ÿ\u00f1\u00d1\d]{8,}$"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
+                    placeholder="Contraseña"
                   />
                 </div>
               </div>

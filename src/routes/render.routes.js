@@ -69,11 +69,29 @@ router.get('/dashboard/jurado/evaluar_equipo', function(req, res) {
 router.get('/dashboard/publico', function(req, res) {
     res.render('dashboard/dashboard_view.html', {current_page: "Dashboard Publico"});
 });
-router.get('/dashboard/publico/ver_resultados', function(req, res) {
-    fetch("http://localhost:3000/query/events", {method: "GET"}).then(res => res.json()).
-	then((json) => {
-        res.render('dashboard/ver_resultados.html', {current_page: "Dashboard Publico", events: json});
-    });
+
+router.get('/dashboard/publico/ver_resultados', async function(req, res) {
+
+    const events_response = await fetch("http://localhost:3000/query/events", {method: "GET"})
+    const events_data = await events_response.json()
+
+    res.render('dashboard/ver_resultados.html', {current_page: "Dashboard Publico", events: events_data});
+});
+
+router.post('/dashboard/publico/ver_resultados', async function(req, res) {
+
+    const events_response = await fetch("http://localhost:3000/query/events", {method: "GET"})
+    const events_data = await events_response.json()
+
+    const evals_response = await fetch("http://localhost:3000/query/evaluations?evento="+req.body.evento+"&categoria_evento="+req.body.categoria_evento, {method: "GET"})
+    const evals_data = await evals_response.json()
+
+    res.render('dashboard/ver_resultados.html', {current_page: "Dashboard Publico", events: events_data, evaluations: evals_data});
+});
+
+router.get("/dashboard/logout", function(req, res) {
+    req.session.destroy();
+    res.redirect("/");
 });
 
 export default router

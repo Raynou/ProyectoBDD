@@ -1,5 +1,5 @@
 {% extends "dashboard/dashboard_view.html" %} {% block dashboard_content %}
-
+<form action="/query/evaluations" method="GET">
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
   <div class="pb-4 rounded-md bg-gray-100 flex items-top justify-center">
     <select
@@ -9,7 +9,7 @@
       <option selected hidden>Evento a ver</option>
       {% for evento in events["current"] %}
       <option value="{{ evento['cod_evento'] }}">
-        {{ evento["cod_evento"] }}
+        {{ evento["nombre_evento"] }}
       </option>
       {% else %}
       <option disabled>No hay ningun evento en curso.</option>
@@ -22,21 +22,23 @@
       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2"
     >
       <option hidden selected>Categoria de participantes</option>
-      <option value="cat1">Categoria 1</option>
-      <option value="cat2">Categoria 2</option>
-      <option value="cat3">Categoria 3</option>
-      <option value="cat4">Categoria 4</option>
+      <option value="primaria">Categoria 1 - Primaria</option>
+      <option value="secundaria">Categoria 2 - Secundaria</option>
+      <option value="bachillerato">Categoria 3 - Media Superior</option>
+      <option value="profesional">Categoria 4 - Superior</option>
     </select>
   </div>
 
   <div class="pb-4 rounded-md bg-gray-100 flex items-top justify-center">
     <button
+      type="submit"
       class="inline-flex justify-center rounded-md border border-transparent bg-sky-500 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
     >
       Buscar
     </button>
   </div>
 </div>
+</form>
 
 <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
   <table class="w-full text-sm text-left text-gray-500">

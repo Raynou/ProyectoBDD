@@ -1,6 +1,6 @@
 {% extends "dashboard/dashboard_view.html" %} {% block dashboard_content %}
 <div>
-  <form action="#" method="POST">
+  <form action="/query/set_judge" method="POST">
     <div class="md:grid md:grid-cols-3 md:gap-6">
       <div class="md:col-span-1">
         <div class="px-4 sm:px-0">
@@ -170,7 +170,7 @@
                 <option selected hidden>Evento</option>
                 {% for evento in events["current"] %}
                 <option value="{{ evento['cod_evento'] }}">
-                  {{ evento["cod_evento"] }}
+                  {{ evento["nombre_evento"] }}
                 </option>
                 {% else %}
                 <option disabled>No hay ningun evento en curso.</option>

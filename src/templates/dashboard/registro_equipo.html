@@ -1,6 +1,6 @@
 {% extends "dashboard/dashboard_view.html" %} {% block dashboard_content %}
 <div>
-  <form action="#" method="POST">
+  <form action="/query/set_team" method="POST">
     <div class="md:grid md:grid-cols-3 md:gap-6">
       <div class="md:col-span-1">
         <div class="px-4 sm:px-0">
@@ -19,7 +19,7 @@
             <div class="grid grid-cols-3 gap-6">
               <div class="col-span-3 sm:col-span-2">
                 <label
-                  for="nombre-equipo"
+                  for="nombre_equipo"
                   class="block text-sm font-medium text-gray-700"
                   >Nombre del Equipo</label
                 >
@@ -27,8 +27,8 @@
                   <input
                     type="text"
                     required
-                    name="nombre-equipo"
-                    id="nombre-equipo"
+                    name="nombre_equipo"
+                    id="nombre_equipo"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Equipo"
                   />
@@ -38,7 +38,7 @@
 
             <div class="col-span-3 sm:col-span-2">
               <label
-                for="institucion-equipo"
+                for="institucion_equipo"
                 class="block text-sm font-medium text-gray-700"
                 >Institución</label
               >
@@ -46,8 +46,8 @@
                 <input
                   type="text"
                   required
-                  name="institucion-equipo"
-                  id="institucion-equipo"
+                  name="institucion_equipo"
+                  id="institucion_equipo"
                   class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                   placeholder="Institución"
                 />
@@ -56,20 +56,20 @@
 
             <div class="col-span-3 sm:col-span-2">
               <label
-                for="evento-equipo"
+                for="evento_equipo"
                 class="block text-sm font-medium text-gray-700"
                 >Evento</label
               >
               <select
                 required
-                name="evento-equipo"
-                id="evento-equipo"
+                name="evento_equipo"
+                id="evento_equipo"
                 class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
               >
                 <option selected hidden>Evento</option>
                 {% for evento in events["current"] %}
                 <option value="{{ evento['cod_evento'] }}">
-                  {{ evento["cod_evento"] }}
+                  {{ evento["nombre_evento"] }}
                 </option>
                 {% else %}
                 <option disabled>No hay ningun evento en curso.</option>
@@ -91,7 +91,8 @@
                   <div class="flex items-center">
                     <input
                       id="cat1"
-                      name="categoria-equipo"
+                      value="primaria"
+                      name="categoria_equipo"
                       type="radio"
                       class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-sky-500"
                     />
@@ -104,7 +105,8 @@
                   <div class="flex items-center">
                     <input
                       id="cat2"
-                      name="categoria-equipo"
+                      value="secundaria"
+                      name="categoria_equipo"
                       type="radio"
                       class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-sky-500"
                     />
@@ -117,7 +119,8 @@
                   <div class="flex items-center">
                     <input
                       id="cat3"
-                      name="categoria-equipo"
+                      value="bachillerato"
+                      name="categoria_equipo"
                       type="radio"
                       class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-sky-500"
                     />
@@ -130,7 +133,8 @@
                   <div class="flex items-center">
                     <input
                       id="cat4"
-                      name="categoria-equipo"
+                      value="profesional"
+                      name="categoria_equipo"
                       type="radio"
                       class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-sky-500"
                     />
@@ -170,7 +174,7 @@
             <div class="grid grid-cols-3 gap-6">
               <div class="col-span-3 sm:col-span-2">
                 <label
-                  for="curp-integrante1"
+                  for="curp_integrante1"
                   class="block text-sm font-medium text-gray-700"
                   >CURP</label
                 >
@@ -178,8 +182,8 @@
                   <input
                     type="text"
                     required
-                    name="curp-integrante1"
-                    id="curp-integrante1"
+                    name="curp_integrante1"
+                    id="curp_integrante1"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder=""
                   />
@@ -190,7 +194,7 @@
             <div class="grid grid-cols-3 gap-6">
               <div class="col-span-3 sm:col-span-2">
                 <label
-                  for="nombre-integrante1"
+                  for="nombre_integrante1"
                   class="block text-sm font-medium text-gray-700"
                   >Nombre(s)</label
                 >
@@ -198,8 +202,8 @@
                   <input
                     type="text"
                     required
-                    name="nombre-integrante1"
-                    id="nombre-integrante1"
+                    name="nombre_integrante1"
+                    id="nombre_integrante1"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Nombre(s)"
                   />
@@ -210,7 +214,7 @@
             <div class="grid grid-cols-3 gap-6">
               <div class="col-span-3 sm:col-span-2">
                 <label
-                  for="apellido1-integrante1"
+                  for="apellido1_integrante1"
                   class="block text-sm font-medium text-gray-700"
                   >Primer Apellido</label
                 >
@@ -218,8 +222,8 @@
                   <input
                     type="text"
                     required
-                    name="apellido1-integrante1"
-                    id="apellido1-integrante1"
+                    name="apellido1_integrante1"
+                    id="apellido1_integrante1"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Primer Apellido"
                   />
@@ -230,7 +234,7 @@
             <div class="grid grid-cols-3 gap-6">
               <div class="col-span-3 sm:col-span-2">
                 <label
-                  for="apellido2-integrante1"
+                  for="apellido2_integrante1"
                   class="block text-sm font-medium text-gray-700"
                   >Segundo Apellido</label
                 >
@@ -238,8 +242,8 @@
                   <input
                     type="text"
                     required
-                    name="apellido2-integrante1"
-                    id="apellido2-integrante1"
+                    name="apellido2_integrante1"
+                    id="apellido2_integrante1"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Segundo Apellido"
                   />
@@ -250,7 +254,7 @@
             <div class="grid grid-cols-3 gap-6">
               <div class="col-span-3 sm:col-span-2">
                 <label
-                  for="edad-integrante1"
+                  for="edad_integrante1"
                   class="block text-sm font-medium text-gray-700"
                   >Fecha de Nacimiento</label
                 >
@@ -258,8 +262,8 @@
                   <input
                     type="date"
                     required
-                    name="edad-integrante1"
-                    id="edad-integrante1"
+                    name="edad_integrante1"
+                    id="edad_integrante1"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                   />
                 </div>
@@ -292,7 +296,7 @@
             <div class="grid grid-cols-3 gap-6">
               <div class="col-span-3 sm:col-span-2">
                 <label
-                  for="curp-integrante2"
+                  for="curp_integrante2"
                   class="block text-sm font-medium text-gray-700"
                   >CURP</label
                 >
@@ -300,8 +304,8 @@
                   <input
                     type="text"
                     required
-                    name="curp-integrante2"
-                    id="curp-integrante2"
+                    name="curp_integrante2"
+                    id="curp_integrante2"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder=""
                   />
@@ -312,7 +316,7 @@
             <div class="grid grid-cols-3 gap-6">
               <div class="col-span-3 sm:col-span-2">
                 <label
-                  for="nombre-integrante2"
+                  for="nombre_integrante2"
                   class="block text-sm font-medium text-gray-700"
                   >Nombre(s)</label
                 >
@@ -320,8 +324,8 @@
                   <input
                     type="text"
                     required
-                    name="nombre-integrante2"
-                    id="nombre-integrante2"
+                    name="nombre_integrante2"
+                    id="nombre_integrante2"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Nombre(s)"
                   />
@@ -332,7 +336,7 @@
             <div class="grid grid-cols-3 gap-6">
               <div class="col-span-3 sm:col-span-2">
                 <label
-                  for="apellido1-integrante2"
+                  for="apellido1_integrante2"
                   class="block text-sm font-medium text-gray-700"
                   >Primer Apellido</label
                 >
@@ -340,8 +344,8 @@
                   <input
                     type="text"
                     required
-                    name="apellido1-integrante2"
-                    id="apellido1-integrante2"
+                    name="apellido1_integrante2"
+                    id="apellido1_integrante2"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Primer Apellido"
                   />
@@ -352,7 +356,7 @@
             <div class="grid grid-cols-3 gap-6">
               <div class="col-span-3 sm:col-span-2">
                 <label
-                  for="apellido2-integrante2"
+                  for="apellido2_integrante2"
                   class="block text-sm font-medium text-gray-700"
                   >Segundo Apellido</label
                 >
@@ -360,8 +364,8 @@
                   <input
                     type="text"
                     required
-                    name="apellido2-integrante2"
-                    id="apellido2-integrante2"
+                    name="apellido2_integrante2"
+                    id="apellido2_integrante2"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Segundo Apellido"
                   />
@@ -372,7 +376,7 @@
             <div class="grid grid-cols-3 gap-6">
               <div class="col-span-3 sm:col-span-2">
                 <label
-                  for="edad-integrante2"
+                  for="edad_integrante2"
                   class="block text-sm font-medium text-gray-700"
                   >Fecha de Nacimiento</label
                 >
@@ -380,8 +384,8 @@
                   <input
                     type="date"
                     required
-                    name="edad-integrante2"
-                    id="edad-integrante2"
+                    name="edad_integrante2"
+                    id="edad_integrante2"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                   />
                 </div>
@@ -414,7 +418,7 @@
             <div class="grid grid-cols-3 gap-6">
               <div class="col-span-3 sm:col-span-2">
                 <label
-                  for="curp-integrante3"
+                  for="curp_integrante3"
                   class="block text-sm font-medium text-gray-700"
                   >CURP</label
                 >
@@ -422,8 +426,8 @@
                   <input
                     type="text"
                     required
-                    name="curp-integrante3"
-                    id="curp-integrante3"
+                    name="curp_integrante3"
+                    id="curp_integrante3"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder=""
                   />
@@ -434,7 +438,7 @@
             <div class="grid grid-cols-3 gap-6">
               <div class="col-span-3 sm:col-span-2">
                 <label
-                  for="nombre-integrante3"
+                  for="nombre_integrante3"
                   class="block text-sm font-medium text-gray-700"
                   >Nombre(s)</label
                 >
@@ -442,8 +446,8 @@
                   <input
                     type="text"
                     required
-                    name="nombre-integrante3"
-                    id="nombre-integrante3"
+                    name="nombre_integrante3"
+                    id="nombre_integrante3"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Nombre(s)"
                   />
@@ -454,7 +458,7 @@
             <div class="grid grid-cols-3 gap-6">
               <div class="col-span-3 sm:col-span-2">
                 <label
-                  for="apellido1-integrante3"
+                  for="apellido1_integrante3"
                   class="block text-sm font-medium text-gray-700"
                   >Primer Apellido</label
                 >
@@ -462,8 +466,8 @@
                   <input
                     type="text"
                     required
-                    name="apellido1-integrante3"
-                    id="apellido1-integrante3"
+                    name="apellido1_integrante3"
+                    id="apellido1_integrante3"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Primer Apellido"
                   />
@@ -474,7 +478,7 @@
             <div class="grid grid-cols-3 gap-6">
               <div class="col-span-3 sm:col-span-2">
                 <label
-                  for="apellido2-integrante3"
+                  for="apellido2_integrante3"
                   class="block text-sm font-medium text-gray-700"
                   >Segundo Apellido</label
                 >
@@ -482,8 +486,8 @@
                   <input
                     type="text"
                     required
-                    name="apellido2-integrante3"
-                    id="apellido2-integrante1"
+                    name="apellido2_integrante3"
+                    id="apellido2_integrante3"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Segundo Apellido"
                   />
@@ -494,7 +498,7 @@
             <div class="grid grid-cols-3 gap-6">
               <div class="col-span-3 sm:col-span-2">
                 <label
-                  for="edad-integrante3"
+                  for="edad_integrante3"
                   class="block text-sm font-medium text-gray-700"
                   >Fecha de Nacimiento</label
                 >
@@ -502,8 +506,8 @@
                   <input
                     type="date"
                     required
-                    name="edad-integrante3"
-                    id="edad-integrante3"
+                    name="edad_integrante3"
+                    id="edad_integrante3"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                   />
                 </div>

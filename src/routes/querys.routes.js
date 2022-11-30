@@ -5,6 +5,9 @@ const router = Router()
 var session
 
 
+
+
+
 router.get('/query/greets', (req, res) => res.send('hola'))
 
 router.get('/query/events', async function(req, res) {

@@ -30,9 +30,14 @@
                     id="evento-eva"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                   >
-                    <option selected>Evento a evaluar</option>
-                    <!--Aquí debe ir un bucle for-->
-                    <option value="idevento">nombre evento</option>
+                    <option selected hidden>Evento a evaluar</option>
+                    {% for evento in events["current"] %}
+                    <option value="{{ evento['cod_evento'] }}">
+                      {{ evento["nombre_evento"] }}
+                    </option>
+                    {% else %}
+                    <option disabled>No hay ningun evento en curso.</option>
+                    {% endfor %}
                   </select>
                 </div>
               </div>
@@ -52,9 +57,14 @@
                     id="equipo-eva"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                   >
-                    <option selected>Equipo a evaluar</option>
-                    <!--Aquí debe ir un bucle for-->
-                    <option value="idequipo">equipo</option>
+                    <option selected hidden>Equipo a evaluar</option>
+                    {% for equipo in equipos["current"] %}
+                    <option value="{{ equipo['cod_evento'] }}">
+                      {{ equipo["nombre_equipo"] }}
+                    </option>
+                    {% else %}
+                    <option disabled>No hay ningun equipo que evaluar.</option>
+                    {% endfor %}
                   </select>
                 </div>
               </div>
@@ -97,8 +107,8 @@
                     type="number"
                     required
                     name="bitacora-catdis"
-                    min="01"
-                    max="10"
+                    min="0"
+                    max="5"
                     id="bitacora-catdis"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Calificación de la subcategoria"
@@ -216,8 +226,8 @@
                     type="number"
                     required
                     name="medio-catdis"
-                    min="01"
-                    max="10"
+                    min="0"
+                    max="5"
                     id="medio-catdis"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Calificación de la subcategoria"
@@ -379,8 +389,8 @@
                     type="number"
                     required
                     name="inspeccion-catpro"
-                    min="01"
-                    max="10"
+                    min="0"
+                    max="4"
                     id="inspeccion-catpro"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Calificación de la subcategoria"
@@ -518,8 +528,8 @@
                     type="number"
                     required
                     name="sisauto-catpro"
-                    min="01"
-                    max="10"
+                    min="0"
+                    max="2"
                     id="sisauto-catpro"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Calificación de la subcategoria"
@@ -602,8 +612,8 @@
                     type="number"
                     required
                     name="sisman-catpro"
-                    min="01"
-                    max="10"
+                    min="0"
+                    max="2"
                     id="sisman-catpro"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Calificación de la subcategoria"
@@ -705,8 +715,8 @@
                     type="number"
                     required
                     name="demo-catpro"
-                    min="01"
-                    max="10"
+                    min="0"
+                    max="2"
                     id="demo-catpro"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Calificación de la subcategoria"
@@ -824,8 +834,8 @@
                     type="number"
                     required
                     name="inspec-catcons"
-                    min="01"
-                    max="10"
+                    min="0"
+                    max="5"
                     id="inspec-catcons"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Calificación de la subcategoria"
@@ -993,8 +1003,8 @@
                     type="number"
                     required
                     name="libreta-catcons"
-                    min="01"
-                    max="10"
+                    min="0"
+                    max="5"
                     id="libreta-catcons"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Calificación de la subcategoria"

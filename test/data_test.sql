@@ -4,6 +4,7 @@ insert into EVENTO (cod_evento, fecha_inicio, fecha_fin, lugar) values (2, '2021
 insert into EVENTO (cod_evento, fecha_inicio, fecha_fin, lugar) values (3, '2021-04-15', '2021-12-25', 'Umm as Summāq');
 insert into EVENTO (cod_evento, fecha_inicio, fecha_fin, lugar) values (4, '2021-10-26', '2022-11-07', 'Alejo Ledesma');
 insert into EVENTO (cod_evento, fecha_inicio, fecha_fin, lugar) values (5, '2022-03-13', '2021-05-03', 'Bayzhansay');
+insert into EVENTO (cod_evento, fecha_inicio, fecha_fin, lugar) values (6, '2022-03-13', '2023-05-03', 'Bayzhansay');
 
 -- JURADO
 

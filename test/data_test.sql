@@ -8,16 +8,16 @@ insert into EVENTO (cod_evento, nombre_evento, fecha_inicio, fecha_fin, lugar) v
 
 -- JURADO
 
-insert into JURADO (id_jurado, nombre_pila, apellido_1, apellido_2) values (1, 'Yulma', 'Avent', 'Thackston');
-insert into JURADO (id_jurado, nombre_pila, apellido_1, apellido_2) values (2, 'Dody', 'Brunsdon', null);
-insert into JURADO (id_jurado, nombre_pila, apellido_1, apellido_2) values (3, 'Madel', 'Rollings', 'Djorvic');
-insert into JURADO (id_jurado, nombre_pila, apellido_1, apellido_2) values (4, 'Alena', 'Dooher', 'Adelberg');
-insert into JURADO (id_jurado, nombre_pila, apellido_1, apellido_2) values (5, 'Christel', 'Valente', 'Catlette');
-insert into JURADO (id_jurado, nombre_pila, apellido_1, apellido_2) values (6, 'Jaquith', 'Dechelle', 'Pace');
-insert into JURADO (id_jurado, nombre_pila, apellido_1, apellido_2) values (7, 'Sylvia', 'Cline', 'Rawlingson');
-insert into JURADO (id_jurado, nombre_pila, apellido_1, apellido_2) values (8, 'Cara', 'Scaysbrook', 'Tiner');
-insert into JURADO (id_jurado, nombre_pila, apellido_1, apellido_2) values (9, 'Kristien', 'Charsley', 'Stoyle');
-insert into JURADO (id_jurado, nombre_pila, apellido_1, apellido_2) values (10, 'Dev', 'Admans', 'Juggings');
+insert into JURADO (CURP, nombre_pila, apellido_1, apellido_2, usuario, contrasenna) values ('853-74-2727', 'Morganne', 'Jennison', 'Foli', 'mfoli0', 'UlsEzu');
+insert into JURADO (CURP, nombre_pila, apellido_1, apellido_2, usuario, contrasenna) values ('744-39-0158', 'Stillman', 'Stewart', 'Abramsky', 'sabramsky1', 'OukefxSa');
+insert into JURADO (CURP, nombre_pila, apellido_1, apellido_2, usuario, contrasenna) values ('598-91-0322', 'Amory', 'O Brogane', 'Harteley', 'aharteley2', 'G0UnwHUuWFp');
+insert into JURADO (CURP, nombre_pila, apellido_1, apellido_2, usuario, contrasenna) values ('672-13-4139', 'Jordanna', 'Winfindine', 'O Growgane', 'jogrowgane3', 'AELICM');
+insert into JURADO (CURP, nombre_pila, apellido_1, apellido_2, usuario, contrasenna) values ('184-33-3572', 'Korella', 'Pennicott', 'Copnell', 'kcopnell4', 'f5DXw2Z');
+insert into JURADO (CURP, nombre_pila, apellido_1, apellido_2, usuario, contrasenna) values ('485-92-0777', 'Caryl', 'Padilla', 'Burkhill', 'cburkhill5', 'heFYUoQ4c');
+insert into JURADO (CURP, nombre_pila, apellido_1, apellido_2, usuario, contrasenna) values ('460-56-8968', 'Lian', 'Guwer', 'Sirrell', 'lsirrell6', '5VseeVL');
+insert into JURADO (CURP, nombre_pila, apellido_1, apellido_2, usuario, contrasenna) values ('434-55-3768', 'Celka', 'Jodrelle', 'McGorman', 'cmcgorman7', 'XSpBNXL');
+insert into JURADO (CURP, nombre_pila, apellido_1, apellido_2, usuario, contrasenna) values ('374-30-3019', 'Deanna', 'Maes', 'Bakhrushin', 'dbakhrushin6', '19WECo');
+insert into JURADO (CURP, nombre_pila, apellido_1, apellido_2, usuario, contrasenna) values ('335-09-9825', 'Marchall', 'Desouza', 'Klamman', 'mklamman9', 'usMqZy3u6');
 
 -- EQUIPO
 
@@ -160,35 +160,6 @@ insert into PARTICIPANTE (CURP, cod_equipo, nombre_pila, apellido_1, apellido_2,
 insert into PARTICIPANTE (CURP, cod_equipo, nombre_pila, apellido_1, apellido_2, fecha_nac) values ('528-52-1011', '14', 'Lindy', 'Danielou', 'Elphee', '2004-06-25');
 
 -- COLABORAR
-insert into COLABORAR (id_jurado, cod_evento, categoria) values ('8', '3', 'bachillerato');
-insert into COLABORAR (id_jurado, cod_evento, categoria) values ('3', '5', 'bachillerato');
-insert into COLABORAR (id_jurado, cod_evento, categoria) values ('6', '2', 'profesional');
-insert into COLABORAR (id_jurado, cod_evento, categoria) values ('4', '4', 'secundaria');
-insert into COLABORAR (id_jurado, cod_evento, categoria) values ('5', '1', 'primaria');
-insert into COLABORAR (id_jurado, cod_evento, categoria) values ('7', '5', 'primaria');
-insert into COLABORAR (id_jurado, cod_evento, categoria) values ('9', '4', 'secundaria');
-insert into COLABORAR (id_jurado, cod_evento, categoria) values ('2', '2', 'primaria');
-insert into COLABORAR (id_jurado, cod_evento, categoria) values ('1', '1', 'bachillerato');
-insert into COLABORAR (id_jurado, cod_evento, categoria) values ('10', '3', 'secundaria');
+
 
 -- EVALUAR_EN
-insert into EVALUAR_EN (cod_proyecto, cod_evento, id_jurado) values ('23', '5', '3');
-insert into EVALUAR_EN (cod_proyecto, cod_evento, id_jurado) values ('30', '3', '4');
-insert into EVALUAR_EN (cod_proyecto, cod_evento, id_jurado) values ('12', '2', '1');
-insert into EVALUAR_EN (cod_proyecto, cod_evento, id_jurado) values ('8', '1', '5');
-insert into EVALUAR_EN (cod_proyecto, cod_evento, id_jurado) values ('32', '4', '2');
-insert into EVALUAR_EN (cod_proyecto, cod_evento, id_jurado) values ('26', '2', '4');
-insert into EVALUAR_EN (cod_proyecto, cod_evento, id_jurado) values ('1', '4', '1');
-insert into EVALUAR_EN (cod_proyecto, cod_evento, id_jurado) values ('14', '5', '3');
-insert into EVALUAR_EN (cod_proyecto, cod_evento, id_jurado) values ('33', '3', '5');
-insert into EVALUAR_EN (cod_proyecto, cod_evento, id_jurado) values ('7', '1', '2');
-insert into EVALUAR_EN (cod_proyecto, cod_evento, id_jurado) values ('50', '3', '3');
-insert into EVALUAR_EN (cod_proyecto, cod_evento, id_jurado) values ('44', '1', '1');
-insert into EVALUAR_EN (cod_proyecto, cod_evento, id_jurado) values ('27', '4', '2');
-insert into EVALUAR_EN (cod_proyecto, cod_evento, id_jurado) values ('38', '5', '5');
-insert into EVALUAR_EN (cod_proyecto, cod_evento, id_jurado) values ('24', '2', '4');
-insert into EVALUAR_EN (cod_proyecto, cod_evento, id_jurado) values ('36', '4', '5');
-insert into EVALUAR_EN (cod_proyecto, cod_evento, id_jurado) values ('39', '5', '3');
-insert into EVALUAR_EN (cod_proyecto, cod_evento, id_jurado) values ('11', '1', '2');
-insert into EVALUAR_EN (cod_proyecto, cod_evento, id_jurado) values ('4', '2', '1');
-insert into EVALUAR_EN (cod_proyecto, cod_evento, id_jurado) values ('48', '3', '4');

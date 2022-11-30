@@ -8,7 +8,7 @@ insert into EVENTO (cod_evento, nombre_evento, fecha_inicio, fecha_fin, lugar) v
 
 -- JURADO
 
-insert into JURADO (CURP, nombre_pila, apellido_1, apellido_2, usuario, contrasenna) values ('853-74-2727', 'Morganne', 'Jennison', 'Foli', 'mfoli0', 'UlsEzu');
+insert into JURADO (CURP, nombre_pila, apellido_1, apellido_2, usuario, contrasenna) values ('853-74-2727', 'Morganne', 'Jennison', 'Foli', 'mfoli0', md5('UlsEzu'));
 insert into JURADO (CURP, nombre_pila, apellido_1, apellido_2, usuario, contrasenna) values ('744-39-0158', 'Stillman', 'Stewart', 'Abramsky', 'sabramsky1', 'OukefxSa');
 insert into JURADO (CURP, nombre_pila, apellido_1, apellido_2, usuario, contrasenna) values ('598-91-0322', 'Amory', 'O Brogane', 'Harteley', 'aharteley2', 'G0UnwHUuWFp');
 insert into JURADO (CURP, nombre_pila, apellido_1, apellido_2, usuario, contrasenna) values ('672-13-4139', 'Jordanna', 'Winfindine', 'O Growgane', 'jogrowgane3', 'AELICM');
@@ -94,6 +94,8 @@ insert into PROYECTO (cod_proyecto, nombre_proyecto, cod_equipo) values (47, 'Pr
 insert into PROYECTO (cod_proyecto, nombre_proyecto, cod_equipo) values (48, 'Kanlam', '18');
 insert into PROYECTO (cod_proyecto, nombre_proyecto, cod_equipo) values (49, 'Sonsing', '14');
 insert into PROYECTO (cod_proyecto, nombre_proyecto, cod_equipo) values (50, 'Tres-Zap', '20');
+insert into PROYECTO (cod_proyecto, nombre_proyecto, cod_equipo) values (51, 'Tres', '1');
+
 
 
 -- PARTICIPANTE
@@ -160,6 +162,21 @@ insert into PARTICIPANTE (CURP, cod_equipo, nombre_pila, apellido_1, apellido_2,
 insert into PARTICIPANTE (CURP, cod_equipo, nombre_pila, apellido_1, apellido_2, fecha_nac) values ('528-52-1011', '14', 'Lindy', 'Danielou', 'Elphee', '2004-06-25');
 
 -- COLABORAR
+insert into colaborar values (853-74-2727, 6, "secundaria");
+insert into colaborar values (853-74-2727, 6, "profesional");
 
+select distinct * from equipo inner join proyecto using(cod_equipo) inner join evaluar_en using (cod_proyecto) inner join (select * from EVENTO where fecha_fin >= curdate()) m using (cod_evento) inner join colaborar using (cod_evento) where colaborar.curp_jurado='853-74-2727';
+
+call get_jury_code('mfoli0');
+
+call get_jury_cat_teams("er");
+select * from evento;
 
 -- EVALUAR_EN
+truncate table evaluar_en;
+insert into evaluar_en values (1, 1, null);
+insert into evaluar_en values (2, 1, null);
+insert into evaluar_en values (3, 1, null);
+insert into evaluar_en values (3, 1, null);
+insert into evaluar_en values (1, 6, null);
+insert into evaluar_en values (2, 6, null);

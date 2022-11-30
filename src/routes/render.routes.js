@@ -41,27 +41,39 @@ router.get('/dashboard/coordinador', function(req, res) {
     res.render('dashboard/dashboard_view.html', {current_page: "Dashboard Coordinador"});
 });
 router.get('/dashboard/coordinador/registro_equipo', function(req, res) {
-    res.render('dashboard/registro_equipo.html', {current_page: "Dashboard Coordinador"});
+    fetch("http://localhost:3000/query/events", {method: "GET"}).then(res => res.json()).
+	then((json) => {
+        res.render('dashboard/registro_equipo.html', {current_page: "Dashboard Coordinador", events: json});
+    });
+});
+router.get('/dashboard/coordinador/registro_jurado', function(req, res) {
+    fetch("http://localhost:3000/query/events", {method: "GET"}).then(res => res.json()).
+	then((json) => {
+        res.render('dashboard/registro_jurado.html', {current_page: "Dashboard Coordinador", events: json});
+    });
 });
 router.get('/dashboard/coordinador/registro_evento', function(req, res) {
     res.render('dashboard/registro_evento.html', {current_page: "Dashboard Coordinador"});
-});
-router.get('/dashboard/coordinador/registro_jurado', function(req, res) {
-    res.render('dashboard/registro_jurado.html', {current_page: "Dashboard Coordinador"});
 });
 
 router.get('/dashboard/jurado', function(req, res) {
     res.render('dashboard/dashboard_view.html', {current_page: "Dashboard Jurado"});
 });
 router.get('/dashboard/jurado/evaluar_equipo', function(req, res) {
-    res.render('dashboard/evaluar_equipo.html', {current_page: "Dashboard Jurado"});
+    fetch("http://localhost:3000/query/events", {method: "GET"}).then(res => res.json()).
+	then((json) => {
+        res.render('dashboard/evaluar_equipo.html', {current_page: "Dashboard Jurado", events: json});
+    });
 });
 
 router.get('/dashboard/publico', function(req, res) {
     res.render('dashboard/dashboard_view.html', {current_page: "Dashboard Publico"});
 });
 router.get('/dashboard/publico/ver_resultados', function(req, res) {
-    res.render('dashboard/ver_resultados.html', {current_page: "Dashboard Publico"});
+    fetch("http://localhost:3000/query/events", {method: "GET"}).then(res => res.json()).
+	then((json) => {
+        res.render('dashboard/ver_resultados.html', {current_page: "Dashboard Publico", events: json});
+    });
 });
 
 export default router

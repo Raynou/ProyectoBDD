@@ -9,7 +9,7 @@ export async function events() {
 }
 
 export async function evaluations(event, category) {
-	const top_evaluations =  await sequelize.query('call get_top_teams(?,?,100);', {
+    const top_evaluations =  await sequelize.query('call get_top_teams(?,10,?);', {
 		replacements: [event, category]
 	})
 	console.log(top_evaluations)

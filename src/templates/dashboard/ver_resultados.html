@@ -1,9 +1,10 @@
 {% extends "dashboard/dashboard_view.html" %} {% block dashboard_content %}
-<form action="/query/evaluations" method="GET">
+<form action="#" method="POST">
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
   <div class="pb-4 rounded-md bg-gray-100 flex items-top justify-center">
     <select
-      id="categoria-evento"
+      id="evento"
+      name="evento"
       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2"
     >
       <option selected hidden>Evento a ver</option>
@@ -18,7 +19,8 @@
   </div>
   <div class="pb-4 rounded-md bg-gray-100 flex items-top justify-center">
     <select
-      id="categoria-evento"
+      id="categoria_evento"
+      name="categoria_evento"
       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2"
     >
       <option hidden selected>Categoria de participantes</option>
@@ -30,12 +32,17 @@
   </div>
 
   <div class="pb-4 rounded-md bg-gray-100 flex items-top justify-center">
-    <button
+    <input
+      id="send"
+      name="send"
       type="submit"
+      {% if events["current"] %}
+
+      {% else %}
+      disabled
+      {% endif %}
       class="inline-flex justify-center rounded-md border border-transparent bg-sky-500 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
-    >
-      Buscar
-    </button>
+    />
   </div>
 </div>
 </form>

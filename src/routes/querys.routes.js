@@ -34,8 +34,13 @@ router.post('/query/login', async function(req, res) {
 
     res.redirect("/dashboard")
 });
+
 router.get('/query/evaluations', async function(req, res) {
-    res.send(await query.evaluations());
+    console.log(req.query)
+    const evento = req.query.evento
+    const cat = req.query.categoria_evento
+
+    res.send(await query.evaluations(evento, cat ));
 });
 
 router.post('/query/set_team', (req, res) => {

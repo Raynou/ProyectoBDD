@@ -8,7 +8,7 @@ export async function events() {
 }
 
 export async function evaluations(event, category) {
-	const top_evaluations =  await sequelize.query('call get_top_teams(?,?,100);', {
+    const top_evaluations =  await sequelize.query('call get_top_teams(?,10,?);', {
 		replacements: [event, category]
 	})
 	console.log(top_evaluations)
@@ -112,3 +112,14 @@ export async function putCalif(catpro, catdis, catcons){
 export async function getTeam(){
 	
 }
+export async function getJudge(){
+	return sequelize.query('call get_jurado()');
+}
+
+export async function putJudge(curp, nomPila, primerApellido, segundoApellido, user, password){
+	await sequelize.query('call set_jurado(?, ?, ?, ?, ?)', {
+		replacements:[curp, nomPila, primerApellido, segundoApellido, user, password]
+	})
+}
+
+//sequelize.close()

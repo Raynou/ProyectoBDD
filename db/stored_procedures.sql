@@ -51,8 +51,7 @@ delimiter $$
 create procedure set_team(
     in nombre varchar(255),
     in cat enum('primaria', 'secundaria', 'bachillerato', 'profesional'),
-    in inst varchar(255),
-    in nom varchar(255)
+    in inst varchar(255)
 ) begin
 
     insert into EQUIPO (nombre_equipo, categoria, institucion) values (nombre, cat, inst);

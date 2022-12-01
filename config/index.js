@@ -6,6 +6,7 @@ import renderRoutes from "../src/routes/render.routes.js"
 import nunjucks from "nunjucks"
 
 import sessions from "express-session"
+import flash from "express-flash"
 
 
 let isWin = process.platform === 'win32'
@@ -31,6 +32,9 @@ app.use(sessions({
     cookie: { maxAge: 600000 },
     resave: false
 }));
+
+//flash middleware
+app.use(flash());
 
 app.set('views', dir);
 

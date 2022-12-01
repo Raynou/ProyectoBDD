@@ -164,7 +164,7 @@ export async function assignJudge(assign){
  @param cal_lib - cal_libreta_ing
 */
 
-export async function putCalif(catpro, catdis, catcons){
+export async function putCalif(catpro, catdis, catcons, jurado){
 	// Insertar calif
     console.log(catpro)
     const nombre_evento = catpro.evento.replaceAll("-", " ")
@@ -181,6 +181,11 @@ export async function putCalif(catpro, catdis, catcons){
 	await sequelize.query('call set_cat_construccion(?, ?, ?, ?);', {
 		replacements: [catcons.equipo, cod_evento, catcons.sub1, catcons.sub2]
 	})
+
+	const res = await sequelize.query('call update_project_jury(?, ?, ?);', {
+		replacements: [catcons.equipo, cod_evento, jurado]
+	})
+    console.log(res)
 }
 
 

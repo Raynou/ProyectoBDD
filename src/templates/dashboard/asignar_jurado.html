@@ -53,7 +53,7 @@
               >
                 <option selected hidden value="">Jurado</option>
                 {% for jurado in data["judges"] %}
-                <option value="{{ jurado['id_jurado'] }}">
+                <option value="{{ jurado['curp_jurado'] }}">
                   {{ jurado["nombre_pila"] }} {{ jurado["apellido_1"] }} {{
                   jurado["apellido_2"] }}
                 </option>

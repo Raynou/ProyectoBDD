@@ -12,7 +12,7 @@ export async function evaluations(event, category) {
 		replacements: [event, category]
 	})
 	console.log(top_evaluations)
-	return {"evaluations":top_evaluations}
+	return top_evaluations
 }
 
 export async function login(username, pass) {
@@ -106,14 +106,20 @@ export async function putEvent(event){
 
 export async function putCalif(catpro, catdis, catcons){
 	// Insertar calif
-	await sequelize.query('call set_cat_prog(?, ?, ?, ?, ?, ?);', {
-		replacements: [catpro.equipo, catpro.evento, catpro.sub1, catpro.sub2, catpro.sub3, catpro.sub4]
+    console.log(catpro)
+    const nombre_evento = catpro.evento.replaceAll("-", " ")
+    const cod_evento_res = await sequelize.query('call get_event_code(?);', {replacements: [nombre_evento]})
+    const cod_evento = cod_evento_res[0].cod_evento
+    console.log(cod_evento)
+
+    await sequelize.query('call set_cat_prog(?, ?, ?, ?, ?, ?);', {
+		replacements: [catpro.equipo, cod_evento, catpro.sub1, catpro.sub2, catpro.sub3, catpro.sub4]
 	})
 	await sequelize.query('call set_cat_disenno(?, ?, ?, ?);', {
-		replacements: [catdis.equipo, catdis.evento, catdis.sub1, catdis.sub2]
+		replacements: [catdis.equipo, cod_evento, catdis.sub1, catdis.sub2]
 	})
 	await sequelize.query('call set_cat_construccion(?, ?, ?, ?);', {
-		replacements: [catcons.equipo, catcons.evento, catcons.sub1, catcons.sub2]
+		replacements: [catcons.equipo, cod_evento, catcons.sub1, catcons.sub2]
 	})
 }
 

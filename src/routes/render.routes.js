@@ -70,6 +70,10 @@ router.get('/dashboard/jurado/evaluar_equipo', function(req, res) {
 		return text.replaceAll(" ", "-");
 	    }
 
+	    const inv_conv = function(text) {
+		return text.replaceAll("-", " ");
+	    }
+
 	    var dict = []
 
 	for (var i = 0; i < result.length; i++) {
@@ -102,7 +106,7 @@ router.get('/dashboard/jurado/evaluar_equipo', function(req, res) {
 	    console.log(dict)
 	    console.log(events)
 	    console.log(result)
-            res.render('dashboard/evaluar_equipo.html', {current_page: "Dashboard Jurado", events: events, data: result});
+            res.render('dashboard/evaluar_equipo.html', {current_page: "Dashboard Jurado", events: events, data: result, conv: inv_conv});
     });
 });
 
@@ -126,7 +130,9 @@ router.post('/dashboard/publico/ver_resultados', async function(req, res) {
     const evals_response = await fetch("http://localhost:3000/query/evaluations?evento="+req.body.evento+"&categoria_evento="+req.body.categoria_evento, {method: "GET"})
     const evals_data = await evals_response.json()
 
-    res.render('dashboard/ver_resultados.html', {current_page: "Dashboard Publico", events: events_data, evaluations: evals_data});
+    console.log(evals_data)
+
+    res.render('dashboard/ver_resultados.html', {current_page: "Dashboard Publico", events: events_data, evaluations: evals_data, ten: console.log});
 });
 
 router.get("/dashboard/logout", function(req, res) {

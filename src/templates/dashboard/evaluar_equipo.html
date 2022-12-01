@@ -104,19 +104,14 @@
 			  string = $("select#evento_eva option:selected").text();
 			  string = string.trim().replaceAll(" ", "-");
 
-			  alert(string)
-
 			  for (var i = 0; i < values.length; i++) {
 					      var val = values[i]
-			  alert(val)
 			      if (val == string) {
 				  $("#equipos ." + val).show();
 				  $("#equipos ." + val).prop("disabled", false);
-				  alert("we")
 			      } else {
 				  $("#equipos ." + val).hide();
 				  $("#equipos ." + val).prop("disabled", true);
-				  alert("wsse")
 			      }
 			  }
 

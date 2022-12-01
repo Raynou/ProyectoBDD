@@ -180,37 +180,6 @@ insert into colaborar values ('853-74-2727', 7, "bachillerato");
 
 insert into colaborar values ('744-39-0158', 6, "bachillerato");
 
--- select distinct * from equipo inner join proyecto using(cod_equipo) inner join evaluar_en using (cod_proyecto) inner join (select * from EVENTO where fecha_fin >= curdate()) m using (cod_evento) inner join colaborar using (cod_evento) where colaborar.curp_jurado='853-74-2727';
-
--- todos los proyectos de eventos actuales, junto a su categoria
-select cod_proyecto, cod_evento, categoria from evaluar_en inner join proyecto using (cod_proyecto) inner join equipo using(cod_equipo) where cod_evento in (select cod_evento from EVENTO where fecha_fin >= curdate()) ;
-
-
-SELECT 
-    *
-FROM
-    colaborar
-        INNER JOIN
-    (SELECT 
-        cod_proyecto, cod_evento, categoria
-    FROM
-        evaluar_en
-    INNER JOIN proyecto USING (cod_proyecto)
-    INNER JOIN equipo USING (cod_equipo)
-    WHERE
-        cod_evento IN (SELECT 
-                cod_evento
-            FROM
-                EVENTO
-            WHERE
-                fecha_fin >= CURDATE())) m USING (categoria)
-        INNER JOIN
-    evaluar_en USING (cod_proyecto)
-WHERE
-    (evaluar_en.curp_jurado IS NULL
-        AND colaborar.curp_jurado = '744-39-0158');
-
-
 -- call get_jury_code('mfoli0');
 
 -- call get_jury_cat_teams("er");
@@ -224,34 +193,5 @@ insert into evaluar_en values (1, 6, '853-74-2727');
 insert into evaluar_en values (2, 6, null);
 insert into evaluar_en values (3, 6, null);
 
-insert into evaluar_en values (4, 2, null);
-insert into evaluar_en values (5, 2, null);
-
 insert into evaluar_en values (6, 7, null);
 insert into evaluar_en values (7, 7, null);
-
-SELECT 
-    DISTINCT nombre_evento, cod_proyecto
-FROM
-    colaborar
-        INNER JOIN
-    (SELECT 
-        cod_proyecto, nombre_evento, cod_evento, categoria
-    FROM
-        evaluar_en
-	-- cambio tentativo?
-	INNER JOIN evento USING (cod_evento)
-    INNER JOIN proyecto USING (cod_proyecto)
-    INNER JOIN equipo USING (cod_equipo)
-    WHERE
-        cod_evento IN (SELECT 
-                cod_evento
-            FROM
-                EVENTO
-            WHERE
-                fecha_fin >= CURDATE())) m USING (categoria)
-        INNER JOIN
-    evaluar_en USING (cod_proyecto)
-WHERE
-    (evaluar_en.curp_jurado IS NULL
-        AND colaborar.curp_jurado = '853-74-2727');

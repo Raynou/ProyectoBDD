@@ -145,14 +145,14 @@ delimiter ;
 -- COLABORAR
 
 /*
- @param jurado - id_jurado
  @param evento - cod_evento
+ @param jurado - id_jurado
  @param cat - categoria
 */
 drop procedure if exists set_colaborar;
 delimiter $$
 create procedure set_colaborar(
-in jurado int,
+in jurado varchar(18),
 in evento int,
 in cat enum('primaria', 'secundaria', 'bachillerato', 'profesional')
 )begin

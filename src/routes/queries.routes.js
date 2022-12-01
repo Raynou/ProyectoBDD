@@ -204,4 +204,29 @@ router.post('/query/set_judge', (req, res) =>{
     res.redirect("/dashboard/coordinador/registro_jurado")
 })
 
+router.get('/query/get_team_by_id', async function (req, res) {
+	const id =  req.id
+	res.send(await query.getTeamById(id))
+})
+
+router.get('/query/get_team_by_name', async function (req, res) {
+	const name =  req.name
+	res.send(await query.getTeamByName(name))
+})
+
+router.get('/query/get_part_of_team', async function (req, res) {
+	const id =  req.id
+	res.send(await query.getPartOfTeam(id))
+})
+
+router.get('/query/get_all_teams', async function (req, res){
+	res.send(await query.getTeams())
+})
+
+router.delete('/query/delete_team', async function (req, res) {
+	await query.deleteTeam()
+	res.flash('Equipo borrado exitosamente')
+	res.redirect(/* Dirección donde se borran equipos va aca */)
+})
+
 export default router

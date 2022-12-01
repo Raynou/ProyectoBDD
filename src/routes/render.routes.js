@@ -48,13 +48,6 @@ router.get('/dashboard/coordinador/registro_equipo', function(req, res) {
     });
 });
 
-router.get('/dashboard/coordinador/registro_equipo', function(req, res) {
-    fetch("http://localhost:3000/query/events", {method: "GET"}).then(res => res.json()).
-	then((json) => {
-        res.render('dashboard/registro_equipo.html', {current_page: "Dashboard Coordinador", events: json, message: req.flash("info"), messagetype: req.flash("type")});
-    });
-});
-
 router.get('/dashboard/coordinador/cambio_equipo', function(req, res) {
     const json = []
     res.render('dashboard/cambio_equipo.html', {current_page: "Dashboard Coordinador", events: json, message: req.flash("info"), messagetype: req.flash("type")});

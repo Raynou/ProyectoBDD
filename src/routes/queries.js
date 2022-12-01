@@ -1,5 +1,8 @@
 import { sequelize, dataTypes } from "../../config/database.js"
 import { QueryTypes } from "sequelize";
+import { event } from "../../db/models/event.js";
+import { team } from "../../db/models/team.js";
+import { participant } from "../../db/models/participant.js";
 
 export async function events() {
 	const prior_events =  await sequelize.query("call get_events_prior_to_current_date()", QueryTypes.SELECT)
@@ -33,10 +36,6 @@ export async function get_jury_code(username) {
 
 export async function get_jury_cat_teams(curp_jurado) {
     const result = await sequelize.query("call get_jury_cat_teams('" + curp_jurado + "')", QueryTypes.SELECT)
-    //console.log(result)
-
-
-
     return result
 }
 
@@ -82,53 +81,22 @@ async function putParticipant(participant, teamCode){
 
 }
 
-export async function putEvent(event){
+export async function putEvent(eventInput){
 	// Insertar evento
-
-	// Define model of sequelize.
-
 	let response = 'Evento insertado exitosamente!'
 
-	const eventModel = sequelize.define('EVENTO', {
-		cod_evento: {
-			type: dataTypes.INTEGER,
-			primaryKey: true,
-			autoIncrement: true
-		},
-		nombre_evento:{
-			type: dataTypes.STRING,
-			allowNull: false,
-			unique: true
-		},
-		fecha_inicio:{
-			type: dataTypes.DATE,
-			allowNull: false
-		},
-		fecha_fin:{
-			type: dataTypes.DATE,
-			allowNull: false
-		},
-		lugar: {
-			type: dataTypes.STRING,
-			allowNull: false
-		}
-	},{freezeTableName:true, timestamps:false})
-
 	try{
-		await eventModel.create({
-			nombre_evento: event.nombre, 
-			fecha_inicio: event.f_inicio,
-			fecha_fin:event.f_fin,
-			lugar:event.lug
+		await event.create({
+			nombre_evento: eventInput.nombre, 
+			fecha_inicio: eventInput.f_inicio,
+			fecha_fin:eventInput.f_fin,
+			lugar:eventInput.lug
 		})
 		return response
 	}catch (error){
 		response = 'Evento ya existente'
 		return response
 	}
-	/*await sequelize.query('call set_evento(?, ?, ?, ?);', {
-		replacements: [event.nombre, event.f_inicio, event.f_fin, event.lug]
-	})*/
 }
 
 /*COLABORAR
@@ -202,5 +170,42 @@ export async function putJudge(curp, nomPila, primerApellido, segundoApellido, u
 		replacements:[curp, nomPila, primerApellido, segundoApellido, user, password]
 	})
 }
+
+export async function getTeams(){
+	return await team.findAll();
+}
+
+export async function getTeamById(teamCode) {
+	return await team.findAll({
+		where:{
+			cod_equipo:teamCode
+	}})
+}
+
+export async function getTeamByName(teamName) {
+	return await team.findAll({
+		where:{
+			nombre_equipo:teamName
+	}})
+}
+
+export async function getPartOfTeam(teamCode){
+	return await participant.findAll({
+		where:{
+			cod_equipo: teamCode
+		}
+	})
+}
+
+export async function deleteTeam(teamCode){
+	team.destroy({
+		where:{
+			cod_equipo:teamCode
+		}
+	})
+}
+
+console.log(await getTeamByName('Dinamita'))
+
 
 //sequelize.close()

@@ -1,7 +1,7 @@
 import express from "express"
 import expressNunjucks from 'express-nunjucks'
 import bodyParser from "body-parser"
-import queryRoutes from "../src/routes/querys.routes.js"
+import queryRoutes from "../src/routes/queries.routes.js"
 import renderRoutes from "../src/routes/render.routes.js"
 import nunjucks from "nunjucks"
 

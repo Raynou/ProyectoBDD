@@ -25,6 +25,15 @@ export async function get_jury_code(username) {
     return result
 }
 
+export async function get_jury_cat_teams(curp_jurado) {
+    const result = await sequelize.query("call get_jury_cat_teams('" + curp_jurado + "')", QueryTypes.SELECT)
+    //console.log(result)
+
+
+
+    return result
+}
+
 /*
  *@param teamName - String
  *@param category - String

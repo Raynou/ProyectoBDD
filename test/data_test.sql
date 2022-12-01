@@ -5,6 +5,7 @@ insert into EVENTO (cod_evento, nombre_evento, fecha_inicio, fecha_fin, lugar) v
 insert into EVENTO (cod_evento, nombre_evento, fecha_inicio, fecha_fin, lugar) values (4, 'Evento Alejo',  '2021-10-26', '2022-11-07', 'Alejo Ledesma');
 insert into EVENTO (cod_evento, nombre_evento, fecha_inicio, fecha_fin, lugar) values (5, 'Evento Bayzhansay', '2022-03-13', '2021-05-03', 'Bayzhansay');
 insert into EVENTO (cod_evento, nombre_evento, fecha_inicio, fecha_fin, lugar) values (6, 'Evento Bayzhansay', '2022-03-13', '2023-05-03', 'Bayzhansay');
+insert into EVENTO (cod_evento, nombre_evento, fecha_inicio, fecha_fin, lugar) values (7, 'Evento San Isidro', '2021-09-01', '2023-09-13', 'San Isidro');
 
 -- JURADO
 
@@ -167,6 +168,16 @@ insert into colaborar values ('853-74-2727', 6, "profesional");
 insert into colaborar values ('853-74-2727', 6, "primaria");
 insert into colaborar values ('853-74-2727', 6, "bachillerato");
 
+insert into colaborar values ('853-74-2727', 2, "secundaria");
+insert into colaborar values ('853-74-2727', 2, "profesional");
+insert into colaborar values ('853-74-2727', 2, "primaria");
+insert into colaborar values ('853-74-2727', 2, "bachillerato");
+
+insert into colaborar values ('853-74-2727', 7, "secundaria");
+insert into colaborar values ('853-74-2727', 7, "profesional");
+insert into colaborar values ('853-74-2727', 7, "primaria");
+insert into colaborar values ('853-74-2727', 7, "bachillerato");
+
 insert into colaborar values ('744-39-0158', 6, "bachillerato");
 
 -- select distinct * from equipo inner join proyecto using(cod_equipo) inner join evaluar_en using (cod_proyecto) inner join (select * from EVENTO where fecha_fin >= curdate()) m using (cod_evento) inner join colaborar using (cod_evento) where colaborar.curp_jurado='853-74-2727';
@@ -212,3 +223,35 @@ truncate table evaluar_en;
 insert into evaluar_en values (1, 6, '853-74-2727');
 insert into evaluar_en values (2, 6, null);
 insert into evaluar_en values (3, 6, null);
+
+insert into evaluar_en values (4, 2, null);
+insert into evaluar_en values (5, 2, null);
+
+insert into evaluar_en values (6, 7, null);
+insert into evaluar_en values (7, 7, null);
+
+SELECT 
+    DISTINCT nombre_evento, cod_proyecto
+FROM
+    colaborar
+        INNER JOIN
+    (SELECT 
+        cod_proyecto, nombre_evento, cod_evento, categoria
+    FROM
+        evaluar_en
+	-- cambio tentativo?
+	INNER JOIN evento USING (cod_evento)
+    INNER JOIN proyecto USING (cod_proyecto)
+    INNER JOIN equipo USING (cod_equipo)
+    WHERE
+        cod_evento IN (SELECT 
+                cod_evento
+            FROM
+                EVENTO
+            WHERE
+                fecha_fin >= CURDATE())) m USING (categoria)
+        INNER JOIN
+    evaluar_en USING (cod_proyecto)
+WHERE
+    (evaluar_en.curp_jurado IS NULL
+        AND colaborar.curp_jurado = '853-74-2727');

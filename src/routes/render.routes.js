@@ -61,9 +61,48 @@ router.get('/dashboard/jurado', function(req, res) {
 });
 
 router.get('/dashboard/jurado/evaluar_equipo', function(req, res) {
-    fetch("http://localhost:3000/query/events", {method: "GET"}).then(res => res.json()).
-	then((json) => {
-        res.render('dashboard/evaluar_equipo.html', {current_page: "Dashboard Jurado", events: json});
+    session = req.session
+    console.log(session)
+    fetch("http://localhost:3000/query/get_jury_cat_teams?userid="+session.userid, {method: "GET"}).then(res => res.json()).
+	then((result) => {
+
+	    const conv = function(text) {
+		return text.replaceAll(" ", "-");
+	    }
+
+	    var dict = []
+
+	for (var i = 0; i < result.length; i++) {
+	    var obj = result[i]
+
+	    if (dict[obj.nombre_evento]) {
+		dict[obj.nombre_evento].push(obj.cod_proyecto);
+	    } else {
+		dict[obj.nombre_evento] = [obj.cod_proyecto];
+	    }
+	}
+
+	    var events = []
+	    
+	    for (var i = 0; i < result.length; i++) {
+		var obj = result[i]
+		result[i].nombre_evento = conv(result[i].nombre_evento)
+		obj.nombre_evento = conv(obj.nombre_evento)
+
+		if (!events.includes(obj.nombre_evento)) {
+		    events.push(obj.nombre_evento);
+		}
+	    }
+
+	    var jton = JSON.stringify(dict)
+
+
+
+
+	    console.log(dict)
+	    console.log(events)
+	    console.log(result)
+            res.render('dashboard/evaluar_equipo.html', {current_page: "Dashboard Jurado", events: events, data: result});
     });
 });
 

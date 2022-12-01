@@ -48,6 +48,11 @@ router.get('/dashboard/coordinador/registro_equipo', function(req, res) {
     });
 });
 
+router.get('/dashboard/coordinador/cambio_equipo', function(req, res) {
+    const json = []
+    res.render('dashboard/cambio_equipo.html', {current_page: "Dashboard Coordinador", events: json, message: req.flash("info"), messagetype: req.flash("type")});
+});
+
 router.get('/dashboard/coordinador/registro_jurado', function(req, res) {
     res.render('dashboard/registro_jurado.html', {current_page: "Dashboard Coordinador", message: req.flash("info"), messagetype: req.flash("type")});
 });

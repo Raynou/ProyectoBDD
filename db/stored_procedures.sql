@@ -333,7 +333,7 @@ in ccjurado varchar(18)
 ) begin
 	
     SELECT 
-    nombre_evento, cod_proyecto
+    DISTINCT nombre_evento, cod_proyecto
 FROM
     colaborar
         INNER JOIN

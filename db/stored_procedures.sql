@@ -179,6 +179,8 @@ in jurado int
 end $$
 delimiter ;
 
+-- call get_top_teams(6, 10, 'bachillerato');
+
 -- Traer top N de un evento en particular
 drop procedure if exists get_top_teams;
 delimiter $$
@@ -361,4 +363,14 @@ WHERE
 end $$
 delimiter ;
 
-call get_jury_cat_teams('853-74-2727');
+drop procedure if exists get_event_code;
+delimiter $$
+create procedure get_event_code(
+in event_name varchar(255)
+) begin
+    select cod_evento from evento where nombre_evento=event_name LIMIT 1;
+end $$
+delimiter ;
+
+-- call get_jury_cat_teams('853-74-2727');
+-- call get_event_code("Evento Neo San Isidro");

@@ -36,7 +36,7 @@
       id="send"
       name="send"
       type="submit"
-      {% if events["current"] %}
+      {% if events %}
 
       {% else %}
       disabled
@@ -57,11 +57,11 @@
       </tr>
     </thead>
     <tbody>
-      {% for evaluacion in evaluaciones["get"] %}
+      {% for evaluacion in evaluations %}
       <tr>
-        <th scope="row" class="py-4 px-6 font-medium text-gray-900"></th>
-        <td class="py-4 px-6 whitespace-nowrap"></td>
-        <td class="py-4 px-6 whitespace-nowrap"></td>
+        <th scope="row" class="py-4 px-6 font-medium text-gray-900">{{ loop.index }}</th>
+        <td class="py-4 px-6 whitespace-nowrap">{{ evaluacion.nombre_proyecto }}</td>
+        <td class="py-4 px-6 whitespace-nowrap">{{ evaluacion.final_score }}/30</td>
       </tr>
       {% else %}
       <tr>

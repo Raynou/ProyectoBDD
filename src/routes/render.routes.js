@@ -77,14 +77,21 @@ router.get("/dashboard/coordinador/registro_equipo", function (req, res) {
 });
 
 router.get("/dashboard/coordinador/registro_jurado", function (req, res) {
-  res.render("dashboard/registro_jurado.html", {
+  res.render("dashboard/registro_jurado.html"),
+  {
     current_page: "Dashboard Coordinador",
     message: req.flash("info"),
     messagetype: req.flash("type"),
+  };
+});
+router.get("/dashboard/coordinador/modificar_equipo", function (req, res) {
+  const json = [];
+  res.render("dashboard/modificar_equipo.html", {
+    current_page: "Dashboard Coordinador",
+    events: json,
+    message: req.flash("info"),
+    messagetype: req.flash("type"),
   });
-router.get('/dashboard/coordinador/cambio_equipo', function(req, res) {
-    const json = []
-    res.render('dashboard/cambio_equipo.html', {current_page: "Dashboard Coordinador", events: json, message: req.flash("info"), messagetype: req.flash("type")});
 });
 
 router.get("/dashboard/coordinador/registro_jurado", function (req, res) {
@@ -225,9 +232,9 @@ router.post("/dashboard/publico/ver_resultados", async function (req, res) {
 
   const evals_response = await fetch(
     "http://localhost:3000/query/evaluations?evento=" +
-      req.body.evento +
-      "&categoria_evento=" +
-      req.body.categoria_evento,
+    req.body.evento +
+    "&categoria_evento=" +
+    req.body.categoria_evento,
     { method: "GET" }
   );
   const evals_data = await evals_response.json();

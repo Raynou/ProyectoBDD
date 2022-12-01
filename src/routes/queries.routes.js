@@ -1,5 +1,5 @@
 import {Router} from "express"
-import * as query from "./querys.js"
+import * as query from "./queries.js"
 import * as script from "./scripts.js"
 const router = Router()
 var session

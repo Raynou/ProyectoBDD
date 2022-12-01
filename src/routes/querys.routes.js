@@ -103,7 +103,7 @@ router.post('/query/set_team', (req, res) => {
 		res.send(`Participante ${rejectedPart} inválido`)
 })
 
-router.post('/query/set_event', (req, res) => {
+router.post('/query/set_event', async function(req, res) {
 	const data = req.body
 
 	const event ={
@@ -114,7 +114,8 @@ router.post('/query/set_event', (req, res) => {
 	}
 
 	console.log(event)
-	res.send(query.putEvent(event))
+	const response =  await query.putEvent(event)
+	res.send(`<script>alert('${response}'); window.location.href = '/dashboard/coordinador/registro_evento'; </script>`)
 })
 
 router.post('/query/assign_judge', (req, res) => {

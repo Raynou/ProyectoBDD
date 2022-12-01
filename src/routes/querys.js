@@ -1,4 +1,4 @@
-import { sequelize } from "../../config/database.js"
+import { sequelize, dataTypes } from "../../config/database.js"
 import { QueryTypes } from "sequelize";
 
 export async function events() {
@@ -84,9 +84,51 @@ async function putParticipant(participant, teamCode){
 
 export async function putEvent(event){
 	// Insertar evento
-	await sequelize.query('call set_evento(?, ?, ?, ?);', {
+
+	// Define model of sequelize.
+
+	let response = 'Evento insertado exitosamente!'
+
+	const eventModel = sequelize.define('EVENTO', {
+		cod_evento: {
+			type: dataTypes.INTEGER,
+			primaryKey: true,
+			autoIncrement: true
+		},
+		nombre_evento:{
+			type: dataTypes.STRING,
+			allowNull: false,
+			unique: true
+		},
+		fecha_inicio:{
+			type: dataTypes.DATE,
+			allowNull: false
+		},
+		fecha_fin:{
+			type: dataTypes.DATE,
+			allowNull: false
+		},
+		lugar: {
+			type: dataTypes.STRING,
+			allowNull: false
+		}
+	},{freezeTableName:true, timestamps:false})
+
+	try{
+		await eventModel.create({
+			nombre_evento: event.nombre, 
+			fecha_inicio: event.f_inicio,
+			fecha_fin:event.f_fin,
+			lugar:event.lug
+		})
+		return response
+	}catch (error){
+		response = 'Evento ya existente'
+		return response
+	}
+	/*await sequelize.query('call set_evento(?, ?, ?, ?);', {
 		replacements: [event.nombre, event.f_inicio, event.f_fin, event.lug]
-	})
+	})*/
 }
 
 /*COLABORAR

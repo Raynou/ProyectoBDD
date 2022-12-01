@@ -51,6 +51,11 @@ router.get('/query/evaluations', async function(req, res) {
     res.send(await query.evaluations(evento, cat ));
 });
 
+router.get('/query/get_jury_cat_teams', async function(req, res) {
+    console.log(req.query)
+    res.send(await query.get_jury_cat_teams(req.query.userid));
+});
+
 router.post('/query/set_team', (req, res) => {
 	const data = req.body
 

@@ -5,7 +5,7 @@ use proyecto_bdd;
 create table EVENTO(
 
     cod_evento int primary key auto_increment,
-    nombre_evento varchar(255) not null ,
+    nombre_evento varchar(255) not null unique,
     fecha_inicio date not null ,
     fecha_fin date not null,
     lugar varchar(255) not null

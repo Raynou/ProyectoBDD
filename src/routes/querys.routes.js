@@ -31,11 +31,17 @@ router.post('/query/login', async function(req, res) {
 
     if (result_code == 2) {
 	session.userid="cordi"
+	req.flash('info', 'Se ha iniciado sesión con exito')
+	req.flash('type', 'success')
     } else if (result_code == 1) {
 	const res = await query.get_jury_code("'" + user + "'");
 	session.userid=res[0]["curp"]
+	req.flash('info', 'Se ha iniciado sesión con exito')
+	req.flash('type', 'success')
     } else {
 	console.log("No existe ningun usuario");
+	req.flash('info', 'No existe ningun usuario.')
+	req.flash('type', 'error')
     }
 
     console.log(session)
@@ -97,10 +103,18 @@ router.post('/query/set_team', (req, res) => {
 		}
 	}
 
-	if(validator == 3)
-		res.send(query.putTeam(name, cat, inst, part))
-	else
-		res.send(`Participante ${rejectedPart} inválido`)
+    if(validator == 3) {
+	res.send(query.putTeam(name, cat, inst, part))
+	req.flash('info', 'Se ha registrado el equipo con exito')
+	req.flash('type', 'success')
+    }
+    else {
+	req.flash('info', 'Participante ${rejectedpart} inválido')
+	req.flash('type', 'error')
+    }
+
+    res.redirect('/dashboard/coordinador/registro_equipo')
+
 })
 
 router.post('/query/set_event', async function(req, res) {
@@ -115,7 +129,14 @@ router.post('/query/set_event', async function(req, res) {
 
 	console.log(event)
 	const response =  await query.putEvent(event)
-	res.send(`<script>alert('${response}'); window.location.href = '/dashboard/coordinador/registro_evento'; </script>`)
+
+	req.flash('info', response)
+    if (response == "Evento insertado exitosamente!"){
+	req.flash('type', 'success')
+    } else {
+	req.flash('type', 'error')
+    }
+	res.redirect("/dashboard/coordinador/registro_evento")
 })
 
 router.post('/query/assign_judge', (req, res) => {
@@ -128,7 +149,11 @@ router.post('/query/assign_judge', (req, res) => {
 	}
 
 	console.log(assign)
-	res.send(query.assignJudge(assign))
+	query.assignJudge(assign)
+
+	req.flash('info', 'Se ha asigando con exito')
+	req.flash('type', 'success')
+    res.redirect("/dashboard/coordinador/asignar_jurado")
 })
 
 router.post('/query/set_calif', (req, res) => {
@@ -157,7 +182,11 @@ router.post('/query/set_calif', (req, res) => {
 		sub2:data.libreta_catcons
 	}
 
-	res.send(query.putCalif(catpro, catdis, catcons))
+
+    query.putCalif(catpro, catdis, catcons, req.session.userid)
+	req.flash('info', 'Se ha calificado con exito')
+	req.flash('type', 'success')
+    res.redirect("/dashboard/jurado/evaluar_equipo")
 })
 
 router.post('/query/set_judge', (req, res) =>{
@@ -169,7 +198,10 @@ router.post('/query/set_judge', (req, res) =>{
 	let user = data.user
 	let password = data.password
 
-	res.send(query.putJudge(curp, nomPila, primerApellido, segundoApellido, user, password))
+	query.putJudge(curp, nomPila, primerApellido, segundoApellido, user, password)
+	req.flash('info', 'Se ha creado el nuevo jurado correctamente')
+	req.flash('type', 'success')
+    res.redirect("/dashboard/coordinador/registro_jurado")
 })
 
 export default router

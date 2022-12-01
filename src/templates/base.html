@@ -11,4 +11,27 @@
 
   <body>
     {% include "header.html" %}
+    {% if message %}
+
+    <div class="
+		text-stone-100
+		text-center
+		mx-10
+		mb-5
+		drop-shadow-lg
+		rounded-md
+		{% if messagetype == 'success' %}
+		bg-green-500
+		{% endif %}
+		{% if messagetype == 'error' %}
+		bg-red-500
+		{% endif %}
+		{% if messagetype == 'info' %}
+		bg-blue-500
+		{% endif %}
+		"
+	 <p>{{ message }}</p>
+    </div>
+
+    {% endif %}
 

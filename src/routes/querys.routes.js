@@ -104,12 +104,12 @@ router.post('/query/set_team', (req, res) => {
 	}
 
     if(validator == 3) {
-	res.send(query.putTeam(name, cat, inst, part))
+	query.putTeam(name, cat, inst, part)
 	req.flash('info', 'Se ha registrado el equipo con exito')
 	req.flash('type', 'success')
     }
     else {
-	req.flash('info', 'Participante ${rejectedpart} inválido')
+	req.flash('info', 'Participante ${rejectedPart} inválido')
 	req.flash('type', 'error')
     }
 
@@ -186,7 +186,7 @@ router.post('/query/set_calif', (req, res) => {
     query.putCalif(catpro, catdis, catcons, req.session.userid)
 	req.flash('info', 'Se ha calificado con exito')
 	req.flash('type', 'success')
-    res.redirect("/dashboard/jurado/evaluar_equipo")
+	res.redirect("/dashboard/jurado/evaluar_equipo")
 })
 
 router.post('/query/set_judge', (req, res) =>{

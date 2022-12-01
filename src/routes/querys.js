@@ -132,14 +132,14 @@ export async function putEvent(event){
 }
 
 /*COLABORAR
- @param jurado - id_jurado
  @param evento - cod_evento
+ @param jurado - id_jurado
  @param cat - categoria
 */
 export async function assignJudge(assign){
 	// Insertar evento
 	await sequelize.query('call set_colaborar(?, ?, ?);', {
-		replacements: [assign.evento, assign.jurado, assign.categoria]
+		replacements: [assign.jurado, assign.evento, assign.categoria]
 	})
 }
 

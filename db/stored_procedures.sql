@@ -276,6 +276,23 @@ in cal_lib int
 end $$
 delimiter ;
 
+-- UPDATE_PROYECT_JURY
+/*
+@param proyecto - cod_proyecto
+@param evento - cod_evento
+@param jurado - curp_jurad
+*/
+drop procedure if exists update_project_jury;
+delimiter $$
+create procedure update_project_jury(
+in proyecto int,
+in evento int,
+in c_jurado varchar(18)
+) begin
+    UPDATE evaluar_en SET curp_jurado=c_jurado WHERE cod_proyecto=proyecto AND cod_evento=evento;
+end $$
+delimiter ;
+
 -- Login
 /*
  @param usser - usuario/User

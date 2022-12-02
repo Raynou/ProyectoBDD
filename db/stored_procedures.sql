@@ -389,5 +389,5 @@ in event_name varchar(255)
 end $$
 delimiter ;
 
--- call get_jury_cat_teams('853-74-2727');
+call get_jury_cat_teams('EIRG021230HTSSMNA2');
 -- call get_event_code("Evento Neo San Isidro");

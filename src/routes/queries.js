@@ -1,5 +1,5 @@
 import { sequelize, dataTypes } from "../../config/database.js"
-import { QueryTypes } from "sequelize";
+import { QueryTypes, where } from "sequelize";
 import { event } from "../../db/models/event.js";
 import { team } from "../../db/models/team.js";
 import { participant } from "../../db/models/participant.js";
@@ -22,6 +22,12 @@ export async function judge_event(){
 	const judges = await sequelize.query("call get_jurado()", QueryTypes.SELECT)
 	const events = await sequelize.query("call get_events_after_current_date()", QueryTypes.SELECT)
 	return {"events":events, "judges" : judges}
+}
+
+export async function team_event(){
+	const teams = await team.findAll();
+	const events = await sequelize.query("call get_events_after_current_date()", QueryTypes.SELECT)
+	return {"events":events, "teams" : teams}
 }
 
 export async function login(username, pass) {
@@ -111,6 +117,39 @@ export async function assignJudge(assign){
 	})
 }
 
+/*PROYECTO
+ @para nom_proyecto - nombre_proyecto
+ @param cod_eq - cod_equipo
+*/
+/*EVALUAR_EN
+ @param proyecto - cod_proyecto
+ @param evento  - cod_evento
+ @param jurado - id_jurado
+*/
+export async function assignTeam(assign){
+	// Insertar evento
+
+	let response = "Se ha asigando con exito";
+
+	const query = await sequelize.query('call count_projects(?, ?)',{
+		replacements: [assign.equipo, assign.evento]
+	});
+	const numberOfProjects = query[0].proyectos_totales;
+	if(numberOfProjects >= 1){
+		response = "El equipo ya ha registrado un proyecto en este evento";
+		return response;
+	}else{
+		await sequelize.query('call set_proyecto(?, ?);', {
+			replacements: [assign.nombre, assign.equipo]
+		})
+		await sequelize.query('call set_evaluacion((SELECT cod_proyecto FROM PROYECTO ORDER BY cod_proyecto DESC LIMIT 1), ?, null);', {
+			replacements: [assign.evento]
+		})
+		return response;
+	}
+	
+}
+
 /*CAT_PROGRAMACION
  @param proyecto - cod_proyecto
  @param evento - cod_evento
@@ -154,11 +193,6 @@ export async function putCalif(catpro, catdis, catcons, jurado){
 		replacements: [catcons.equipo, cod_evento, jurado]
 	})
     console.log(res)
-}
-
-
-export async function getTeam(){
-	
 }
 
 export async function getJudge(){
@@ -216,6 +250,7 @@ export async function updateTeam(teamInfo){
 		}
 	})
 }
+
 export async function updateParticipant(partInfo){
 	await participant.update({
 	curp: partInfo.curp,

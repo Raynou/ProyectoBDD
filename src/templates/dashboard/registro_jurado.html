@@ -24,8 +24,10 @@
                 <div class="mt-1 flex rounded-md shadow-sm">
                   <input
                     type="text"
+                    pattern="[A-Za-z]{4}[\d]{6}[H|M][A-Za-z]{5}[A-Za-z\d]{2}$"
+                    title="El CURP se conforma de 4 letras, 6 numeros, H o M, 5 letras y 2 caracteres alfanumericos"
                     minlength="18"
-                    maxlength="18" 
+                    maxlength="18"
                     size="18"
                     name="curp"
                     id="curp"
@@ -67,7 +69,7 @@
                 <div class="mt-1 flex rounded-md shadow-sm">
                   <input
                     type="text"
-                    pattern="[A-Za-zÀ-ÿ\u00f1\u00d1\-\s]$+" 
+                    pattern="[A-Za-zÀ-ÿ\u00f1\u00d1\-\s]$+"
                     required
                     name="apellido_1"
                     id="apellido_1"
@@ -132,7 +134,7 @@
                     required
                     name="password"
                     id="password"
-                    pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-zÀ-ÿ\u00f1\u00d1\d]{8,}$" 
+                    pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-zÀ-ÿ\u00f1\u00d1\d]{8,}$"
                     title="La contraseña debe de tener mayúsculas, minúsculas y mínimo un número, sin carácteres especiales"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Contraseña"

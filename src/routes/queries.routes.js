@@ -1,8 +1,8 @@
-import {Router} from "express"
-import * as query from "./queries.js"
-import * as script from "./scripts.js"
-const router = Router()
-var session
+import { Router } from "express";
+import * as query from "./queries.js";
+import * as script from "./scripts.js";
+const router = Router();
+var session;
 
 router.get("/query/greets", (req, res) => res.send("hola"));
 
@@ -168,10 +168,10 @@ router.post("/query/assign_team", async (req, res) => {
 
   const message = await query.assignTeam(assign);
   req.flash("info", message);
-  if(message == "Se ha asigando con exito"){
-	req.flash("type", "success");
-  }else{
-	req.flash("type", "error");
+  if (message == "Se ha asigando con exito") {
+    req.flash("type", "success");
+  } else {
+    req.flash("type", "error");
   }
   res.redirect("/dashboard/coordinador/asignar_equipo");
 });
@@ -230,134 +230,193 @@ router.post("/query/set_judge", (req, res) => {
   res.redirect("/dashboard/coordinador/registro_jurado");
 });
 
-router.get('/query/get_team_by_id', async function (req, res) {
-    const ren =  await query.getTeamById(req.query.id)
-    var values = [];
+router.get("/query/get_team_by_id", async function (req, res) {
+  const ren = await query.getTeamById(req.query.id);
+  var values = [];
 
-    for (var i = 0; i < ren.length; i++) {
-	values.push(ren[i].dataValues);
+  for (var i = 0; i < ren.length; i++) {
+    values.push(ren[i].dataValues);
+  }
+
+  console.log(values);
+  res.send(values);
+});
+
+router.get("/query/get_team_by_name", async function (req, res) {
+  const name = req.query.name;
+  res.send(await query.getTeamByName(name));
+});
+
+router.get("/query/get_part_of_team", async function (req, res) {
+  const ren = await query.getPartOfTeam(req.query.id);
+
+  console.log(ren);
+
+  var values = [];
+
+  for (var i = 0; i < ren.length; i++) {
+    values.push(ren[i].dataValues);
+  }
+
+  console.log(values);
+
+  res.send(values);
+});
+
+router.get("/query/get_all_teams", async function (req, res) {
+  const ren = await query.getTeams();
+  var values = [];
+
+  for (var i = 0; i < ren.length; i++) {
+    values.push(ren[i].dataValues);
+  }
+
+  console.log(values);
+  res.send(values);
+});
+
+router.delete("/query/delete_team", async function (req, res) {
+  await query.deleteTeam();
+  res.flash("Equipo borrado exitosamente");
+  res.redirect(/* Dirección donde se borran equipos va aca */);
+});
+
+router.post("/query/update_team", async function (req, res) {
+  const data = req.body;
+
+  if (data.submit == "Borrar") {
+    query.deleteTeam(data.cod_equipo);
+
+    req.flash("info", "Se ha borrado el equipo con exito");
+    req.flash("type", "success");
+
+    res.redirect("/dashboard/coordinador/cambio_equipo");
+
+    return;
+  }
+
+  console.log(data);
+  const name = data.nombre_equipo;
+  const cat = data.categoria_equipo;
+  const inst = data.institucion_equipo;
+  const part = [
+    {
+      CURP: data.curp_integrante1,
+      nombre_pila: data.nombre_integrante1,
+      apellido_1: data.apellido1_integrante1,
+      apellido_2: data.apellido2_integrante1,
+      fecha_nac: data.edad_integrante1,
+    },
+    {
+      CURP: data.curp_integrante2,
+      nombre_pila: data.nombre_integrante2,
+      apellido_1: data.apellido1_integrante2,
+      apellido_2: data.apellido2_integrante2,
+      fecha_nac: data.edad_integrante2,
+    },
+    {
+      CURP: data.curp_integrante3,
+      nombre_pila: data.nombre_integrante3,
+      apellido_1: data.apellido1_integrante3,
+      apellido_2: data.apellido2_integrante3,
+      fecha_nac: data.edad_integrante3,
+    },
+  ];
+
+  console.log(part);
+
+  let validator = 0;
+  let rejectedPart = [];
+
+  for (let i = 0; i < 3; i++) {
+    let age = script.calculateAge(part[i].fecha_nac);
+    console.log(age);
+    if (script.validateAge(age, cat)) {
+      validator++;
+      rejectedPart.push(part[i]);
     }
+  }
 
-    console.log(values)
-    res.send(values)
-})
+  if (validator == 3) {
+    query.updateTeam({
+      nombre_equipo: name,
+      categoria: cat,
+      institucion: inst,
+      cod_equipo: data.cod_equipo,
+    });
+    query.updateParticipant(part[0]);
+    query.updateParticipant(part[1]);
+    query.updateParticipant(part[2]);
+    req.flash("info", "Se ha actualizado el equipo con exito");
+    req.flash("type", "success");
+  } else {
+    req.flash("info", "Participante ${rejectedPart} inválido");
+    req.flash("type", "error");
+  }
 
-router.get('/query/get_team_by_name', async function (req, res) {
-	const name =  req.query.name
-	res.send(await query.getTeamByName(name))
-})
+  res.redirect("/dashboard/coordinador/modificar_equipo");
+});
 
-router.get('/query/get_part_of_team', async function (req, res) {
-    const ren =  await query.getPartOfTeam(req.query.id)
+router.post("/query/update_event", async function (req, res) {
+  const data = req.body;
 
-    console.log(ren)
+  if (data.submit == "Borrar") {
+    query.deleteTeam(data.cod_equipo);
 
-    var values = [];
+    req.flash("info", "Se ha borrado el equipo con exito");
+    req.flash("type", "success");
 
-    for (var i = 0; i < ren.length; i++) {
-	values.push(ren[i].dataValues);
+    res.redirect("/dashboard/coordinador/cambio_equipo");
+
+    return;
+  }
+
+  console.log(data);
+  const name = data.nombre_equipo;
+  const cat = data.categoria_equipo;
+  const inst = data.institucion_equipo;
+  const part = [
+    {
+      CURP: data.curp_integrante1,
+      nombre_pila: data.nombre_integrante1,
+      apellido_1: data.apellido1_integrante1,
+      apellido_2: data.apellido2_integrante1,
+      fecha_nac: data.edad_integrante1,
+    },
+    {
+      CURP: data.curp_integrante2,
+      nombre_pila: data.nombre_integrante2,
+      apellido_1: data.apellido1_integrante2,
+      apellido_2: data.apellido2_integrante2,
+      fecha_nac: data.edad_integrante2,
+    },
+    {
+      CURP: data.curp_integrante3,
+      nombre_pila: data.nombre_integrante3,
+      apellido_1: data.apellido1_integrante3,
+      apellido_2: data.apellido2_integrante3,
+      fecha_nac: data.edad_integrante3,
+    },
+  ];
+
+  console.log(part);
+
+  let validator = 0;
+  let rejectedPart = [];
+
+  for (let i = 0; i < 3; i++) {
+    let age = script.calculateAge(part[i].fecha_nac);
+    console.log(age);
+    if (script.validateAge(age, cat)) {
+      validator++;
+      rejectedPart.push(part[i]);
     }
+  }
 
-    console.log(values)
+  req.flash("info", "Se ha borrado el equipo con exito");
+    req.flash("type", "success");
 
-	res.send(values)
-})
+  res.redirect("/dashboard/coordinador/cambio_equipo");
+});
 
-router.get('/query/get_all_teams', async function (req, res){
-    const ren = await query.getTeams();
-    var values = [];
-
-    for (var i = 0; i < ren.length; i++) {
-	values.push(ren[i].dataValues);
-    }
-
-    console.log(values)
-    res.send(values)
-})
-
-router.delete('/query/delete_team', async function (req, res) {
-	await query.deleteTeam()
-	res.flash('Equipo borrado exitosamente')
-	res.redirect(/* Dirección donde se borran equipos va aca */)
-})
-
-router.post('/query/update_team', async function (req, res) {
-	const data = req.body
-
-    if (data.submit == "Borrar") {
-
-	query.deleteTeam(data.cod_equipo)
-
-	req.flash('info', 'Se ha borrado el equipo con exito')
-	req.flash('type', 'success')
-
-	res.redirect('/dashboard/coordinador/cambio_equipo')
-
-	return
-    }
-
-    console.log(data)
-	const name = data.nombre_equipo;
-	const cat = data.categoria_equipo;
-	const inst = data.institucion_equipo
-	const part = [
-		{
-			CURP: data.curp_integrante1,
-			nombre_pila: data.nombre_integrante1,
-			apellido_1: data.apellido1_integrante1,
-			apellido_2: data.apellido2_integrante1,
-		  	fecha_nac: data.edad_integrante1
-		},
-		{
-			CURP: data.curp_integrante2,
-			nombre_pila: data.nombre_integrante2,
-			apellido_1: data.apellido1_integrante2,
-			apellido_2: data.apellido2_integrante2,
-		  	fecha_nac: data.edad_integrante2
-		},
-		{
-			CURP: data.curp_integrante3, 
-			nombre_pila: data.nombre_integrante3,
-			apellido_1: data.apellido1_integrante3,
-			apellido_2: data.apellido2_integrante3,
-		  	fecha_nac: data.edad_integrante3
-		}
-	]
-
-    console.log(part)
-
-	let validator = 0
-	let rejectedPart = []
-	
-	for(let i = 0; i<3;i++){
-		let age = script.calculateAge(part[i].fecha_nac)
-	    console.log(age)
-		if(script.validateAge(age, cat)){
-			validator++
-			rejectedPart.push(part[i])
-		}
-	}
-
-
-    if(validator == 3) {
-	query.updateTeam({
-	    nombre_equipo: name,
-	    categoria: cat,
-	    institucion: inst,
-	    cod_equipo: data.cod_equipo
-	})
-	query.updateParticipant(part[0])
-	query.updateParticipant(part[1])
-	query.updateParticipant(part[2])
-	req.flash('info', 'Se ha actualizado el equipo con exito')
-	req.flash('type', 'success')
-    }
-    else {
-	req.flash('info', 'Participante ${rejectedPart} inválido')
-	req.flash('type', 'error')
-    }
-
-    res.redirect('/dashboard/coordinador/cambio_equipo')
-})
-
-export default router
+export default router;

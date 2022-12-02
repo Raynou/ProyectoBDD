@@ -1,6 +1,9 @@
 {% extends "dashboard/dashboard_view.html" %} {% block dashboard_content %}
 <div>
-  <form action="#" method="POST">
+  <form
+    action="{% if datos_evento %}/query/update_event {% else %} {% endif %}"
+    method="POST"
+  >
     <div class="mt-5 md:col-span-2 md:mt-0">
       <div class="space-y-6 px-4 py-5 sm:p-6">
         <div class="grid grid-cols-3">

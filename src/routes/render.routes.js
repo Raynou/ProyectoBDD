@@ -75,41 +75,67 @@ router.get("/dashboard/coordinador/registro_equipo", function (req, res) {
       });
     });
 });
-    
-router.get('/dashboard/jurado', function(req, res) {
-    res.render('dashboard/dashboard_view.html', {current_page: "Dashboard Jurado"});
+
+router.get("/dashboard/jurado", function (req, res) {
+  res.render("dashboard/dashboard_view.html", {
+    current_page: "Dashboard Jurado",
+  });
 });
 
-router.get('/dashboard/jurado/evaluar_equipo', function(req, res) {
-    fetch("http://localhost:3000/query/events", {method: "GET"}).then(res => res.json()).
-	then((json) => {
-        res.render('dashboard/evaluar_equipo.html', {current_page: "Dashboard Jurado", events: json});
+router.get("/dashboard/jurado/evaluar_equipo", function (req, res) {
+  fetch("http://localhost:3000/query/events", { method: "GET" })
+    .then((res) => res.json())
+    .then((json) => {
+      res.render("dashboard/evaluar_equipo.html", {
+        current_page: "Dashboard Jurado",
+        events: json,
+      });
     });
 });
 
-router.get('/dashboard/coordinador/cambio_equipo', async function(req, res) {
-    const response = await fetch("http://localhost:3000/query/get_all_teams", {method: "GET"})
-    const json = await response.json()
-    res.render('dashboard/cambio_equipo.html', {current_page: "Dashboard Coordinador", equipos: json, message: req.flash("info"), messagetype: req.flash("type")});
+router.get("/dashboard/coordinador/modificar_equipo", async function (req, res) {
+  const response = await fetch("http://localhost:3000/query/get_all_teams", {
+    method: "GET",
+  });
+  const json = await response.json();
+  res.render("dashboard/modificar_equipo.html", {
+    current_page: "Dashboard Coordinador",
+    equipos: json,
+    message: req.flash("info"),
+    messagetype: req.flash("type"),
+  });
 });
 
-router.post('/dashboard/coordinador/cambio_equipo', async function(req, res) {
-    const responsee = await fetch("http://localhost:3000/query/get_all_teams", {method: "GET"})
-    const json = await responsee.json()
+router.post("/dashboard/coordinador/modificar_equipo", async function (req, res) {
+  const responsee = await fetch("http://localhost:3000/query/get_all_teams", {
+    method: "GET",
+  });
+  const json = await responsee.json();
 
-    const rel = await fetch("http://localhost:3000/query/get_team_by_id?id="+req.body.equipo, {method: "GET"})
-    const rep = await rel.json()
-    console.log("==")
-    console.log(rep)
+  const rel = await fetch(
+    "http://localhost:3000/query/get_team_by_id?id=" + req.body.equipo,
+    { method: "GET" }
+  );
+  const rep = await rel.json();
+  
+  const response = await fetch(
+    "http://localhost:3000/query/get_part_of_team?id=" + req.body.equipo,
+    { method: "GET" }
+  );
+  const data = await response.json();
 
-    const response = await fetch("http://localhost:3000/query/get_part_of_team?id="+req.body.equipo, {method: "GET"})
-    const data = await response.json()
-
-    res.render('dashboard/cambio_equipo.html', {current_page: "Dashboard Coordinador", events: json, equipo: rep, datos_equipo: data, message: req.flash("info"), messagetype: req.flash("type")});
+  res.render("dashboard/modificar_equipo.html", {
+    current_page: "Dashboard Coordinador",
+    events: json,
+    equipo: rep,
+    datos_equipo: data,
+    message: req.flash("info"),
+    messagetype: req.flash("type"),
+  });
 });
 
 router.get("/dashboard/coordinador/registro_jurado", function (req, res) {
-  res.render("dashboard/registro_jurado.html",{
+  res.render("dashboard/registro_jurado.html", {
     current_page: "Dashboard Coordinador",
     message: req.flash("info"),
     messagetype: req.flash("type"),
@@ -283,9 +309,9 @@ router.post("/dashboard/publico/ver_resultados", async function (req, res) {
 
   const evals_response = await fetch(
     "http://localhost:3000/query/evaluations?evento=" +
-    req.body.evento +
-    "&categoria_evento=" +
-    req.body.categoria_evento,
+      req.body.evento +
+      "&categoria_evento=" +
+      req.body.categoria_evento,
     { method: "GET" }
   );
   const evals_data = await evals_response.json();

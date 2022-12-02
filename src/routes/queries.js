@@ -1,5 +1,5 @@
 import { sequelize, dataTypes } from "../../config/database.js"
-import { QueryTypes } from "sequelize";
+import { QueryTypes, where } from "sequelize";
 import { event } from "../../db/models/event.js";
 import { team } from "../../db/models/team.js";
 import { participant } from "../../db/models/participant.js";
@@ -247,6 +247,20 @@ export async function updateTeam(teamInfo){
 	},{
 		where:{
 			cod_equipo:teamInfo.cod_equipo
+		}
+	})
+}
+
+export async function updateParticipant(partInfo){
+	await participant.update({
+	curp: partInfo.curp,
+    nombre_pila: partInfo.nombre_pila,
+    apellido_1: partInfo.apellido_1,
+    apellido_2:partInfo.apellido_2,
+    fecha_nac: partInfo.fecha_nac 
+	},{
+		where:{
+			curp:partInfo.curp
 		}
 	})
 }

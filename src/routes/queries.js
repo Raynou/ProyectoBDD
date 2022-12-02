@@ -4,7 +4,6 @@ import { event } from "../../db/models/event.js";
 import { team } from "../../db/models/team.js";
 import { judge } from "../../db/models/judge.js";
 import { participant } from "../../db/models/participant.js";
-import { judge } from "../../db/models/judge.js";
 
 export async function events() {
 	const prior_events =  await sequelize.query("call get_events_prior_to_current_date()", QueryTypes.SELECT)
@@ -307,6 +306,7 @@ export async function getJudgeById(judgeId) {
 }
 
 export async function updateJudge(judgeInfo){
+    console.log(judgeInfo)
 	await judge.update({
 	    nombre_pila: judgeInfo.nom_pila,
 	    apellido_1: judgeInfo.apellido_1,

@@ -63,7 +63,6 @@ router.get("/dashboard/coordinador", function (req, res) {
   });
 });
 
-<<<<<<< Updated upstream
 router.get("/dashboard/coordinador/registro_equipo", function (req, res) {
   fetch("http://localhost:3000/query/events", { method: "GET" })
     .then((res) => res.json())
@@ -74,7 +73,9 @@ router.get("/dashboard/coordinador/registro_equipo", function (req, res) {
         message: req.flash("info"),
         messagetype: req.flash("type"),
       });
-=======
+    });
+});
+    
 router.get('/dashboard/jurado', function(req, res) {
     res.render('dashboard/dashboard_view.html', {current_page: "Dashboard Jurado"});
 });
@@ -83,7 +84,6 @@ router.get('/dashboard/jurado/evaluar_equipo', function(req, res) {
     fetch("http://localhost:3000/query/events", {method: "GET"}).then(res => res.json()).
 	then((json) => {
         res.render('dashboard/evaluar_equipo.html', {current_page: "Dashboard Jurado", events: json});
->>>>>>> Stashed changes
     });
 });
 

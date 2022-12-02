@@ -8,6 +8,8 @@ insert into EVENTO (cod_evento, nombre_evento, fecha_inicio, fecha_fin, lugar) v
 insert into EVENTO (cod_evento, nombre_evento, fecha_inicio, fecha_fin, lugar) values (7, 'Evento Neo San Isidro', '2021-09-01', '2023-09-13', 'San Isidro');
 
 -- JURADO
+INSERT INTO JURADO VALUES ("er", "Yoyo", "yoyo", "yoyo", "coordinador", MD5(12345));
+INSERT INTO JURADO VALUES (2, "Yoyo", "yoyo", "yoyo", "juaro", MD5(123));
 
 insert into JURADO (CURP, nombre_pila, apellido_1, apellido_2, usuario, contrasenna) values ('853-74-2727', 'Morganne', 'Jennison', 'Foli', 'mfoli0', md5('UlsEzu'));
 insert into JURADO (CURP, nombre_pila, apellido_1, apellido_2, usuario, contrasenna) values ('744-39-0158', 'Stillman', 'Stewart', 'Abramsky', 'sabramsky1', 'OukefxSa');
@@ -163,6 +165,7 @@ insert into PARTICIPANTE (CURP, cod_equipo, nombre_pila, apellido_1, apellido_2,
 insert into PARTICIPANTE (CURP, cod_equipo, nombre_pila, apellido_1, apellido_2, fecha_nac) values ('528-52-1011', '14', 'Lindy', 'Danielou', 'Elphee', '2004-06-25');
 
 -- COLABORAR
+<<<<<<< Updated upstream
 insert into colaborar values ('853-74-2727', 6, "secundaria");
 insert into colaborar values ('853-74-2727', 6, "profesional");
 insert into colaborar values ('853-74-2727', 6, "primaria");
@@ -195,3 +198,41 @@ insert into evaluar_en values (3, 6, null);
 
 insert into evaluar_en values (6, 7, null);
 insert into evaluar_en values (7, 7, null);
+=======
+insert into COLABORAR values ('er', '1', 'bachillerato');
+insert into COLABORAR values ('er', '1', 'primaria');
+insert into COLABORAR (id_jurado, cod_evento, categoria) values ('8', '3', 'bachillerato');
+insert into COLABORAR (id_jurado, cod_evento, categoria) values ('3', '5', 'bachillerato');
+insert into COLABORAR (id_jurado, cod_evento, categoria) values ('6', '2', 'profesional');
+insert into COLABORAR (id_jurado, cod_evento, categoria) values ('4', '4', 'secundaria');
+insert into COLABORAR (id_jurado, cod_evento, categoria) values ('5', '1', 'primaria');
+insert into COLABORAR (id_jurado, cod_evento, categoria) values ('7', '5', 'primaria');
+insert into COLABORAR (id_jurado, cod_evento, categoria) values ('9', '4', 'secundaria');
+insert into COLABORAR (id_jurado, cod_evento, categoria) values ('2', '2', 'primaria');
+insert into COLABORAR (id_jurado, cod_evento, categoria) values ('1', '1', 'bachillerato');
+insert into COLABORAR (id_jurado, cod_evento, categoria) values ('10', '3', 'secundaria');
+
+-- EVALUAR_EN
+insert into EVALUAR_EN (cod_proyecto, cod_evento, id_jurado) values ('23', '5', '3');
+insert into EVALUAR_EN (cod_proyecto, cod_evento, id_jurado) values ('30', '3', '4');
+insert into EVALUAR_EN (cod_proyecto, cod_evento, id_jurado) values ('12', '2', '1');
+insert into EVALUAR_EN (cod_proyecto, cod_evento, id_jurado) values ('8', '1', '5');
+insert into EVALUAR_EN (cod_proyecto, cod_evento, id_jurado) values ('32', '4', '2');
+insert into EVALUAR_EN (cod_proyecto, cod_evento, id_jurado) values ('26', '2', '4');
+insert into EVALUAR_EN (cod_proyecto, cod_evento, id_jurado) values ('1', '4', '1');
+insert into EVALUAR_EN (cod_proyecto, cod_evento, id_jurado) values ('14', '5', '3');
+insert into EVALUAR_EN (cod_proyecto, cod_evento, id_jurado) values ('33', '3', '5');
+insert into EVALUAR_EN (cod_proyecto, cod_evento, id_jurado) values ('7', '1', '2');
+insert into EVALUAR_EN (cod_proyecto, cod_evento, id_jurado) values ('50', '3', '3');
+insert into EVALUAR_EN (cod_proyecto, cod_evento, id_jurado) values ('44', '1', '1');
+insert into EVALUAR_EN (cod_proyecto, cod_evento, id_jurado) values ('27', '4', '2');
+insert into EVALUAR_EN (cod_proyecto, cod_evento, id_jurado) values ('38', '5', '5');
+insert into EVALUAR_EN (cod_proyecto, cod_evento, id_jurado) values ('24', '2', '4');
+insert into EVALUAR_EN (cod_proyecto, cod_evento, id_jurado) values ('36', '4', '5');
+insert into EVALUAR_EN (cod_proyecto, cod_evento, id_jurado) values ('39', '5', '3');
+insert into EVALUAR_EN (cod_proyecto, cod_evento, id_jurado) values ('11', '1', '2');
+insert into EVALUAR_EN (cod_proyecto, cod_evento, id_jurado) values ('4', '2', '1');
+insert into EVALUAR_EN (cod_proyecto, cod_evento, id_jurado) values ('48', '3', '4');
+
+call set_evento('EventoMamalonII:ElectricBongaloo', '2022-11-29', '2022-12-10', 'Santa Fe');
+>>>>>>> Stashed changes

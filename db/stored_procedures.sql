@@ -404,4 +404,5 @@ in evento int
 end;
 
 -- call get_jury_cat_teams('EIRG021230HTSSMNA2');
+
 -- call get_event_code("Evento Neo San Isidro");

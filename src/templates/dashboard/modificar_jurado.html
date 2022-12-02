@@ -1,6 +1,6 @@
 {% extends "dashboard/dashboard_view.html" %} {% block dashboard_content %}
 <div>
-  <form action="#" method="POST">
+  <form action="{% if datos_jurado %} /query/modificar_jurado {% else %} {% endif %}" method="POST">
     <div class="mt-5 md:col-span-2 md:mt-0">
       <div class="space-y-6 px-4 py-5 sm:p-6">
         <div class="grid grid-cols-3">
@@ -13,7 +13,7 @@
               >
                 <option selected hidden value="">Jurado a modificar</option>
                 {% for jurado in judges %}
-                <option value="{{ jurado['CURP'] }}">
+                <option value="{{ jurado['CURP'] }}" {% if datos_jurado[0].curp == jurado['CURP'] %} selected {% endif %}>
                   {{ jurado["nombre_pila"] }} {{ jurado["apellido_1"] }} {{
                   jurado["apellido_2"] }}
                 </option>
@@ -26,6 +26,8 @@
         </div>
       </div>
     </div>
+
+    {% if datos_jurado %}
 
     <div class="md:grid md:grid-cols-3 md:gap-6">
       <div class="md:col-span-1">
@@ -59,6 +61,7 @@
                     id="curp"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder=""
+		    value="{{ datos_jurado[0].curp }}"
                   />
                 </div>
               </div>
@@ -80,6 +83,7 @@
                     id="nom_pila"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Nombre(s)"
+		    value="{{ datos_jurado[0].nombre_pila }}"
                   />
                 </div>
               </div>
@@ -101,6 +105,7 @@
                     id="apellido_1"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Primer Apellido"
+		    value="{{ datos_jurado[0].apellido_1 }}"
                   />
                 </div>
               </div>
@@ -122,6 +127,7 @@
                     id="apellido_2"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Segundo Apellido"
+		    value="{{ datos_jurado[0].apellido_2 }}"
                   />
                 </div>
               </div>
@@ -142,6 +148,7 @@
                     id="user"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Usuario"
+		    value="{{ datos_jurado[0].usuario }}"
                   />
                 </div>
               </div>
@@ -177,9 +184,23 @@
     <hr />
     <br />
 
+    {% endif %}
+
     <div class="px-4 py-3 text-right sm:px-6">
-      <button
+      {% if datos_jurado %}
+      <input
+	id="submit"
+	name="submit"
         type="submit"
+	value="Borrar"
+        class="inline-flex justify-center rounded-md border border-transparent bg-red-500 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
+      />
+      {% endif %}
+      <button
+	id="submit"
+	name="submit"
+        type="submit"
+	value="Actualizar"
         class="inline-flex justify-center rounded-md border border-transparent bg-sky-500 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
       >
         Enviar

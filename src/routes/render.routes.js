@@ -175,24 +175,30 @@ router.get("/dashboard/coordinador/modificar_evento", function (req, res) {
     });
 });
 
-router.get("/dashboard/coordinador/modificar_jurado", function (req, res) {
-  fetch("http://localhost:3000/query/judge", { method: "GET" })
-    .then((res) => res.json())
-    .then((json) => {
-      res.render("dashboard/modificar_jurado.html", {
-        current_page: "Dashboard Coordinador",
-        judges: json,
-        message: req.flash("info"),
-        messagetype: req.flash("type"),
-      });
-    });
+router.get('/dashboard/coordinador/modificar_jurado', async function(req, res) {
+    const response = await fetch("http://localhost:3000/query/judge", { method: "GET" })
+    const json = await response.json()
+    res.render('dashboard/modificar_jurado.html', {current_page: "Dashboard Coordinador", judges: json, message: req.flash("info"), messagetype: req.flash("type")});
+});
+
+router.post('/dashboard/coordinador/modificar_jurado', async function(req, res) {
+    const response = await fetch("http://localhost:3000/query/judge", { method: "GET" })
+    const json = await response.json()
+
+
+    console.log(req.body.evento)
+    const responsee = await fetch("http://localhost:3000/query/judgeById?id="+req.body.evento, { method: "GET" })
+    const jsone = await responsee.json()
+    console.log(jsone)
+    res.render('dashboard/modificar_jurado.html', {current_page: "Dashboard Coordinador", judges: json, datos_jurado: jsone, message: req.flash("info"), messagetype: req.flash("type")});
+
 });
 
 router.get("/dashboard/jurado", function (req, res) {
   res.render("dashboard/dashboard_view.html", {
     current_page: "Dashboard Jurado",
     message: req.flash("info"),
-    messagetype: req.flash("type"),
+    messagetype: req.flash("type")
   });
 });
 

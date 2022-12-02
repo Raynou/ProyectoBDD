@@ -2,6 +2,7 @@ import { sequelize, dataTypes } from "../../config/database.js"
 import { QueryTypes, where } from "sequelize";
 import { event } from "../../db/models/event.js";
 import { team } from "../../db/models/team.js";
+import { judge } from "../../db/models/judge.js";
 import { participant } from "../../db/models/participant.js";
 
 export async function events() {
@@ -270,6 +271,37 @@ export async function updateParticipant(partInfo){
 	},{
 		where:{
 			curp:partInfo.CURP
+		}
+	})
+}
+
+export async function getJudgeById(judgeId) {
+    console.log("llegamos aqui")
+	return await judge.findAll({
+		where:{
+			curp:judgeId
+	}})
+}
+
+export async function updateJudge(judgeInfo){
+	await judge.update({
+	    nombre_pila: judgeInfo.nom_pila,
+	    apellido_1: judgeInfo.apellido_1,
+	    apellido_2: judgeInfo.apellido_2,
+	    usuario: judgeInfo.user,
+	    password: judgeInfo.password,
+	curp:judgeInfo.curp
+	},{
+		where:{
+			curp:judgeInfo.curp
+		}
+	})
+}
+
+export async function deleteJudge(curo){
+	await judge.destroy({
+		where:{
+			curp:curo
 		}
 	})
 }

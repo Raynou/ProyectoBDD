@@ -161,6 +161,7 @@ router.post("/query/assign_team", (req, res) => {
   const data = req.body;
 
   const assign = {
+    nombre: data.proyecto_participar,
     evento: data.evento_participar,
     equipo: data.equipo_participar,
   };

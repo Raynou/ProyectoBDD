@@ -18,6 +18,10 @@ router.get("/query/judge_event", async (req, res) => {
   res.send(await query.judge_event());
 });
 
+router.get("/query/team_event", async (req, res) => {
+  res.send(await query.team_event());
+});
+
 router.post("/query/login", async function (req, res) {
   const user = req.body.codigo;
   const pass = req.body.contraseña;
@@ -146,12 +150,26 @@ router.post("/query/assign_judge", (req, res) => {
     categoria: data.categoria_jurado,
   };
 
-  console.log(assign);
   query.assignJudge(assign);
 
   req.flash("info", "Se ha asigando con exito");
   req.flash("type", "success");
   res.redirect("/dashboard/coordinador/asignar_jurado");
+});
+
+router.post("/query/assign_team", (req, res) => {
+  const data = req.body;
+
+  const assign = {
+    evento: data.evento_participar,
+    equipo: data.equipo_participar,
+  };
+
+  query.assignTeam(assign);
+
+  req.flash("info", "Se ha asigando con exito");
+  req.flash("type", "success");
+  res.redirect("/dashboard/coordinador/asignar_equipo");
 });
 
 router.post("/query/set_calif", (req, res) => {

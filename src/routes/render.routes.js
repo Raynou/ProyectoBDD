@@ -116,6 +116,20 @@ router.get("/dashboard/coordinador/asignar_jurado", async function (req, res) {
   });
 });
 
+router.get("/dashboard/coordinador/asignar_equipo", async function (req, res) {
+  const response = await fetch("http://localhost:3000/query/team_event", {
+    method: "GET",
+  });
+  const data = await response.json();
+
+  res.render("dashboard/asignar_equipo.html", {
+    current_page: "Dashboard Coordinador",
+    data: data,
+    message: req.flash("info"),
+    messagetype: req.flash("type"),
+  });
+});
+
 router.get("/dashboard/coordinador/registro_evento", function (req, res) {
   res.render("dashboard/registro_evento.html", {
     current_page: "Dashboard Coordinador",

@@ -4,6 +4,7 @@ import { event } from "../../db/models/event.js";
 import { team } from "../../db/models/team.js";
 import { judge } from "../../db/models/judge.js";
 import { participant } from "../../db/models/participant.js";
+import { judge } from "../../db/models/judge.js";
 
 export async function events() {
 	const prior_events =  await sequelize.query("call get_events_prior_to_current_date()", QueryTypes.SELECT)
@@ -206,9 +207,31 @@ export async function getJudge(){
 }
 
 export async function putJudge(curp, nomPila, primerApellido, segundoApellido, user, password){
-	await sequelize.query('call set_jurado(?, ?, ?, ?, ?, ?)', {
-		replacements:[curp, nomPila, primerApellido, segundoApellido, user, password]
-	})
+
+	let message = "Se ha creado el nuevo jurado correctamente";
+	// Validación de existencia de jurado
+	const query = await judge.findAll({
+		attributes:[
+			[sequelize.fn('COUNT', sequelize.col('CURP')), 'total_coincidences']
+		],
+		where:{
+				curp: curp
+		}
+	});
+
+	const totalCoincidendes = JSON.parse(JSON.stringify(query, null, 2))[0].total_coincidences;
+	
+	if(totalCoincidendes > 0) {
+		message = "Jurado ya existente";
+		return message;
+	}else {
+		await sequelize.query('call set_jurado(?, ?, ?, ?, ?, ?)', {
+			replacements:[curp, nomPila, primerApellido, segundoApellido, user, password]
+		})
+	
+		return message;
+	}
+	
 }
 
 export async function getTeams(){
@@ -304,6 +327,28 @@ export async function deleteJudge(curo){
 			curp:curo
 		}
 	})
+ }
+export async function getEventById(eventCode){
+	return await event.findAll({
+		where:{
+			cod_evento:eventCode
+	}})
+}
+
+export async function updateEvent(eventInput){
+    console.log(eventInput)
+	await event.update({
+		nombre_evento: eventInput.nombre, 
+		fecha_inicio: eventInput.f_inicio,
+		fecha_fin:eventInput.f_fin,
+		lugar:eventInput.lug
+	},{
+		where:{
+			cod_evento:eventInput.codigo 
+		}
+	})
+
+    console.log("done")
 }
 
 //sequelize.close()

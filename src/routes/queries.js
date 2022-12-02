@@ -313,6 +313,7 @@ export async function getJudgeById(judgeId) {
 }
 
 export async function updateJudge(judgeInfo){
+    console.log(judgeInfo)
 	await judge.update({
 	    nombre_pila: judgeInfo.nom_pila,
 	    apellido_1: judgeInfo.apellido_1,

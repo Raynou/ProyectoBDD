@@ -75,6 +75,17 @@ router.get("/dashboard/coordinador/registro_equipo", function (req, res) {
       });
     });
 });
+    
+router.get('/dashboard/jurado', function(req, res) {
+    res.render('dashboard/dashboard_view.html', {current_page: "Dashboard Jurado"});
+});
+
+router.get('/dashboard/jurado/evaluar_equipo', function(req, res) {
+    fetch("http://localhost:3000/query/events", {method: "GET"}).then(res => res.json()).
+	then((json) => {
+        res.render('dashboard/evaluar_equipo.html', {current_page: "Dashboard Jurado", events: json});
+    });
+});
 
 router.get('/dashboard/coordinador/cambio_equipo', async function(req, res) {
     const response = await fetch("http://localhost:3000/query/get_all_teams", {method: "GET"})

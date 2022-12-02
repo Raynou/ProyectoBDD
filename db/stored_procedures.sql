@@ -403,6 +403,7 @@ in evento int
     group by cod_equipo;
 end;
 
+call count_projects(2, 3);
 -- call get_jury_cat_teams('EIRG021230HTSSMNA2');
 
 -- call get_event_code("Evento Neo San Isidro");

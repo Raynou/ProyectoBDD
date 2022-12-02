@@ -345,40 +345,12 @@ in user varchar(255)
 end $$
 delimiter ;
 
-<<<<<<< Updated upstream
-=======
-drop procedure if exists get_events_of_jury;
-delimiter $$
-create procedure get_events_of_jury(
-in jurado varchar(18)
-) begin
-
-	select * from colaborar where curp_jurado=jurado;
-    
-end $$
-delimiter ;
-
-call get_events_of_jury("er");
-
-drop procedure if exists get_current_jury_events;
-delimiter $$
-create procedure get_events_of_jury(
-in jurado varchar(18)
-) begin
-
-	-- select * from (call get_events_of_jury) ;
-    
-end $$
-delimiter ;
-
->>>>>>> Stashed changes
 drop procedure if exists get_jury_cat_teams;
 delimiter $$
 create procedure get_jury_cat_teams(
 in ccjurado varchar(18)
 ) begin
 	
-<<<<<<< Updated upstream
     SELECT 
     DISTINCT nombre_evento, cod_proyecto
 FROM
@@ -404,14 +376,9 @@ FROM
 WHERE
     (evaluar_en.curp_jurado IS NULL
         AND colaborar.curp_jurado = ccjurado);
-=======
-    select * from equipo inner join proyecto using(cod_equipo) inner join evaluar_en using (cod_proyecto) inner join evento using(cod_evento) inner join colaborar using(cod_evento) WHERE colaborar.curp_jurado=ccjurado;
->>>>>>> Stashed changes
-
 end $$
 delimiter ;
 
-<<<<<<< Updated upstream
 drop procedure if exists get_event_code;
 delimiter $$
 create procedure get_event_code(
@@ -433,11 +400,10 @@ in evento int
     natural join EVALUAR_EN
     where equipo like cod_equipo and cod_evento like evento
     group by cod_equipo;
-end;
+end $$
+delimiter ;
 
 -- call get_jury_cat_teams('EIRG021230HTSSMNA2');
 
 -- call get_event_code("Evento Neo San Isidro");
-=======
-call get_jury_cat_teams("er")
->>>>>>> Stashed changes
+

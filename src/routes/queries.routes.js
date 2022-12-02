@@ -208,7 +208,7 @@ router.post("/query/set_calif", (req, res) => {
   res.redirect("/dashboard/jurado/evaluar_equipo");
 });
 
-router.post("/query/set_judge", (req, res) => {
+router.post("/query/set_judge", async (req, res) => {
   const data = req.body;
   let curp = data.curp;
   let nomPila = data.nom_pila;
@@ -217,7 +217,7 @@ router.post("/query/set_judge", (req, res) => {
   let user = data.user;
   let password = data.password;
 
-  query.putJudge(
+  const response = await query.putJudge(
     curp,
     nomPila,
     primerApellido,
@@ -225,8 +225,12 @@ router.post("/query/set_judge", (req, res) => {
     user,
     password
   );
-  req.flash("info", "Se ha creado el nuevo jurado correctamente");
-  req.flash("type", "success");
+  if(response == "Se ha creado el nuevo jurado correctamente"){
+    req.flash("type", "success");
+  }else{
+    req.flash("type", "error");
+  }
+  req.flash("info", response);
   res.redirect("/dashboard/coordinador/registro_jurado");
 });
 

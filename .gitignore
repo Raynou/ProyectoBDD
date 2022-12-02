@@ -3,7 +3,7 @@ node_modules
 .env
 dist/
 .idea/
-
+public/output.css
 # Shh
 *~
 *#

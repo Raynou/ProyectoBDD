@@ -205,7 +205,26 @@ export async function deleteTeam(teamCode){
 	})
 }
 
-console.log(await getTeamByName('Dinamita'))
+export async function updateTeam(teamInfo){
+	await team.update({
+		nombre_equipo: teamInfo.nombre_equipo,
+		categoria: teamInfo.categoria,
+		institucion: teamInfo.institucion
+	},{
+		where:{
+			cod_equipo:teamInfo.cod_equipo
+		}
+	})
+}
 
+const information = {
+	cod_equipo : 1,
+	nombre_equipo: "Dinamita",
+	categoria: "profesional",
+	institucion: "UAT"
+}
+
+updateTeam(information)
+getTeamById(1)
 
 //sequelize.close()

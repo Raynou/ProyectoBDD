@@ -245,6 +245,7 @@ export async function deleteTeam(teamCode){
 }
 
 export async function updateTeam(teamInfo){
+    console.log(teamInfo)
 	await team.update({
 		nombre_equipo: teamInfo.nombre_equipo,
 		categoria: teamInfo.categoria,
@@ -254,18 +255,21 @@ export async function updateTeam(teamInfo){
 			cod_equipo:teamInfo.cod_equipo
 		}
 	})
+
+    console.log("done")
 }
 
 export async function updateParticipant(partInfo){
+    console.log(partInfo)
+    console.log("++++")
 	await participant.update({
-	curp: partInfo.curp,
     nombre_pila: partInfo.nombre_pila,
     apellido_1: partInfo.apellido_1,
     apellido_2:partInfo.apellido_2,
     fecha_nac: partInfo.fecha_nac 
 	},{
 		where:{
-			curp:partInfo.curp
+			curp:partInfo.CURP
 		}
 	})
 }

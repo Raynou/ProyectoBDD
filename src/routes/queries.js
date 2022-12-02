@@ -205,7 +205,29 @@ export async function deleteTeam(teamCode){
 	})
 }
 
-console.log(await getTeamByName('Dinamita'))
-
+export async function updateTeam(teamInfo){
+	await team.update({
+		nombre_equipo: teamInfo.nombre_equipo,
+		categoria: teamInfo.categoria,
+		institucion: teamInfo.institucion
+	},{
+		where:{
+			cod_equipo:teamInfo.cod_equipo
+		}
+	})
+}
+export async function updateParticipant(partInfo){
+	await participant.update({
+	curp: partInfo.curp,
+    nombre_pila: partInfo.nombre_pila,
+    apellido_1: partInfo.apellido_1,
+    apellido_2:partInfo.apellido_2,
+    fecha_nac: partInfo.fecha_nac 
+	},{
+		where:{
+			curp:partInfo.curp
+		}
+	})
+}
 
 //sequelize.close()

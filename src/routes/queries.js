@@ -43,6 +43,7 @@ export async function get_jury_code(username) {
 
 export async function get_jury_cat_teams(curp_jurado) {
     const result = await sequelize.query("call get_jury_cat_teams('" + curp_jurado + "')", QueryTypes.SELECT)
+	console.log(result)
     return result
 }
 
@@ -113,9 +114,16 @@ export async function putEvent(eventInput){
 */
 export async function assignJudge(assign){
 	// Insertar evento
-	await sequelize.query('call set_colaborar(?, ?, ?);', {
-		replacements: [assign.jurado, assign.evento, assign.categoria]
-	})
+	let response = "Se ha asigando con exito"
+	try{
+		await sequelize.query('call set_colaborar(?, ?, ?);', {
+			replacements: [assign.jurado, assign.evento, assign.categoria]
+		})
+		return response;
+	}catch{
+		response = "Jurado ya asignado";
+		return response; 
+	}
 }
 
 /*PROYECTO
@@ -136,11 +144,10 @@ export async function assignTeam(assign){
 		replacements: [assign.equipo, assign.evento]
 	});
 
-	const numberOfProjects = 0;
-	if(JSON.stringify(query) == '{}'){
-		numberOfprojects = query[0].proyectos_totales;
+	let numberOfProjects = 0;
+	if(query[0]){
+		numberOfProjects = query[0].proyectos_totales;
 	}
-
 	if(numberOfProjects >= 1){
 		response = "El equipo ya ha registrado un proyecto en este evento";
 		return response;

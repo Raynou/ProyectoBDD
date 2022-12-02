@@ -289,8 +289,8 @@ router.get("/dashboard/jurado/evaluar_equipo", function (req, res) {
     "http://localhost:3000/query/get_jury_cat_teams?userid=" + session.userid,
     { method: "GET" }
   )
-    .then((res) => res.json())
-    .then((result) => {
+   .then((res) => res.json())
+   .then((result) => {
       const conv = function (text) {
         return text.replaceAll(" ", "-");
       };
@@ -298,7 +298,7 @@ router.get("/dashboard/jurado/evaluar_equipo", function (req, res) {
       const inv_conv = function (text) {
         return text.replaceAll("-", " ");
       };
-
+      console.log(`Chinga tu madre Oaxaca ${result}`)
       var dict = [];
 
       for (var i = 0; i < result.length; i++) {

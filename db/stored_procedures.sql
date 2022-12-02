@@ -405,7 +405,7 @@ end $$
 delimiter ;
 
 call count_projects(2, 3);
--- call get_jury_cat_teams('EIRG021230HTSSMNA2');
+-- call get_jury_cat_teams('GAMR020521HTSRNFA3');
 
 -- call get_event_code("Evento Neo San Isidro");
 

@@ -6,6 +6,16 @@
         <div class="grid grid-cols-3">
           <div class="col-span-3">
             <div class="mt-1 flex rounded-md shadow-sm">
+		{% if datos_jurado %}
+		<input
+                id="evento"
+                name="evento"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2"
+		  value="{{ datos_jurado[0].nombre_pila }} {{ datos_jurado[0].apellido_1 }} {{ datos_jurado[0].apellido_2 }}"
+		  readonly
+		  />
+
+		{% else %}
               <select
                 id="evento"
                 name="evento"
@@ -21,6 +31,7 @@
                 <option disabled>No hay ningun jurado disponible.</option>
                 {% endfor %}
               </select>
+		{% endif %}
             </div>
           </div>
         </div>

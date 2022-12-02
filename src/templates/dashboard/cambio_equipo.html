@@ -200,7 +200,7 @@
             <div class="grid grid-cols-3 gap-6">
               <div class="col-span-3 sm:col-span-2">
                 <label
-                  for="curp_integrante1"
+                  for="curp_integrante{{loop.index}}"
                   class="block text-sm font-medium text-gray-700"
                   >CURP</label
                 >
@@ -211,8 +211,8 @@
                     maxlength="18" 
                     size="18"
                     required
-                    name="curp_integrante1"
-                    id="curp_integrante1"
+                    name="curp_integrante{{loop.index}}"
+                    id="curp_integrante{{loop.index}}"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder=""
 		    value="{{ integrante.curp }}"
@@ -224,7 +224,7 @@
             <div class="grid grid-cols-3 gap-6">
               <div class="col-span-3 sm:col-span-2">
                 <label
-                  for="nombre_integrante1"
+                  for="nombre_integrante{{loop.index}}"
                   class="block text-sm font-medium text-gray-700"
                   >Nombre(s)</label
                 >
@@ -233,8 +233,8 @@
                     type="text"
                     pattern="[A-Za-zÀ-ÿ\u00f1\u00d1\-\s]$+"
                     required
-                    name="nombre_integrante1"
-                    id="nombre_integrante1"
+                    name="nombre_integrante{{loop.index}}"
+                    id="nombre_integrante{{loop.index}}"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Nombre(s)"
 		    value="{{ integrante.nombre_pila }}"
@@ -254,8 +254,8 @@
                   <input
                     type="text"
                     required
-                    name="apellido1_integrante1"
-                    id="apellido1_integrante1"
+                    name="apellido1_integrante{{loop.index}}"
+                    id="apellido1_integrante{{loop.index}}"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Primer Apellido"
 		    value="{{ integrante.apellido_1 }}"
@@ -267,7 +267,7 @@
             <div class="grid grid-cols-3 gap-6">
               <div class="col-span-3 sm:col-span-2">
                 <label
-                  for="apellido2_integrante1"
+                  for="apellido2_integrante{{loop.index}}"
                   class="block text-sm font-medium text-gray-700"
                   >Segundo Apellido</label
                 >
@@ -275,8 +275,8 @@
                   <input
                     type="text"
                     required
-                    name="apellido2_integrante1"
-                    id="apellido2_integrante1"
+                    name="apellido2_integrante{{loop.index}}"
+                    id="apellido2_integrante{{loop.index}}"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Segundo Apellido"
 		    value="{{ integrante.apellido_2 }}"
@@ -296,8 +296,8 @@
                   <input
                     type="date"
                     required
-                    name="edad_integrante1"
-                    id="edad_integrante1"
+                    name="edad_integrante{{loop.index}}"
+                    id="edad_integrante{{loop.index}}"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
 		    value="{{ integrante.fecha_nac }}"
                   />

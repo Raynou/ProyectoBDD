@@ -121,10 +121,18 @@ export async function assignJudge(assign){
  @para nom_proyecto - nombre_proyecto
  @param cod_eq - cod_equipo
 */
+/*EVALUAR_EN
+ @param proyecto - cod_proyecto
+ @param evento  - cod_evento
+ @param jurado - id_jurado
+*/
 export async function assignTeam(assign){
 	// Insertar evento
 	await sequelize.query('call set_proyecto(?, ?);', {
-		replacements: [assign.equipo, assign.evento]
+		replacements: [assign.nombre, assign.equipo]
+	})
+	await sequelize.query('call set_evaluacion((SELECT cod_proyecto FROM PROYECTO ORDER BY cod_proyecto DESC LIMIT 1), ?, null);', {
+		replacements: [assign.evento]
 	})
 }
 

@@ -102,6 +102,7 @@ router.get("/dashboard/coordinador/registro_jurado", function (req, res) {
     current_page: "Dashboard Coordinador",
     message: req.flash("info"),
     messagetype: req.flash("type"),
+  });
 });
 
 router.get("/dashboard/coordinador/modificar_equipo", function (req, res) {

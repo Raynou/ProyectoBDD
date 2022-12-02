@@ -65,7 +65,8 @@ create table COLABORAR(
 
     constraint FK_EVENTO_COLABORADOR
     foreign key (cod_evento) references EVENTO(cod_evento)
-    on delete cascade on update cascade
+    on delete cascade on update cascade,
+    primary key (curp_jurado, cod_evento)
 
 );
 

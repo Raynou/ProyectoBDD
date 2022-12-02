@@ -339,6 +339,7 @@ router.post("/query/update_team", async function (req, res) {
 
   let validator = 0;
   let rejectedPart = [];
+    let invalid = -1;
 
   for (let i = 0; i < 3; i++) {
     let age = script.calculateAge(part[i].fecha_nac);
@@ -346,6 +347,8 @@ router.post("/query/update_team", async function (req, res) {
     if (script.validateAge(age, cat)) {
       validator++;
       rejectedPart.push(part[i]);
+    } else {
+	invalid = i + 1
     }
   }
 
@@ -362,7 +365,7 @@ router.post("/query/update_team", async function (req, res) {
     req.flash("info", "Se ha actualizado el equipo con exito");
     req.flash("type", "success");
   } else {
-    req.flash("info", "Participante ${rejectedPart} inválido");
+    req.flash("info", "Participante " + invalid +" inválido");
     req.flash("type", "error");
   }
 

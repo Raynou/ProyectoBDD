@@ -242,6 +242,11 @@ router.get("/query/get_team_by_id", async function (req, res) {
   res.send(values);
 });
 
+router.get("/query/get_event_by_id", async function (req, res) {
+  const ren = await query.getEventById(req.query.id);
+  res.send(ren);
+});
+
 router.get("/query/get_team_by_name", async function (req, res) {
   const name = req.query.name;
   res.send(await query.getTeamByName(name));
@@ -359,64 +364,25 @@ router.post("/query/update_team", async function (req, res) {
 
 router.post("/query/update_event", async function (req, res) {
   const data = req.body;
-
-  if (data.submit == "Borrar") {
-    query.deleteTeam(data.cod_equipo);
-
-    req.flash("info", "Se ha borrado el equipo con exito");
-    req.flash("type", "success");
-
-    res.redirect("/dashboard/coordinador/cambio_equipo");
-
-    return;
-  }
-
+  
+  const event = {
+    codigo: data.cod_evento,
+    nombre: data.nombre_evento,
+    f_inicio: data.inicio_evento,
+    f_fin: data.fin_evento, 
+    lug: data.ubicacion_sede,
+  };
   console.log(data);
-  const name = data.nombre_equipo;
-  const cat = data.categoria_equipo;
-  const inst = data.institucion_equipo;
-  const part = [
-    {
-      CURP: data.curp_integrante1,
-      nombre_pila: data.nombre_integrante1,
-      apellido_1: data.apellido1_integrante1,
-      apellido_2: data.apellido2_integrante1,
-      fecha_nac: data.edad_integrante1,
-    },
-    {
-      CURP: data.curp_integrante2,
-      nombre_pila: data.nombre_integrante2,
-      apellido_1: data.apellido1_integrante2,
-      apellido_2: data.apellido2_integrante2,
-      fecha_nac: data.edad_integrante2,
-    },
-    {
-      CURP: data.curp_integrante3,
-      nombre_pila: data.nombre_integrante3,
-      apellido_1: data.apellido1_integrante3,
-      apellido_2: data.apellido2_integrante3,
-      fecha_nac: data.edad_integrante3,
-    },
-  ];
+  console.log(event);
+  /*const response = await query.updateEvent(event);
 
-  console.log(part);
-
-  let validator = 0;
-  let rejectedPart = [];
-
-  for (let i = 0; i < 3; i++) {
-    let age = script.calculateAge(part[i].fecha_nac);
-    console.log(age);
-    if (script.validateAge(age, cat)) {
-      validator++;
-      rejectedPart.push(part[i]);
-    }
-  }
-
-  req.flash("info", "Se ha borrado el equipo con exito");
+  req.flash("info", response);
+  if (response == "Evento modificado exitosamente!") {
     req.flash("type", "success");
-
-  res.redirect("/dashboard/coordinador/cambio_equipo");
+  } else {
+    req.flash("type", "error");
+  }*/
+  res.redirect("/dashboard/coordinador/modifciar_evento");
 });
 
 export default router;

@@ -136,7 +136,7 @@ export async function assignTeam(assign){
 	});
 	const numberOfProjects = query[0].proyectos_totales;
 	if(numberOfProjects >= 1){
-		response = "El equipo ya ha registrado un proyecto en este evento"
+		response = "El equipo ya ha registrado un proyecto en este evento";
 		return response;
 	}else{
 		await sequelize.query('call set_proyecto(?, ?);', {

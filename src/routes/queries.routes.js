@@ -378,15 +378,15 @@ router.post("/query/update_event", async function (req, res) {
   };
   console.log(data);
   console.log(event);
-  /*const response = await query.updateEvent(event);
+  const response = await query.updateEvent(event);
 
   req.flash("info", response);
   if (response == "Evento modificado exitosamente!") {
     req.flash("type", "success");
   } else {
     req.flash("type", "error");
-  }*/
-  res.redirect("/dashboard/coordinador/modifciar_evento");
+  }
+  res.redirect("/dashboard/coordinador/modificar_evento");
 });
 
 export default router;

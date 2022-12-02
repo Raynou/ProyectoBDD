@@ -284,6 +284,7 @@ router.delete('/query/delete_team', async function (req, res) {
 router.post('/query/update_team', async function (req, res) {
 	const data = req.body
 
+    console.log(data)
 	const name = data.nombre_equipo;
 	const cat = data.categoria_equipo;
 	const inst = data.institucion_equipo
@@ -311,6 +312,8 @@ router.post('/query/update_team', async function (req, res) {
 		}
 	]
 
+    console.log(part)
+
 	let validator = 0
 	let rejectedPart = []
 	
@@ -326,9 +329,9 @@ router.post('/query/update_team', async function (req, res) {
 
     if(validator == 3) {
 	query.updateTeam({
-	    nombre_equipo: data.nombre_equipo,
-	    categoria_equipo: data.categoria_equipo,
-	    institucion_equipo: data.institucion_equipo,
+	    nombre_equipo: name,
+	    categoria: cat,
+	    institucion: inst,
 	    cod_equipo: data.cod_equipo
 	})
 	query.updateParticipant(part[0])

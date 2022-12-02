@@ -9,6 +9,10 @@ export const judge =  sequelize.define('JURADO', {
         type: dataTypes.STRING,
         allowNull: false
     },
+    apellido_1:{
+        type: dataTypes.STRING,
+        allowNull: false
+    },
     apellido_2:{
         type: dataTypes.STRING,
         allowNull: false

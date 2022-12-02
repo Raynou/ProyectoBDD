@@ -1,47 +1,46 @@
 {% extends "dashboard/dashboard_view.html" %} {% block dashboard_content %}
 <form action="#" method="POST">
-<div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-  <div class="pb-4 rounded-md bg-gray-100 flex items-top justify-center">
-    <select
-      id="evento"
-      name="evento"
-      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2"
-    >
-      <option selected hidden>Evento a ver</option>
-      {% for evento in events["current"] %}
-      <option value="{{ evento['cod_evento'] }}">
-        {{ evento["nombre_evento"] }}
-      </option>
-      {% else %}
-      <option disabled>No hay ningun evento en curso.</option>
-      {% endfor %}
-    </select>
-  </div>
-  <div class="pb-4 rounded-md bg-gray-100 flex items-top justify-center">
-    <select
-      id="categoria_evento"
-      name="categoria_evento"
-      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2"
-    >
-      <option hidden selected>Categoria de participantes</option>
-      <option value="primaria">Categoria 1 - Primaria</option>
-      <option value="secundaria">Categoria 2 - Secundaria</option>
-      <option value="bachillerato">Categoria 3 - Media Superior</option>
-      <option value="profesional">Categoria 4 - Superior</option>
-    </select>
-  </div>
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+    <div class="pb-4 rounded-md bg-gray-100 flex items-top justify-center">
+      <select
+        id="evento"
+        name="evento"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2"
+      >
+        <option selected hidden value="">Evento a ver</option>
+        {% for evento in events["current"] %}
+        <option value="{{ evento['cod_evento'] }}">
+          {{ evento["nombre_evento"] }}
+        </option>
+        {% else %}
+        <option disabled>No hay ningun evento en curso.</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="pb-4 rounded-md bg-gray-100 flex items-top justify-center">
+      <select
+        id="categoria_evento"
+        name="categoria_evento"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2"
+      >
+        <option hidden selected>Categoria de participantes</option>
+        <option value="primaria">Categoria 1 - Primaria</option>
+        <option value="secundaria">Categoria 2 - Secundaria</option>
+        <option value="bachillerato">Categoria 3 - Media Superior</option>
+        <option value="profesional">Categoria 4 - Superior</option>
+      </select>
+    </div>
 
-  <div class="pb-4 rounded-md bg-gray-100 flex items-top justify-center">
-    <input
-      id="send"
-      name="send"
-      type="submit"
-      {% if events %}
-
-      {% else %}
-      disabled
-      {% endif %}
-      class="inline-flex justify-center rounded-md border border-transparent bg-sky-500 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
+    <div class="pb-4 rounded-md bg-gray-100 flex items-top justify-center">
+      <input
+        id="send"
+        name="send"
+        type="submit"
+        {% if events %}
+        {% else %}
+        disabled
+        {% endif %}
+        class="inline-flex justify-center rounded-md border border-transparent bg-sky-500 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
     />
   </div>
 </div>
@@ -59,9 +58,15 @@
     <tbody>
       {% for evaluacion in evaluations %}
       <tr>
-        <th scope="row" class="py-4 px-6 font-medium text-gray-900">{{ loop.index }}</th>
-        <td class="py-4 px-6 whitespace-nowrap">{{ evaluacion.nombre_proyecto }}</td>
-        <td class="py-4 px-6 whitespace-nowrap">{{ evaluacion.final_score }}/30</td>
+        <th scope="row" class="py-4 px-6 font-medium text-gray-900">
+          {{ loop.index }}
+        </th>
+        <td class="py-4 px-6 whitespace-nowrap">
+          {{ evaluacion.nombre_proyecto }}
+        </td>
+        <td class="py-4 px-6 whitespace-nowrap">
+          {{ evaluacion.final_score }}/30
+        </td>
       </tr>
       {% else %}
       <tr>

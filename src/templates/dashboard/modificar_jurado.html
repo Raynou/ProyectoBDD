@@ -1,6 +1,32 @@
 {% extends "dashboard/dashboard_view.html" %} {% block dashboard_content %}
 <div>
-  <form action="/query/set_judge" method="POST">
+  <form action="#" method="POST">
+    <div class="mt-5 md:col-span-2 md:mt-0">
+      <div class="space-y-6 px-4 py-5 sm:p-6">
+        <div class="grid grid-cols-3">
+          <div class="col-span-3">
+            <div class="mt-1 flex rounded-md shadow-sm">
+              <select
+                id="evento"
+                name="evento"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2"
+              >
+                <option selected hidden value="">Jurado a modificar</option>
+                {% for jurado in judges %}
+                <option value="{{ jurado['CURP'] }}">
+                  {{ jurado["nombre_pila"] }} {{ jurado["apellido_1"] }} {{
+                  jurado["apellido_2"] }}
+                </option>
+                {% else %}
+                <option disabled>No hay ningun jurado disponible.</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="md:grid md:grid-cols-3 md:gap-6">
       <div class="md:col-span-1">
         <div class="px-4 sm:px-0">
@@ -146,6 +172,10 @@
         </div>
       </div>
     </div>
+
+    <br />
+    <hr />
+    <br />
 
     <div class="px-4 py-3 text-right sm:px-6">
       <button

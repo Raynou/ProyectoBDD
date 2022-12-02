@@ -389,4 +389,41 @@ router.post("/query/update_event", async function (req, res) {
   res.redirect("/dashboard/coordinador/modificar_evento");
 });
 
+router.post('/query/modificar_jurado', async function (req, res) {
+	const data =  req.body
+
+    console.log("===")
+    console.log(data)
+	if (data.submit == "Borrar") {
+	    query.deleteJudge(data.evento)
+	    req.flash('info', 'Se ha borrado el jurado con exito')
+	    req.flash('type', 'success')
+
+	    res.redirect('/dashboard/coordinador/modificar_jurado')
+	    return
+	}
+
+    query.updateJudge({
+	nom_pila: data.nom_pila,
+	apellido_1: data.apellido_1,
+	apellido_2: data.apellido_2,
+	usuario: data.usuario,
+	password: data.password,
+	curp: data.evento
+    });
+
+	req.flash('info', 'Se ha actualizado el jurado con exito')
+	req.flash('type', 'success')
+
+	res.redirect('/dashboard/coordinador/modificar_jurado')
+
+    }
+	   );
+
+router.get('/query/judgeById', async function (req, res) {
+	const data =  await query.getJudgeById(req.query.id)
+    console.log(data)
+    res.send(data)
+})
+
 export default router;

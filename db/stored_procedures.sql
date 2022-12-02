@@ -389,5 +389,19 @@ in event_name varchar(255)
 end $$
 delimiter ;
 
-call get_jury_cat_teams('EIRG021230HTSSMNA2');
+-- Contar todos los proyectos de un equipo en un evento
+-- Objetivo: que un equipo no meta más de dos proyectos a un evento
+drop procedure if exists count_projects;
+create procedure count_projects(
+in equipo int,
+in evento int
+) begin
+    select cod_equipo, count(*) as proyectos_totales from EQUIPO
+    natural join PROYECTO
+    natural join EVALUAR_EN
+    where equipo like cod_equipo and cod_evento like evento
+    group by cod_equipo;
+end;
+
+-- call get_jury_cat_teams('EIRG021230HTSSMNA2');
 -- call get_event_code("Evento Neo San Isidro");

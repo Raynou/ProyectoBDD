@@ -128,12 +128,26 @@ export async function assignJudge(assign){
 */
 export async function assignTeam(assign){
 	// Insertar evento
-	await sequelize.query('call set_proyecto(?, ?);', {
-		replacements: [assign.nombre, assign.equipo]
-	})
-	await sequelize.query('call set_evaluacion((SELECT cod_proyecto FROM PROYECTO ORDER BY cod_proyecto DESC LIMIT 1), ?, null);', {
-		replacements: [assign.evento]
-	})
+
+	let response = "Se ha asigando con exito";
+
+	const query = await sequelize.query('call count_projects(?, ?)',{
+		replacements: [assign.equipo, assign.evento]
+	});
+	const numberOfProjects = query[0].proyectos_totales;
+	if(numberOfProjects >= 1){
+		response = "El equipo ya ha registrado un proyecto en este evento"
+		return response;
+	}else{
+		await sequelize.query('call set_proyecto(?, ?);', {
+			replacements: [assign.nombre, assign.equipo]
+		})
+		await sequelize.query('call set_evaluacion((SELECT cod_proyecto FROM PROYECTO ORDER BY cod_proyecto DESC LIMIT 1), ?, null);', {
+			replacements: [assign.evento]
+		})
+		return response;
+	}
+	
 }
 
 /*CAT_PROGRAMACION

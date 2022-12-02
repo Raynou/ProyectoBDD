@@ -157,7 +157,7 @@ router.post("/query/assign_judge", (req, res) => {
   res.redirect("/dashboard/coordinador/asignar_jurado");
 });
 
-router.post("/query/assign_team", (req, res) => {
+router.post("/query/assign_team", async (req, res) => {
   const data = req.body;
 
   const assign = {
@@ -166,10 +166,13 @@ router.post("/query/assign_team", (req, res) => {
     equipo: data.equipo_participar,
   };
 
-  query.assignTeam(assign);
-
-  req.flash("info", "Se ha asigando con exito");
-  req.flash("type", "success");
+  const message = await query.assignTeam(assign);
+  req.flash("info", message);
+  if(message == "Se ha asigando con exito"){
+	req.flash("type", "success");
+  }else{
+	req.flash("type", "error");
+  }
   res.redirect("/dashboard/coordinador/asignar_equipo");
 });
 

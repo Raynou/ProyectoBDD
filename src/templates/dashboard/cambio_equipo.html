@@ -1,6 +1,7 @@
 {% extends "dashboard/dashboard_view.html" %} {% block dashboard_content %}
 <div>
-  <form action="/query/set_team" method="POST">
+  <form action="{% if datos_equipo %}/query/update_team {% else %} {% endif %}"
+	method="POST">
     <div class="md:grid md:grid-cols-3 md:gap-6">
       <div class="md:col-span-1">
         <div class="px-4 sm:px-0">
@@ -24,6 +25,28 @@
                   >Nombre del Equipo</label
                 >
                 <div class="mt-1 flex rounded-md shadow-sm">
+		  {% if datos_equipo %}
+		    <input
+                    type="text"
+                    required
+                    name="cod_equipo"
+                    id="cod_equipo"
+                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
+                    placeholder="Equipo"
+		     value="{{ equipo[0].cod_equipo }}"
+		      readonly
+                  />
+
+		    <input
+                    type="text"
+                    required
+                    name="nombre_equipo"
+                    id="nombre_equipo"
+                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
+                    placeholder="Equipo"
+		     value="{{ equipo[0].nombre_equipo }}"
+                  />
+		  {% else %}
                   <select
                     required
                     name="equipo"
@@ -32,13 +55,14 @@
                   >
                     <option selected hidden>Equipos a modificar</option>
                     {% for equipo in equipos %}
-                    <option value="{{ equipo }}">
-                      {{ equipo }}
+                    <option value="{{ equipo.cod_equipo }}">
+                      {{ equipo.nombre_equipo }}
                     </option>
                     {% else %}
                     <option disabled>No hay ningun equipo registrado.</option>
                     {% endfor %}
                   </select>
+		  {% endif %}
                 </div>
               </div>
             </div>
@@ -60,31 +84,9 @@
                   id="institucion_equipo"
                   class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                   placeholder="Institución"
+		  value="{{ equipo[0].institucion }}"
                 />
               </div>
-            </div>
-
-            <div class="col-span-3 sm:col-span-2">
-              <label
-                for="evento_equipo"
-                class="block text-sm font-medium text-gray-700"
-                >Evento</label
-              >
-              <select
-                required
-                name="evento_equipo"
-                id="evento_equipo"
-                class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
-              >
-                <option selected hidden>Evento</option>
-                {% for evento in events["current"] %}
-                <option value="{{ evento['cod_evento'] }}">
-                  {{ evento["nombre_evento"] }}
-                </option>
-                {% else %}
-                <option disabled>No hay ningun evento en curso.</option>
-                {% endfor %}
-              </select>
             </div>
             <div>
               <fieldset>
@@ -105,6 +107,9 @@
                       name="categoria_equipo"
                       type="radio"
                       class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-sky-500"
+		      {% if equipo[0].categoria == "primaria" %}
+		      checked
+		      {% endif %}
                     />
                     <label
                       for="cat1"
@@ -119,6 +124,9 @@
                       name="categoria_equipo"
                       type="radio"
                       class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-sky-500"
+		      {% if equipo[0].categoria == "secundaria" %}
+		      checked
+		      {% endif %}
                     />
                     <label
                       for="cat2"
@@ -133,6 +141,9 @@
                       name="categoria_equipo"
                       type="radio"
                       class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-sky-500"
+		      {% if equipo[0].categoria == "bachillerato" %}
+		      checked
+		      {% endif %}
                     />
                     <label
                       for="cat3"
@@ -147,6 +158,9 @@
                       name="categoria_equipo"
                       type="radio"
                       class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-sky-500"
+		      {% if equipo[0].categoria == "profesional" %}
+		      checked
+		      {% endif %}
                     />
                     <label
                       for="cat4"
@@ -166,14 +180,16 @@
     <hr />
     <br />
 
+    {% for integrante in datos_equipo %}
+
     <div class="md:grid md:grid-cols-3 md:gap-6">
       <div class="md:col-span-1">
         <div class="px-4 sm:px-0">
           <h3 class="text-xl font-bold leading-6 text-sky-600">
-            Datos Integrante 1
+            Datos Integrante {{ loop.index }}
           </h3>
           <p class="mt-1 text-sm text-gray-600">
-            Datos personales del integrante 1 del equipo
+            Datos personales del integrante {{ loop.index }} del equipo
           </p>
         </div>
       </div>
@@ -199,6 +215,7 @@
                     id="curp_integrante1"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder=""
+		    value="{{ integrante.curp }}"
                   />
                 </div>
               </div>
@@ -220,6 +237,7 @@
                     id="nombre_integrante1"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Nombre(s)"
+		    value="{{ integrante.nombre_pila }}"
                   />
                 </div>
               </div>
@@ -240,6 +258,7 @@
                     id="apellido1_integrante1"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Primer Apellido"
+		    value="{{ integrante.apellido_1 }}"
                   />
                 </div>
               </div>
@@ -260,6 +279,7 @@
                     id="apellido2_integrante1"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                     placeholder="Segundo Apellido"
+		    value="{{ integrante.apellido_2 }}"
                   />
                 </div>
               </div>
@@ -279,6 +299,7 @@
                     name="edad_integrante1"
                     id="edad_integrante1"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
+		    value="{{ integrante.fecha_nac }}"
                   />
                 </div>
               </div>
@@ -292,255 +313,9 @@
     <hr />
     <br />
 
-    <div class="md:grid md:grid-cols-3 md:gap-6">
-      <div class="md:col-span-1">
-        <div class="px-4 sm:px-0">
-          <h3 class="text-xl font-bold leading-6 text-sky-600">
-            Datos Integrante 2
-          </h3>
-          <p class="mt-1 text-sm text-gray-600">
-            Datos personales del integrante 2 del equipo
-          </p>
-        </div>
-      </div>
+    {% endfor %}
 
-      <div class="mt-5 md:col-span-2 md:mt-0">
-        <div class="shadow sm:overflow-hidden sm:rounded-md">
-          <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
-            <div class="grid grid-cols-3 gap-6">
-              <div class="col-span-3 sm:col-span-2">
-                <label
-                  for="curp_integrante2"
-                  class="block text-sm font-medium text-gray-700"
-                  >CURP</label
-                >
-                <div class="mt-1 flex rounded-md shadow-sm">
-                  <input
-                    type="text"
-                    minlength="18"
-                    maxlength="18" 
-                    size="18"
-                    required
-                    name="curp_integrante2"
-                    id="curp_integrante2"
-                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
-                    placeholder=""
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-3 gap-6">
-              <div class="col-span-3 sm:col-span-2">
-                <label
-                  for="nombre_integrante2"
-                  class="block text-sm font-medium text-gray-700"
-                  >Nombre(s)</label
-                >
-                <div class="mt-1 flex rounded-md shadow-sm">
-                  <input
-                    type="text"
-                    pattern="[A-Za-zÀ-ÿ\u00f1\u00d1\-\s]$+"
-                    required
-                    name="nombre_integrante2"
-                    id="nombre_integrante2"
-                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
-                    placeholder="Nombre(s)"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-3 gap-6">
-              <div class="col-span-3 sm:col-span-2">
-                <label
-                  for="apellido1_integrante2"
-                  class="block text-sm font-medium text-gray-700"
-                  >Primer Apellido</label
-                >
-                <div class="mt-1 flex rounded-md shadow-sm">
-                  <input
-                    type="text"
-                    required
-                    name="apellido1_integrante2"
-                    id="apellido1_integrante2"
-                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
-                    placeholder="Primer Apellido"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-3 gap-6">
-              <div class="col-span-3 sm:col-span-2">
-                <label
-                  for="apellido2_integrante2"
-                  class="block text-sm font-medium text-gray-700"
-                  >Segundo Apellido</label
-                >
-                <div class="mt-1 flex rounded-md shadow-sm">
-                  <input
-                    type="text"
-                    required
-                    name="apellido2_integrante2"
-                    id="apellido2_integrante2"
-                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
-                    placeholder="Segundo Apellido"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-3 gap-6">
-              <div class="col-span-3 sm:col-span-2">
-                <label
-                  for="edad_integrante2"
-                  class="block text-sm font-medium text-gray-700"
-                  >Fecha de Nacimiento</label
-                >
-                <div class="mt-1 flex rounded-md shadow-sm">
-                  <input
-                    type="date"
-                    required
-                    name="edad_integrante2"
-                    id="edad_integrante2"
-                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <br />
-    <hr />
-    <br />
-
-    <div class="md:grid md:grid-cols-3 md:gap-6">
-      <div class="md:col-span-1">
-        <div class="px-4 sm:px-0">
-          <h3 class="text-xl font-bold leading-6 text-sky-600">
-            Datos Integrante 3
-          </h3>
-          <p class="mt-1 text-sm text-gray-600">
-            Datos personales del integrante 3 del equipo
-          </p>
-        </div>
-      </div>
-
-      <div class="mt-5 md:col-span-2 md:mt-0">
-        <div class="shadow sm:overflow-hidden sm:rounded-md">
-          <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
-            <div class="grid grid-cols-3 gap-6">
-              <div class="col-span-3 sm:col-span-2">
-                <label
-                  for="curp_integrante3"
-                  class="block text-sm font-medium text-gray-700"
-                  >CURP</label
-                >
-                <div class="mt-1 flex rounded-md shadow-sm">
-                  <input
-                    type="text"
-                    minlength="18"
-                    maxlength="18" 
-                    size="18"
-                    required
-                    name="curp_integrante3"
-                    id="curp_integrante3"
-                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
-                    placeholder=""
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-3 gap-6">
-              <div class="col-span-3 sm:col-span-2">
-                <label
-                  for="nombre_integrante3"
-                  class="block text-sm font-medium text-gray-700"
-                  >Nombre(s)</label
-                >
-                <div class="mt-1 flex rounded-md shadow-sm">
-                  <input
-                    type="text"
-                    pattern="[A-Za-zÀ-ÿ\u00f1\u00d1\-\s]$+"
-                    required
-                    name="nombre_integrante3"
-                    id="nombre_integrante3"
-                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
-                    placeholder="Nombre(s)"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-3 gap-6">
-              <div class="col-span-3 sm:col-span-2">
-                <label
-                  for="apellido1_integrante3"
-                  class="block text-sm font-medium text-gray-700"
-                  >Primer Apellido</label
-                >
-                <div class="mt-1 flex rounded-md shadow-sm">
-                  <input
-                    type="text"
-                    required
-                    name="apellido1_integrante3"
-                    id="apellido1_integrante3"
-                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
-                    placeholder="Primer Apellido"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-3 gap-6">
-              <div class="col-span-3 sm:col-span-2">
-                <label
-                  for="apellido2_integrante3"
-                  class="block text-sm font-medium text-gray-700"
-                  >Segundo Apellido</label
-                >
-                <div class="mt-1 flex rounded-md shadow-sm">
-                  <input
-                    type="text"
-                    required
-                    name="apellido2_integrante3"
-                    id="apellido2_integrante3"
-                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
-                    placeholder="Segundo Apellido"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-3 gap-6">
-              <div class="col-span-3 sm:col-span-2">
-                <label
-                  for="edad_integrante3"
-                  class="block text-sm font-medium text-gray-700"
-                  >Fecha de Nacimiento</label
-                >
-                <div class="mt-1 flex rounded-md shadow-sm">
-                  <input
-                    type="date"
-                    required
-                    name="edad_integrante3"
-                    id="edad_integrante3"
-                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-	{% endif %}
-      </div>
-    </div>
-
+    {% endif %}
     <div class="px-4 py-3 text-right sm:px-6">
       <button
         type="submit"

@@ -239,7 +239,16 @@ export async function deleteTeam(teamCode){
 	})
 }
 
-console.log(await getTeamByName('Dinamita'))
-
+export async function updateTeam(teamInfo){
+	await team.update({
+		nombre_equipo: teamInfo.nombre_equipo,
+		categoria: teamInfo.categoria,
+		institucion: teamInfo.institucion
+	},{
+		where:{
+			cod_equipo:teamInfo.cod_equipo
+		}
+	})
+}
 
 //sequelize.close()

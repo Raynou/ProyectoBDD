@@ -24,6 +24,12 @@ export async function judge_event(){
 	return {"events":events, "judges" : judges}
 }
 
+export async function team_event(){
+	const teams = await team.findAll();
+	const events = await sequelize.query("call get_events_after_current_date()", QueryTypes.SELECT)
+	return {"events":events, "teams" : teams}
+}
+
 export async function login(username, pass) {
     const result = await sequelize.query("call check_user_wrapper(" + username + ", " + pass + ")", QueryTypes.SELECT)
     return result
@@ -111,6 +117,17 @@ export async function assignJudge(assign){
 	})
 }
 
+/*PROYECTO
+ @para nom_proyecto - nombre_proyecto
+ @param cod_eq - cod_equipo
+*/
+export async function assignTeam(assign){
+	// Insertar evento
+	await sequelize.query('call set_proyecto(?, ?);', {
+		replacements: [assign.equipo, assign.evento]
+	})
+}
+
 /*CAT_PROGRAMACION
  @param proyecto - cod_proyecto
  @param evento - cod_evento
@@ -154,11 +171,6 @@ export async function putCalif(catpro, catdis, catcons, jurado){
 		replacements: [catcons.equipo, cod_evento, jurado]
 	})
     console.log(res)
-}
-
-
-export async function getTeam(){
-	
 }
 
 export async function getJudge(){

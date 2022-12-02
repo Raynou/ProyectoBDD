@@ -141,7 +141,7 @@ router.post("/query/set_event", async function (req, res) {
   res.redirect("/dashboard/coordinador/registro_evento");
 });
 
-router.post("/query/assign_judge", (req, res) => {
+router.post("/query/assign_judge", async (req, res) => {
   const data = req.body;
 
   const assign = {
@@ -150,10 +150,14 @@ router.post("/query/assign_judge", (req, res) => {
     categoria: data.categoria_jurado,
   };
 
-  query.assignJudge(assign);
-
-  req.flash("info", "Se ha asigando con exito");
-  req.flash("type", "success");
+  const message = await query.assignJudge(assign);
+  
+  req.flash("info", message);
+  if(message == "Se ha asigando con exito"){
+    req.flash("type", "success");
+  }else{
+    req.flash("type", "error")
+  }
   res.redirect("/dashboard/coordinador/asignar_jurado");
 });
 
@@ -403,11 +407,11 @@ router.post('/query/modificar_jurado', async function (req, res) {
 	    return
 	}
 
-    query.updateJudge({
+  query.updateJudge({
 	nom_pila: data.nom_pila,
 	apellido_1: data.apellido_1,
 	apellido_2: data.apellido_2,
-	usuario: data.usuario,
+	user: data.user,
 	password: data.password,
 	curp: data.evento
     });

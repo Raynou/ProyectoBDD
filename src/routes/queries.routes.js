@@ -97,6 +97,7 @@ router.post("/query/set_team", (req, res) => {
   ];
 
   let validator = 0;
+    let invalid = -1;
   let rejectedPart = [];
 
   for (let i = 0; i < 3; i++) {
@@ -104,6 +105,8 @@ router.post("/query/set_team", (req, res) => {
     if (script.validateAge(age, cat)) {
       validator++;
       rejectedPart.push(part[i]);
+    } else {
+	invalid = i + 1
     }
   }
 
@@ -112,7 +115,7 @@ router.post("/query/set_team", (req, res) => {
     req.flash("info", "Se ha registrado el equipo con exito");
     req.flash("type", "success");
   } else {
-    req.flash("info", "Participante ${rejectedPart} inválido");
+    req.flash("info", "Participante " + invalid + " inválido");
     req.flash("type", "error");
   }
 

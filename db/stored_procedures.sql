@@ -391,6 +391,7 @@ delimiter ;
 -- Contar todos los proyectos de un equipo en un evento
 -- Objetivo: que un equipo no meta más de dos proyectos a un evento
 drop procedure if exists count_projects;
+delimiter $$
 create procedure count_projects(
 in equipo int,
 in evento int

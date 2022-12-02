@@ -398,7 +398,7 @@ router.post('/query/modificar_jurado', async function (req, res) {
     console.log("===")
     console.log(data)
 	if (data.submit == "Borrar") {
-	    query.deleteJudge(data.evento)
+	    query.deleteJudge(data.curp)
 	    req.flash('info', 'Se ha borrado el jurado con exito')
 	    req.flash('type', 'success')
 
@@ -410,9 +410,9 @@ router.post('/query/modificar_jurado', async function (req, res) {
 	nom_pila: data.nom_pila,
 	apellido_1: data.apellido_1,
 	apellido_2: data.apellido_2,
-	usuario: data.usuario,
+	user: data.user,
 	password: data.password,
-	curp: data.evento
+	curp: data.curp
     });
 
 	req.flash('info', 'Se ha actualizado el jurado con exito')

@@ -284,6 +284,18 @@ router.delete('/query/delete_team', async function (req, res) {
 router.post('/query/update_team', async function (req, res) {
 	const data = req.body
 
+    if (data.submit == "Borrar") {
+
+	query.deleteTeam(data.cod_equipo)
+
+	req.flash('info', 'Se ha borrado el equipo con exito')
+	req.flash('type', 'success')
+
+	res.redirect('/dashboard/coordinador/cambio_equipo')
+
+	return
+    }
+
     console.log(data)
 	const name = data.nombre_equipo;
 	const cat = data.categoria_equipo;

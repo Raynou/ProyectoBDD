@@ -297,4 +297,27 @@ export async function updateParticipant(partInfo){
 	})
 }
 
+export async function getEventById(eventCode){
+	return await event.findAll({
+		where:{
+			cod_evento:eventCode
+	}})
+}
+
+export async function updateEvent(eventInput){
+    console.log(eventInput)
+	await event.update({
+		nombre_evento: eventInput.nombre, 
+		fecha_inicio: eventInput.f_inicio,
+		fecha_fin:eventInput.f_fin,
+		lugar:eventInput.lug
+	},{
+		where:{
+			cod_evento:eventInput.codigo 
+		}
+	})
+
+    console.log("done")
+}
+
 //sequelize.close()

@@ -1,10 +1,10 @@
 {% extends "dashboard/dashboard_view.html" %} {% block dashboard_content %}
 <div>
-  <form action="#" method="POST">
+  <form action="/dashboard/coordinador/modificar_evento" method="post">
     <div class="mt-5 md:col-span-2 md:mt-0">
       <div class="space-y-6 px-4 py-5 sm:p-6">
         <div class="grid grid-cols-3">
-          <div class="col-span-3">
+          <div class="col-span-2">
             <div class="mt-1 flex rounded-md shadow-sm">
               <select
                 id="evento"
@@ -22,10 +22,25 @@
               </select>
             </div>
           </div>
+          <div class="col-span-1">
+            <div class="px-4 py-1 text-right sm:px-6">
+              <button
+                type="submit"
+                class="inline-flex justify-center rounded-md border border-transparent bg-sky-500 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
+              >
+                Seleccionar
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+  </form>
 
+  <form
+    action="{% if datos_evento %}/query/update_event {% endif %}"
+    method="POST"
+  >
     <br />
 
     <div class="md:grid md:grid-cols-3 md:gap-6">
@@ -44,6 +59,28 @@
             <div class="grid grid-cols-3 gap-6">
               <div class="col-span-3 sm:col-span-2">
                 <label
+                  for="cod_evento"
+                  class="block text-sm font-medium text-gray-700"
+                  >Código evento</label
+                >
+                <div class="mt-1 flex rounded-md shadow-sm">
+                  <input
+                    type="text"
+                    required
+                    readonly
+                    value ="{{ datos_evento[0].cod_evento }}"
+                    name="cod_evento"
+                    id="cod_evento"
+                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
+                    placeholder="Código del Evento"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-6">
+              <div class="col-span-3 sm:col-span-2">
+                <label
                   for="nombre_evento"
                   class="block text-sm font-medium text-gray-700"
                   >Titulo</label
@@ -52,6 +89,7 @@
                   <input
                     type="text"
                     required
+                    value ="{{ datos_evento[0].nombre_evento }}"
                     name="nombre_evento"
                     id="nombre_evento"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
@@ -71,6 +109,7 @@
                 <div class="mt-1 flex rounded-md shadow-sm">
                   <input
                     type="date"
+                    value ="{{ datos_evento[0].fecha_inicio }}"
                     required
                     name="inicio_evento"
                     id="inicio_evento"
@@ -90,6 +129,7 @@
                 <div class="mt-1 flex rounded-md shadow-sm">
                   <input
                     type="date"
+                    value ="{{ datos_evento[0].fecha_fin }}"
                     required
                     name="fin_evento"
                     id="fin_evento"
@@ -132,6 +172,7 @@
                 <div class="mt-1 flex rounded-md shadow-sm">
                   <input
                     type="text"
+                    value ="{{ datos_evento[0].nombre_evento }}"
                     required
                     name="nombre_sede"
                     id="nombre_sede"
@@ -152,6 +193,7 @@
                 <div class="mt-1 flex rounded-md shadow-sm">
                   <input
                     type="text"
+                    value ="{{ datos_evento[0].lugar }}"
                     required
                     name="ubicacion_sede"
                     id="ubicacion_sede"
